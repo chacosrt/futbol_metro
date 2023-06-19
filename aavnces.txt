@@ -1,0 +1,12 @@
+////////////SEcciones hechas/////////////////
+log
+portada
+soporte
+usuarios
+
+
+///////puntos faltans////////////////
+mostrar valores para cambios
+
+
+

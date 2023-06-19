@@ -1,0 +1,17 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule  ^(.+)$ index.php?uri=$1 [QSA,L]
+</IfModule>
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-SSL} !on
+RewriteCond %{HTTP_HOST} ^appmidas\.midasrh\.com\.mx$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.appmidas\.midasrh\.com\.mx$
+RewriteRule ^/?$ "https\:\/\/appmidas\.midasrh\.com\.mx\/" [R=301,L]
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-SSL} !on
+RewriteCond %{HTTP_HOST} ^midas\.midasrh\.com\.mx$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.midas\.midasrh\.com\.mx$
+RewriteRule ^/?$ "https\:\/\/midas\.midasrh\.com\.mx\/" [R=301,L]
+
