@@ -72,6 +72,8 @@ define('MODULES'    , TEMPLATES.'modules'.DS);
 
 define('VIEWS'      , TEMPLATES.'views'.DS);
 
+define('MENU'      , CONTROLLERS.'menu'.DS);
+
 
 
 // Rutas de archivos o assets con base URL

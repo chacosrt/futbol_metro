@@ -26,8 +26,13 @@ class dashController extends Controller {
  
    function index(){ 
  
-    
-     if($_SESSION['id'] != NULL){ View::render('dash');  }
+    #print_r($_SESSION);
+     if($_SESSION['id'] != NULL){ 
+      
+      View::render('dash');     
+      
+      
+    }
  
      else{ View::render('home'); }
  

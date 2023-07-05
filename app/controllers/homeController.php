@@ -459,7 +459,17 @@ class homeController extends Controller {
   }
 
 
+   /* funcio para salir del sistema */
 
+   function salir(){ 
+
+    $_SESSION = array();
+
+    session_destroy();
+
+    json_output(json_build(200));
+
+  }
   
 
 
