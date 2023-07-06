@@ -127,7 +127,7 @@
                     <div class="col-lg-12">
                         <div class="text-center">
                             <p class="mb-0 text-muted text-center">&copy;
-                                <script>document.write(new Date().getFullYear())</script> Sindicato Nacional de Trabajadores del Sistema Colectivo
+                                <script>document.write(new Date().getFullYear())</script> Sindicato Nacional de Trabajadores del Sistema de Transporte Colectivo
                             </p>
                         </div>
                     </div>
