@@ -24,7 +24,8 @@
     <link href="../assets/css/app.min.css" rel="stylesheet" type="text/css" />
     <!-- custom Css-->
     <link href="../assets/css/custom.min.css" rel="stylesheet" type="text/css" />
-
+    <!-- cards Css-->
+    <link href="../assets/css/extra.css" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -111,34 +112,61 @@
                                     <div class="col-xl-3 col-md-6">
                                         <!-- card -->
                                         <div class="card card-animate">
+                                            <div class="card-header text-center">
+                                                <h5>Primera Fuerza</h5>
+                                            </div>
                                             <div class="card-body">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="flex-grow-1 overflow-hidden">
-                                                        <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
-                                                            Total Earnings</p>
-                                                    </div>
-                                                    <div class="flex-shrink-0">
-                                                        <h5 class="text-success fs-14 mb-0">
-                                                            <i class="ri-arrow-right-up-line fs-13 align-middle"></i>
-                                                            +16.24 %
-                                                        </h5>
-                                                    </div>
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item">
+                                                        <table class="table table-hover">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th>
+                                                                        <a class="team-logo logo-odd" href="https://fc-united.axiomthemes.com/team/fcunited/" title="FC United">
+                                                                            <img height="30" width="30" src="https://fc-united.axiomthemes.com/wp-content/uploads/2018/11/go-4-copyright-400x400.png" class="attachment-sportspress-fit-icon size-sportspress-fit-icon wp-post-image" alt=""> 
+                                                                            <strong class="sp-team-name">FC United</strong>
+                                                                        </a>                                               	
+                                                                    </th>
+                                                                    <th>
+                                                                        <h5 class="sp-event-results text-center">
+                                                                            <span class="sp-result">3</span> - <span class="sp-result">1</span>							
+                                                                        </h5>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a class="team-logo logo-even" href="https://fc-united.axiomthemes.com/team/fc-manchester/" title="FC Manchester">
+                                                                            <strong class="sp-team-name">FC Manchester</strong>
+                                                                            <img height="30" width="30" src="https://fc-united.axiomthemes.com/wp-content/uploads/2018/11/go-3-copyright-400x400.png" class="attachment-sportspress-fit-icon size-sportspress-fit-icon wp-post-image" alt="" loading="lazy">
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </li>
+                                                </ul>
+                                                <!-- <div class="d-flex justify-content-between align-items-center mb-3">
+                                                    <img src="https://serverlatam.deporstar.com/media/equipos/image_GZ9B75v.jpeg" alt="Escudo Equipo Local" class="card-main rounded float-start" height="30" width="30">
+                                                    <h6 class="card-title text-center">Instalaciones Electricas vs Pino Suarez</h6>
+                                                    <img src="https://serverlatam.deporstar.com/media/equipos/image_YdCbxTR.jpeg" alt="Escudo Equipo Visitante" class="rounded float-end" height="30" width="30">
                                                 </div>
-                                                <div class="d-flex align-items-end justify-content-between mt-4">
-                                                    <div>
-                                                        <h4 class="fs-22 fw-semibold ff-secondary mb-4">$<span class="counter-value" data-target="559.25">0</span>k
-                                                        </h4>
-                                                        <a href="" class="text-decoration-underline text-muted">View net
-                                                            earnings</a>
-                                                    </div>
-                                                    <div class="avatar-sm flex-shrink-0">
-                                                        <span class="avatar-title bg-soft-success rounded fs-3">
-                                                            <i class="bx bx-dollar-circle text-success"></i>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div><!-- end card body -->
-                                        </div><!-- end card -->
+                                                <p class="card-text">Fecha: 10 de mayo de 2023</p>
+                                                <p class="card-text">Estadio: Estadio Ejemplo</p>
+                                                <p class="card-text">Resultado: 2 - 1</p>
+                                                <a href="#" class="btn btn-primary">Ver detalles</a> -->
+                                            </div>
+                                        </div>
+                                        <tr class="sp-row sp-post alternate">
+                                            <td>
+                                                					
+                                                <time class="sp-event-date" datetime="2018-07-11 13:41:26">
+                                                    July 11, 2018						
+                                                </time>
+                                                
+                                                <span class="sp-event-status">
+                                                    Full Time						
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <!-- end card -->
                                     </div><!-- end col -->
 
                                     <div class="col-xl-3 col-md-6">
