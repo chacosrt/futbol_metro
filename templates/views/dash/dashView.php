@@ -109,52 +109,38 @@
                                 <!--end row-->
 
                                 <div class="row">
-                                    <div class="col-xl-3 col-md-6">
+                                    <div class="col-md-2">
                                         <!-- card -->
                                         <div class="card card-animate">
                                             <div class="card-header text-center">
                                                 <h5>Primera Fuerza</h5>
                                             </div>
-                                            <div class="card-body">
-                                                <ul class="list-group list-group-flush">
-                                                    <li class="list-group-item">
-                                                        <table class="table table-hover">
-                                                            <tbody>
-                                                                <tr>
-                                                                    <th>
-                                                                        <a class="team-logo logo-odd" href="https://fc-united.axiomthemes.com/team/fcunited/" title="FC United">
-                                                                            <img height="30" width="30" src="https://fc-united.axiomthemes.com/wp-content/uploads/2018/11/go-4-copyright-400x400.png" class="attachment-sportspress-fit-icon size-sportspress-fit-icon wp-post-image" alt=""> 
-                                                                            <strong class="sp-team-name">FC United</strong>
-                                                                        </a>                                               	
-                                                                    </th>
-                                                                    <th>
-                                                                        <h5 class="sp-event-results text-center">
-                                                                            <span class="sp-result">3</span> - <span class="sp-result">1</span>							
-                                                                        </h5>
-                                                                    </td>
-                                                                    <td>
-                                                                        <a class="team-logo logo-even" href="https://fc-united.axiomthemes.com/team/fc-manchester/" title="FC Manchester">
-                                                                            <strong class="sp-team-name">FC Manchester</strong>
-                                                                            <img height="30" width="30" src="https://fc-united.axiomthemes.com/wp-content/uploads/2018/11/go-3-copyright-400x400.png" class="attachment-sportspress-fit-icon size-sportspress-fit-icon wp-post-image" alt="" loading="lazy">
-                                                                        </a>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </li>
-                                                </ul>
-                                                <!-- <div class="d-flex justify-content-between align-items-center mb-3">
-                                                    <img src="https://serverlatam.deporstar.com/media/equipos/image_GZ9B75v.jpeg" alt="Escudo Equipo Local" class="card-main rounded float-start" height="30" width="30">
-                                                    <h6 class="card-title text-center">Instalaciones Electricas vs Pino Suarez</h6>
-                                                    <img src="https://serverlatam.deporstar.com/media/equipos/image_YdCbxTR.jpeg" alt="Escudo Equipo Visitante" class="rounded float-end" height="30" width="30">
-                                                </div>
-                                                <p class="card-text">Fecha: 10 de mayo de 2023</p>
-                                                <p class="card-text">Estadio: Estadio Ejemplo</p>
-                                                <p class="card-text">Resultado: 2 - 1</p>
-                                                <a href="#" class="btn btn-primary">Ver detalles</a> -->
+                                            <div class="card-body">                                                
+                                                <table class="table table-hover">
+                                                    <tbody>
+                                                        <tr class="align-middle text-center">
+                                                            <td width ="150px" >                                                                         
+                                                                <a href="https://fc-united.axiomthemes.com/team/fcunited/" title="FC United">    
+                                                                    <img height="30" width="30" src="https://fc-united.axiomthemes.com/wp-content/uploads/2018/11/go-4-copyright-400x400.png" alt="">                    
+                                                                    <p class="text-overflow text-center"><b>Instalaciones Electricas</b></p>
+                                                                </a>                                               	
+                                                            </td>
+                                                            <td>
+                                                                <h3 class="sp-event-results text-center">
+                                                                    <span class="sp-result">3</span> - <span class="sp-result">1</span>							
+                                                                </h3>
+                                                            </td>
+                                                            <td width ="150px" >
+                                                                <a class="team-logo logo-even" href="https://fc-united.axiomthemes.com/team/fc-manchester/" title="FC Manchester">
+                                                                    <img height="30" width="30" src="https://fc-united.axiomthemes.com/wp-content/uploads/2018/11/go-3-copyright-400x400.png" class="attachment-sportspress-fit-icon size-sportspress-fit-icon wp-post-image" alt="" loading="lazy">
+                                                                    <p class="text-overflow text-center"><b>Garibaldi</b></p>                                                                            
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>                                                 
                                             </div>
-                                        </div>
-                                        <tr class="sp-row sp-post alternate">
+                                        <!-- <tr class="sp-row sp-post alternate">
                                             <td>
                                                 					
                                                 <time class="sp-event-date" datetime="2018-07-11 13:41:26">
@@ -165,7 +151,7 @@
                                                     Full Time						
                                                 </span>
                                             </td>
-                                        </tr>
+                                        </tr> -->
                                         <!-- end card -->
                                     </div><!-- end col -->
 
