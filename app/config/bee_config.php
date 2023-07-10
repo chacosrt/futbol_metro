@@ -78,7 +78,7 @@ define('MENU'      , CONTROLLERS.'menu'.DS);
 
 // Rutas de archivos o assets con base URL
 
-define('ASSETS'     , URL.'assets/');
+define('ASSETS'     , URL.'../assets/');
 
 define('CSS'        , ASSETS.'css/');
 

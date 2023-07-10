@@ -461,7 +461,7 @@ class homeController extends Controller {
 
    /* funcio para salir del sistema */
 
-   function salir(){ 
+  function salir(){ 
 
     $_SESSION = array();
 

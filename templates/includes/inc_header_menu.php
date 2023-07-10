@@ -6,21 +6,21 @@
         <div class="d-flex">
             <!-- LOGO -->
             <div class="navbar-brand-box horizontal-logo">
-                <a href="index.html" class="logo logo-dark">
+                <a id="regresoInicio" href="<?php CONTROLLERS.'dash/index';?>" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="assets/images/logo-sm.png" alt="" height="22">
+                        <img src="../assets/images/logo.png" alt="" height="50">
                     </span>
                     <span class="logo-lg">
-                        <img src="assets/images/logo-dark.png" alt="" height="17">
+                        <img src="../assets/images/logo.png" alt="" height="50">
                     </span>
                 </a>
 
-                <a href="index.html" class="logo logo-light">
+                <a id="regresoInicio" href="" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="assets/images/logo-sm.png" alt="" height="22">
+                        <img src="../assets/images/logo.png" alt="" height="50">
                     </span>
                     <span class="logo-lg">
-                        <img src="assets/images/logo-light.png" alt="" height="17">
+                        <img src="../assets/images/logo.png" alt="" height="50">
                     </span>
                 </a>
             </div>
@@ -65,7 +65,7 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="pages-profile-settings.html"><span class="badge bg-soft-success text-success mt-1 float-end">New</span><i class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Configuración</span></a>
                     <a class="dropdown-item" href="auth-lockscreen-basic.html"><i class="mdi mdi-lock text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Lock screen</span></a>
-                    <a class="dropdown-item" href="auth-logout-basic.html"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Cerrar Sesión</span></a>
+                    <a class="dropdown-item salir" href="javascript:salgosistema()"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Cerrar Sesión</span></a>
                 </div>
             </div>
         </div>
@@ -115,7 +115,7 @@
                         <div class="collapse menu-dropdown" id="sidebarDashboards">
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
-                                    <a href="dashboard-analytics.html" class="nav-link" data-key="t-analytics"> Primera Fuerza</a>
+                                    <a href="" class="nav-link" data-key="t-analytics"> Primera Fuerza</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="dashboard-crm.html" class="nav-link" data-key="t-crm"> Segunda Fuerza </a>

@@ -220,35 +220,6 @@ $(document).ready(function() {
   }
 
 
-  /* cerrar sesion */
-
-  $('#btnSalidar').on('click', salgosistema);/* con eso hacemos que solo funcione el boton que se seleccione */
-
-  function salgosistema(event) {
-
-    $.ajax({
-
-      url: 'home/salir',
-
-      type: 'post',
-
-      dataType: 'json',
-
-      contentType: false,
-
-      processData: false,
-
-      cache: false,
-
-
-
-    }).done(function(res) { if(res.status === 200) { window.location='home';  } })
-
-    .fail(function(err) { toastr.error('Hubo un error en la petición', '¡Upss!'); })
-
-  };
- 
-
   
 
 
