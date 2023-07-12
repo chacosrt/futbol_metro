@@ -65,35 +65,6 @@ $("#daralta").on("show.bs.modal", function(event) {
 
 /* con eso hacemos que solo funcione el boton que se seleccione */
 
-function salgosistema() {
-
-  $.ajax({
-
-    url: 'home/salir',
-
-    type: 'POST',
-
-    dataType: 'html',
-
-    contentType: false,
-
-    processData: false,
-
-    cache: false,
-
-
-
-  }).done(function(res) { 
-    console.log(res)
-    if(res.status === 200) {
-       console.log("funcion completa");
-       window.location='home/';  
-      } 
-    }).fail(function(err) {
-       toastr.error('Hubo un error en la petición', '¡Upss!'); 
-      })
-
-};
 
 
 
@@ -112,5 +83,31 @@ $(document).ready(function() {
     window.location='dash/'; 
 
   }  
+
+  $('.salir').on('click', salgosistema);
+
+  
+  function salgosistema() {
+
+    console.log("salir");
+
+    $.ajax({
+
+      url: 'dash/salir',
+
+      type: 'POST',
+
+      dataType: 'html',
+
+      success: function(data) {
+
+        console.log("salir");
+        window.location='home/';  
+        return data; 
+      }
+    });
+
+
+  };
 
 });

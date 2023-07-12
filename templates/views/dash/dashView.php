@@ -18,7 +18,7 @@
     <script src="../assets/js/layout.js"></script>
     <script src="<?php echo BOWER.'jquery/dist/jquery.min.js'; ?>"></script>
     <script src="<?php echo BOWER.'bootstrap/dist/js/bootstrap.min.js'; ?>"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
     <!-- Bootstrap Css -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
@@ -79,7 +79,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-2">
+                                    <div class="col-md-4">
                                         <!-- card -->
                                         <div class="card card-animate">
                                             <div class="card-header text-center">
@@ -125,7 +125,7 @@
                                         </div>
                                         <!-- end card -->
                                     </div><!-- end col -->
-                                    <div class="col-md-2">
+                                    <div class="col-md-4">
                                         <!-- card -->
                                         <div class="card card-animate">
                                             <div class="card-header text-center">
@@ -172,7 +172,7 @@
                                         <!-- end card -->
                                     </div><!-- end col -->
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-4">
                                         <!-- card -->
                                         <div class="card card-animate">
                                             <div class="card-header text-center">
@@ -867,8 +867,7 @@
     <!-- App js -->
     <script src="../assets/js/app.js"></script>
     <script src="<?php echo JS.'dash.js'; ?>"></script>
-    <script src="<?php echo JS.'menu.js'; ?>"></script>
-
+    <script src="<?php echo JS.'menu.js'; ?>"></script>    
     
 </body>
 

@@ -10,15 +10,15 @@ class dashController extends Controller {
 
     /* funcio para salir del sistema */
  
-    function salir(){ 
+    function salir(){  
  
-     $_SESSION = array();
+      /* session_destroy();
+  
+      json_output(json_build(200)); */
+
+      echo "sesion cerrada";
  
-     session_destroy();
- 
-     json_output(json_build(200));
- 
-   }
+    }
  
  
  
