@@ -71,16 +71,9 @@
                             <div class="h-100">   
                                 
                                 <div class="row">
-                                    <div class="col-12">
+                                    <div class="col-6">
                                         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                            <h4 class="mb-sm-0">Ultimos Partidos</h4>
-                                            <a class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="#">
-                                                    Ver detalles
-                                            </a>
-                                            <div class="">
-                                                
-                                            </div>
-
+                                            <h4 class="mb-sm-0">Ultimos Partidos</h4>                                            
                                         </div>
                                     </div>
                                 </div>
@@ -117,6 +110,13 @@
                                                         <tr class="align-middle text-center">
                                                             <td colspan="3">
                                                                 08 de Julio de 2023,  Finalizado
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="align-middle text-center">
+                                                            <td colspan="3">                                                                
+                                                                <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">
+                                                                    Ver Detalles
+                                                                </a>
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -158,6 +158,13 @@
                                                                 08 de Julio de 2023,  Finalizado
                                                             </td>
                                                         </tr>
+                                                        <tr class="align-middle text-center">
+                                                            <td colspan="3">                                                                
+                                                                <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">
+                                                                    Ver Detalles
+                                                                </a>
+                                                            </td>
+                                                        </tr>
                                                     </tbody>
                                                 </table>                                                 
                                             </div>                                            
@@ -196,6 +203,13 @@
                                                         <tr class="align-middle text-center">
                                                             <td colspan="3">
                                                                 09 de Julio de 2023,  Finalizado
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="align-middle text-center">
+                                                            <td colspan="3">                                                                
+                                                                <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">
+                                                                    Ver Detalles
+                                                                </a>
                                                             </td>
                                                         </tr>
                                                     </tbody>
