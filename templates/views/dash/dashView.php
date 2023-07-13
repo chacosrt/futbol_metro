@@ -85,24 +85,24 @@
                                             <div class="card-header text-center">
                                                 <h5>Veteranos</h5>
                                             </div>
-                                            <div class="card-body">                                                
-                                                <table class="table-borderless table-centered align-middle table-nowrap mb-0 ">
+                                            <div class="card-body div-con-tabla">                                                
+                                                <table class="table table-fixed table-bordered align-middle d-flex" width="100%">
                                                     <tbody>
                                                         <tr class="align-middle text-center">
-                                                            <td width ="150px" >                                                                         
+                                                            <td class ="flex-grow-1">                                                                         
                                                                 <a href="https://fc-united.axiomthemes.com/team/fcunited/" title="FC United">    
                                                                     <img height="30" width="30" src="../assets/images/escudo_futbol.jpg" alt="">                    
                                                                     <p class="text-overflow text-center"><b>Dinos</b></p>
                                                                 </a>                                               	
                                                             </td>
-                                                            <td width ="150px">
+                                                            <td class ="flex-grow-1" >
                                                                 <h5 class="sp-event-results text-center">
                                                                     <span class="sp-result">0</span> - <span class="sp-result">0</span>							
                                                                 </h5>
                                                             </td>
-                                                            <td width ="150px" >
-                                                                <a class="team-logo logo-even" href="https://fc-united.axiomthemes.com/team/fc-manchester/" title="FC Manchester">
-                                                                    <img height="30" width="30" src="../assets/images/escudo_futbol.jpg" class="attachment-sportspress-fit-icon size-sportspress-fit-icon wp-post-image" alt="" loading="lazy">
+                                                            <td class ="flex-grow-1">
+                                                                <a href="https://fc-united.axiomthemes.com/team/fc-manchester/" title="FC Manchester">
+                                                                    <img height="30" width="30" src="../assets/images/escudo_futbol.jpg" alt="">
                                                                     <p class="text-overflow text-center"><b>Potros Metro</b></p>                                                                            
                                                                 </a>
                                                             </td>
