@@ -79,32 +79,32 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <!-- card -->
                                         <div class="card card-animate">
                                             <div class="card-header text-center">
                                                 <h5>Veteranos</h5>
                                             </div>
-                                            <div class="card-body align-middle d-flex flex-nowrap">     
-                                                <div class ="flex-1 border d-flex justify-content-center p-2">
-                                                    <a href="https://fc-united.axiomthemes.com/team/fcunited/" title="FC United" >    
-                                                        <img class="align-middle" height="30" width="30" src="../assets/images/escudo_futbol.jpg" alt="">                    
-                                                        <p class="text-overflow text-center"><b>Dinos</b></p>
+                                            <div class="card-body align-middle d-flex justify-content-center">     
+                                                <div class ="flex-1 d-flex align-items-lg-center align-content-center justify-content-center p-2">
+                                                    <a href="https://fc-united.axiomthemes.com/team/fcunited/" title="FC United" class = "text-center">    
+                                                        <img height="30" width="30" src="../assets/images/escudo_futbol.jpg" alt="" class = "align-self-center flex-3">                    
+                                                        <p class="text-overflow align-self-center flex-3"><b>Dinos</b></p>
                                                     </a> 
                                                 </div>      
-                                                <div class ="flex-1 border d-flex justify-content-center">
-                                                    <h5 class="sp-event-results text-center">
+                                                <div class ="flex-1 d-flex justify-content-center">
+                                                    <h5 class= "align-self-center text-center">
                                                         <span class="sp-result">0</span> - <span class="sp-result">0</span>							
                                                     </h5> 
                                                 </div>       
-                                                <div class ="flex-1 border d-flex justify-content-center">
-                                                    <a class ="justify-content-center" href="https://fc-united.axiomthemes.com/team/fc-manchester/" title="FC Manchester">
-                                                        <img class = "text-center" height="30" width="30" src="../assets/images/escudo_futbol.jpg" alt="">
-                                                        <p class="text-overflow text-center"><b>Potros Metro</b></p>                                                                            
+                                                <div class ="flex-1 d-flex align-items-lg-center align-content-center justify-content-center p-2">
+                                                    <a  href="https://fc-united.axiomthemes.com/team/fc-manchester/" title="FC Manchester" class = " text-center" width= "100%">
+                                                        <img height="30" width="30" src="../assets/images/escudo_futbol.jpg" class = " align-self-center flex-3 mx-auto d-block">
+                                                        <p class="text-overflow align-self-center flex-3" ><b>Potros Metro</b></p>                                                                            
                                                     </a> 
                                                 </div>                                                                                    
                                             </div>  
-                                            <div class="card-footer align-middle d-flex justify-content-center">
+                                            <div class="card-footer align-middle d-flex border-0 justify-content-center">
                                                 <div class = "text-center">
                                                     <p>08 de Julio de 2023,  Finalizado</p>
                                                     <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">
