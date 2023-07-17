@@ -16,6 +16,7 @@
 
     <!-- Layout config Js -->
     <script src="../assets/js/layout.js"></script>
+    <script type="text/javascript" src="../assets/libs/bootstrap/js/bootstrap-multiselect.js"></script>
     <!-- Bootstrap Css -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
@@ -24,7 +25,7 @@
     <link href="../assets/css/app.min.css" rel="stylesheet" type="text/css" />
     <!-- custom Css-->
     <link href="../assets/css/custom.min.css" rel="stylesheet" type="text/css" />
-
+    <link href="../assets/libs/bootstrap/bootstrap-multiselect.min.css" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -34,7 +35,7 @@
     <div id="layout-wrapper">
 
         <div class="horizontal-overlay">
-            <?php
+            <?php               
                 require INCLUDES.'inc_header_menu.php'; //Menu
             ?>
         </div>
@@ -44,7 +45,7 @@
         <!-- Start right Content here -->
         <!-- ============================================================== -->
         <div class="main-content">
-
+            
             <div class="page-content">
                 <div class="container-fluid">
 
@@ -52,15 +53,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                <h4 class="mb-sm-0">Companies</h4>
-
-                                <div class="page-title-right">
-                                    <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item"><a href="javascript: void(0);">CRM</a></li>
-                                        <li class="breadcrumb-item active">Companies</li>
-                                    </ol>
-                                </div>
-
+                                <h2 class="mb-sm-0">Torneos</h2> 
                             </div>
                         </div>
                     </div>
@@ -72,13 +65,13 @@
                                 <div class="card-header">
                                     <div class="d-flex align-items-center flex-wrap gap-2">
                                         <div class="flex-grow-1">
-                                            <button class="btn btn-info add-btn" data-bs-toggle="modal" data-bs-target="#showModal"><i class="ri-add-fill me-1 align-bottom"></i> Add Company</button>
+                                            <button class="btn btn-info add-btn" data-bs-toggle="modal" data-bs-target="#showModal"><i class="ri-add-fill me-1 align-bottom"></i> Agregar Torneo</button>
                                         </div>
                                         <div class="flex-shrink-0">
                                             <div class="hstack text-nowrap gap-2">
                                                 <button class="btn btn-soft-danger" id="remove-actions" onClick="deleteMultiple()"><i class="ri-delete-bin-2-line"></i></button>
-                                                <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addmembers"><i class="ri-filter-2-line me-1 align-bottom"></i> Filters</button>
-                                                <button class="btn btn-soft-primary">Import</button>
+                                                <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addmembers"><i class="ri-filter-2-line me-1 align-bottom"></i> Filtros</button>
+                                                <button class="btn btn-soft-primary">Importar</button>
                                                 <button type="button" id="dropdownMenuLink1" data-bs-toggle="dropdown" aria-expanded="false" class="btn btn-soft-info"><i class="ri-more-2-fill"></i></button>
                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
                                                     <li><a class="dropdown-item" href="#">All</a></li>
@@ -93,24 +86,14 @@
                             </div>
                         </div>
                         <!--end col-->
-                        <div class="col-xxl-9">
+                        <div class="col-xxl-12">
                             <div class="card" id="companyList">
                                 <div class="card-header">
                                     <div class="row g-2">
                                         <div class="col-md-3">
                                             <div class="search-box">
-                                                <input type="text" class="form-control search" placeholder="Search for company...">
+                                                <input type="text" class="form-control search" placeholder="Buscar...">
                                                 <i class="ri-search-line search-icon"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-auto ms-auto">
-                                            <div class="d-flex align-items-center gap-2">
-                                                <span class="text-muted">Sort by: </span>
-                                                <select class="form-control mb-0" data-choices data-choices-search-false id="choices-single-default">
-                                                    <option value="Owner">Owner</option>
-                                                    <option value="Company">Company</option>
-                                                    <option value="location">Location</option>
-                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -118,57 +101,59 @@
                                 <div class="card-body">
                                     <div>
                                         <div class="table-responsive table-card mb-3">
-                                            <table class="table align-middle table-nowrap mb-0" id="customerTable">
+                                            <table class="table align-middle table-hover" id="customerTable">
                                                 <thead class="table-light">
                                                     <tr>
-                                                        <th scope="col" style="width: 50px;">
+                                                        <!-- <th scope="col" style="width: 50px;">
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="checkbox" id="checkAll" value="option">
                                                             </div>
-                                                        </th>
-                                                        <th class="sort" data-sort="name" scope="col">Company Name</th>
-                                                        <th class="sort" data-sort="owner" scope="col">Owner</th>
-                                                        <th class="sort" data-sort="industry_type" scope="col">Industry
-                                                            Type</th>
-                                                        <th class="sort" data-sort="star_value" scope="col">Rating</th>
-                                                        <th class="sort" data-sort="location" scope="col">Location</th>
-                                                        <th scope="col">Action</th>
+                                                        </th> -->
+                                                        <th class="text-center" data-sort="name" scope="col">Torneo</th>
+                                                        <th class="text-center" data-sort="owner" scope="col">Lugar</th>
+                                                        <th class="text-center" data-sort="industry_type" scope="col">Temporada</th>
+                                                        <th class="text-center" data-sort="star_value" scope="col">Modalidad</th>
+                                                        <th class="text-center" data-sort="location" scope="col">Dias</th>
+                                                        <th class="text-center" data-sort="location" scope="col">Horarios</th>
+                                                        <th class="text-center" data-sort="location" scope="col">Fecha Inicio</th>
+                                                        <th class="text-center" data-sort="location" scope="col">Fecha Fin</th>
+                                                        <th class="text-center" data-sort="location" scope="col">Categoría</th>
+                                                        <th class="text-center" scope="col">Accion</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody class="list form-check-all">
+                                                    <?php
+                                                        if ($d->lista):
+                                                            foreach ($d->lista as $tor): 
+                                                         
+                                                    ?>
                                                     <tr>
-                                                        <th scope="row">
+                                                        <!-- <th scope="row">
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="checkbox" name="chk_child" value="option1">
                                                             </div>
-                                                        </th>
+                                                        </th> -->
                                                         <td class="id" style="display:none;"><a href="javascript:void(0);" class="fw-medium link-primary">#VZ001</a>
                                                         </td>
                                                         <td>
                                                             <div class="d-flex align-items-center">
                                                                 <div class="flex-shrink-0">
-                                                                    <img src="assets/images/brands/dribbble.png" alt="" class="avatar-xxs rounded-circle image_src object-cover">
+                                                                    <img src="<?php echo IMAGES.$tor->img;?>" alt="" class="avatar-xxs rounded-circle image_src object-cover">
                                                                 </div>
-                                                                <div class="flex-grow-1 ms-2 name">Nesta Technologies
+                                                                <div class="flex-grow-1 ms-2 name"><?php echo $tor->nombre_torneo;?>
                                                                 </div>
                                                             </div>
                                                         </td>
-                                                        <td class="owner">Tonya Noble</td>
-                                                        <td class="industry_type">Computer Industry</td>
-                                                        <td><span class="star_value">4.5</span> <i class="ri-star-fill text-warning align-bottom"></i></td>
-                                                        <td class="location">Los Angeles, USA</td>
+                                                        <td class="text-center"><?php echo $tor->lugar;?></td>
+                                                        <td class="text-center"><?php echo $tor->temporada;?></td>     
+                                                        <td class="text-center"><?php echo $tor->modalidad;?></td>
+                                                        <td class="text-center"><?php echo $tor->dias;?></td>  
+                                                        <td class="text-center"><?php echo $tor->horarios;?></td>
+                                                        <td class="text-center"><?php echo $tor->fecha_inicio;?></td>
+                                                        <td class="text-center"><?php echo $tor->fecha_fin;?></td>
+                                                        <td class="text-center"><?php echo $tor->categoria;?></td>   
                                                         <td>
-                                                            <ul class="list-inline hstack gap-2 mb-0">
-                                                                <li class="list-inline-item edit" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Call">
-                                                                    <a href="javascript:void(0);" class="text-muted d-inline-block">
-                                                                        <i class="ri-phone-line fs-16"></i>
-                                                                    </a>
-                                                                </li>
-                                                                <li class="list-inline-item edit" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Message">
-                                                                    <a href="javascript:void(0);" class="text-muted d-inline-block">
-                                                                        <i class="ri-question-answer-line fs-16"></i>
-                                                                    </a>
-                                                                </li>
+                                                            <ul class="list-inline hstack gap-2 mb-0">                                                                
                                                                 <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="View">
                                                                     <a href="javascript:void(0);" class="view-item-btn"><i class="ri-eye-fill align-bottom text-muted"></i></a>
                                                                 </li>
@@ -181,8 +166,15 @@
                                                                     </a>
                                                                 </li>
                                                             </ul>
-                                                        </td>
+                                                        </td>                                             
                                                     </tr>
+                                                    <?php endforeach; ?>
+
+                                                <?php else: ?>
+
+                                                    <tr><td colspan="9">No se encuentran registros</td></tr>
+
+                                                <?php endif; ?>
 
                                                 </tbody>
                                             </table>
@@ -199,11 +191,11 @@
                                         <div class="d-flex justify-content-end mt-3">
                                             <div class="pagination-wrap hstack gap-2">
                                                 <a class="page-item pagination-prev disabled" href="#">
-                                                    Previous
+                                                    Atras
                                                 </a>
                                                 <ul class="pagination listjs-pagination mb-0"></ul>
                                                 <a class="page-item pagination-next" href="#">
-                                                    Next
+                                                    Siguiente
                                                 </a>
                                             </div>
                                         </div>
@@ -212,10 +204,10 @@
                                         <div class="modal-dialog modal-dialog-centered modal-lg">
                                             <div class="modal-content border-0">
                                                 <div class="modal-header bg-soft-info p-3">
-                                                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                                    <h5 class="modal-title" id="">Agregar Torneo</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
                                                 </div>
-                                                <form action="">
+                                                <form action="" id = "form-torneo">
                                                     <div class="modal-body">
                                                         <input type="hidden" id="id-field" />
                                                         <div class="row g-3">
@@ -238,24 +230,36 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <h5 class="fs-13 mt-3">Company Logo</h5>
-                                                                </div>
+                                                                    <h5 class="fs-13 mt-3">Torneo Logo</h5>
+                                                                </div>                                                                
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <label for="nombre" class="form-label">Nombre</label>
+                                                                <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Ingrese nombre" required />
+                                                            </div>
+                                                            <div class="col-lg-6">
                                                                 <div>
-                                                                    <label for="companyname-field" class="form-label">Name</label>
-                                                                    <input type="text" id="companyname-field" class="form-control" placeholder="Enter company name" required />
+                                                                    <label for="lugar" class="form-label">Lugar</label>
+                                                                    <input type="text" id="lugar" name="lugar" class="form-control" placeholder="Ingrese lugar" required />
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6">
                                                                 <div>
-                                                                    <label for="owner-field" class="form-label">Owner Name</label>
-                                                                    <input type="text" id="owner-field" class="form-control" placeholder="Enter owner name" required />
+                                                                    <label for="temporada" class="form-label">Temporada</label>
+                                                                    <input type="text" id="temporada" name="temporada" class="form-control" placeholder="Ingrese temporada" required />
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6">
                                                                 <div>
-                                                                    <label for="industry_type-field" class="form-label">Industry Type</label>
-                                                                    <select class="form-select" id="industry_type-field">
-                                                                        <option value="">Select industry type</option>
+                                                                    <label for="modalidad" class="form-label">Modalidad</label>
+                                                                    <input type="text" id="modalidad" name="modalidad" class="form-control" placeholder="Ingrese modalidad" required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div>
+                                                                    <label for="dias" class="form-label">Dias</label>
+                                                                    <select class="form-select" id="dias" multiple="multiple">
+                                                                        <option value="">Seleccione los dias</option>
                                                                         <option value="Computer Industry">Computer Industry</option>
                                                                         <option value="Chemical Industries">Chemical Industries</option>
                                                                         <option value="Health Services">Health Services</option>
@@ -263,19 +267,7 @@
                                                                         <option value="Textiles: Clothing, Footwear">Textiles: Clothing, Footwear</option>
                                                                     </select>
                                                                 </div>
-                                                            </div>
-                                                            <div class="col-lg-4">
-                                                                <div>
-                                                                    <label for="star_value-field" class="form-label">Rating</label>
-                                                                    <input type="text" id="star_value-field" class="form-control" placeholder="Enter rating" required />
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-4">
-                                                                <div>
-                                                                    <label for="location-field" class="form-label">Location</label>
-                                                                    <input type="text" id="location-field" class="form-control" placeholder="Enter location" required />
-                                                                </div>
-                                                            </div>
+                                                            </div>                                                            
                                                             <div class="col-lg-4">
                                                                 <div>
                                                                     <label for="employee-field" class="form-label">Employee</label>
@@ -341,82 +333,6 @@
                             </div>
                             <!--end card-->
                         </div>
-                        <!--end col-->
-                        <div class="col-xxl-3">
-                            <div class="card" id="company-view-detail">
-                                <div class="card-body text-center">
-                                    <div class="position-relative d-inline-block">
-                                        <div class="avatar-md">
-                                            <div class="avatar-title bg-light rounded-circle">
-                                                <img src="assets/images/brands/mail_chimp.png" alt="" class="avatar-sm rounded-circle object-cover">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h5 class="mt-3 mb-1">Syntyce Solution</h5>
-                                    <p class="text-muted">Michael Morris</p>
-
-                                    <ul class="list-inline mb-0">
-                                        <li class="list-inline-item avatar-xs">
-                                            <a href="javascript:void(0);" class="avatar-title bg-soft-success text-success fs-15 rounded">
-                                                <i class="ri-global-line"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item avatar-xs">
-                                            <a href="javascript:void(0);" class="avatar-title bg-soft-danger text-danger fs-15 rounded">
-                                                <i class="ri-mail-line"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item avatar-xs">
-                                            <a href="javascript:void(0);" class="avatar-title bg-soft-warning text-warning fs-15 rounded">
-                                                <i class="ri-question-answer-line"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="card-body">
-                                    <h6 class="text-muted text-uppercase fw-semibold mb-3">Information</h6>
-                                    <p class="text-muted mb-4">A company incurs fixed and variable costs such as the purchase of raw materials, salaries and overhead, as explained by AccountingTools, Inc. Business owners have the discretion to determine the actions.</p>
-                                    <div class="table-responsive table-card">
-                                        <table class="table table-borderless mb-0">
-                                            <tbody>
-                                                <tr>
-                                                    <td class="fw-medium" scope="row">Industry Type</td>
-                                                    <td>Chemical Industries</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="fw-medium" scope="row">Location</td>
-                                                    <td>Damascus, Syria</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="fw-medium" scope="row">Employee</td>
-                                                    <td>10-50</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="fw-medium" scope="row">Rating</td>
-                                                    <td>4.0 <i class="ri-star-fill text-warning align-bottom"></i></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="fw-medium" scope="row">Website</td>
-                                                    <td>
-                                                        <a href="javascript:void(0);" class="link-primary text-decoration-underline">www.syntycesolution.com</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="fw-medium" scope="row">Contact Email</td>
-                                                    <td>info@syntycesolution.com</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="fw-medium" scope="row">Since</td>
-                                                    <td>1995</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--end card-->
-                        </div>
-                        <!--end col-->
                     </div>
                     <!--end row-->
 
@@ -440,7 +356,7 @@
     <script src="../assets/libs/simplebar/simplebar.min.js"></script>
     <script src="../assets/libs/node-waves/waves.min.js"></script>
     <script src="../assets/libs/feather-icons/feather.min.js"></script>
-    <script src="../assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
+    <script src="../assets/js/pages/plugins/lord-icon-2.1.0.js"></script>    
     <script src="../assets/js/plugins.js"></script>
 
     <!-- list.js min js -->
@@ -453,6 +369,7 @@
     <script src="../assets/js/pages/crm-companies.init.js"></script>
     <!-- App js -->
     <script src="../assets/js/app.js"></script>
+    <script type="text/javascript" src="<?php echo JS.'torneos.js'; ?>"></script> 
 </body>
 
 </html>

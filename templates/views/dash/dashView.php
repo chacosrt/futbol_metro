@@ -79,7 +79,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-3">
+                                    <div class="col-md-5">
                                         <!-- card -->
                                         <div class="card card-animate">
                                             <div class="card-header text-center">
@@ -115,97 +115,77 @@
                                         </div>
                                         <!-- end card -->
                                     </div><!-- end col -->
-                                    <div class="col-md-4">
+                                    <div class="col-md-5">
                                         <!-- card -->
                                         <div class="card card-animate">
                                             <div class="card-header text-center">
                                                 <h5>Primera Fuerza</h5>
                                             </div>
-                                            <div class="card-body">                                                
-                                                <table class="table-borderless table-centered align-middle table-nowrap mb-0 ">
-                                                    <tbody>
-                                                        <tr class="align-middle text-center">
-                                                            <td width ="150px" >                                                                         
-                                                                <a href="https://fc-united.axiomthemes.com/team/fcunited/" title="FC United">    
-                                                                    <img height="30" width="30" src="../assets/images/escudo_futbol.jpg" alt="">                    
-                                                                    <p class="text-overflow text-center"><b>Material Rodante</b></p>
-                                                                </a>                                               	
-                                                            </td>
-                                                            <td width ="150px">
-                                                                <h5 class="sp-event-results text-center">
-                                                                    <span class="sp-result">2</span> - <span class="sp-result">0</span>							
-                                                                </h5>
-                                                            </td>
-                                                            <td width ="150px" >
-                                                                <a class="team-logo logo-even" href="https://fc-united.axiomthemes.com/team/fc-manchester/" title="FC Manchester">
-                                                                    <img height="30" width="30" src="../assets/images/escudo_futbol.jpg" class="attachment-sportspress-fit-icon size-sportspress-fit-icon wp-post-image" alt="" loading="lazy">
-                                                                    <p class="text-overflow text-center"><b>Despacho de Carga</b></p>                                                                            
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr class="align-middle text-center">
-                                                            <td colspan="3">
-                                                                08 de Julio de 2023,  Finalizado
-                                                            </td>
-                                                        </tr>
-                                                        <tr class="align-middle text-center">
-                                                            <td colspan="3">                                                                
-                                                                <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">
-                                                                    Ver Detalles
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>                                                 
-                                            </div>                                            
-                                        </div>
+                                            <div class="card-body align-middle d-flex justify-content-center">     
+                                                <div class ="flex-1 d-flex align-items-lg-center align-content-center justify-content-center p-2">
+                                                    <a href="https://fc-united.axiomthemes.com/team/fcunited/" title="FC United" class = "text-center">    
+                                                        <img height="30" width="30" src="../assets/images/escudo_futbol.jpg" alt="" class = "align-self-center flex-3">                    
+                                                        <p class="text-overflow align-self-center flex-3"><b>Material Rodante</b></p>
+                                                    </a> 
+                                                </div>      
+                                                <div class ="flex-1 d-flex justify-content-center">
+                                                    <h5 class= "align-self-center text-center">
+                                                        <span class="sp-result">2</span> - <span class="sp-result">0</span>							
+                                                    </h5> 
+                                                </div>       
+                                                <div class ="flex-1 d-flex align-items-lg-center align-content-center justify-content-center p-2">
+                                                    <a  href="https://fc-united.axiomthemes.com/team/fc-manchester/" title="FC Manchester" class = " text-center" width= "100%">
+                                                        <img height="30" width="30" src="../assets/images/escudo_futbol.jpg" class = " align-self-center flex-3 mx-auto d-block">
+                                                        <p class="text-overflow align-self-center flex-3" ><b>Despacho de Carga</b></p>                                                                            
+                                                    </a> 
+                                                </div>                                                                                    
+                                            </div>  
+                                            <div class="card-footer align-middle d-flex border-0 justify-content-center">
+                                                <div class = "text-center">
+                                                    <p>08 de Julio de 2023,  Finalizado</p>
+                                                    <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">
+                                                        Ver Detalles
+                                                    </a>
+                                                </div>
+                                            </div>                                          
+                                        </div>                            
                                         <!-- end card -->
                                     </div><!-- end col -->
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-5">
                                         <!-- card -->
                                         <div class="card card-animate">
                                             <div class="card-header text-center">
                                                 <h5>Segunda Fuerza</h5>
                                             </div>
-                                            <div class="card-body">                                                
-                                                <table class="table-borderless ">
-                                                    <tbody>
-                                                        <tr class="align-middle text-center">
-                                                            <td width ="150px" >                                                                         
-                                                                <a href="https://fc-united.axiomthemes.com/team/fcunited/" title="FC United">    
-                                                                    <img height="30" width="30" src="https://fc-united.axiomthemes.com/wp-content/uploads/2018/11/go-4-copyright-400x400.png" alt="">                    
-                                                                    <p class="text-overflow text-center"><b>Real Universidad</b></p>
-                                                                </a>                                               	
-                                                            </td>
-                                                            <td width ="150px">
-                                                                <h5 class="sp-event-results text-center">
-                                                                    <span class="sp-result">3</span> - <span class="sp-result">1</span>							
-                                                                </h5>
-                                                            </td>
-                                                            <td width ="150px" >
-                                                                <a class="team-logo logo-even" href="https://fc-united.axiomthemes.com/team/fc-manchester/" title="FC Manchester">
-                                                                    <img height="30" width="30" src="../assets/images/garibaldi.png" class="attachment-sportspress-fit-icon size-sportspress-fit-icon wp-post-image" alt="" loading="lazy">
-                                                                    <p class="text-overflow text-center"><b>Garibaldi</b></p>                                                                            
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr class="align-middle text-center">
-                                                            <td colspan="3">
-                                                                09 de Julio de 2023,  Finalizado
-                                                            </td>
-                                                        </tr>
-                                                        <tr class="align-middle text-center">
-                                                            <td colspan="3">                                                                
-                                                                <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">
-                                                                    Ver Detalles
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>                                                 
-                                            </div>                                            
-                                        </div>
+                                            <div class="card-body align-middle d-flex justify-content-center">     
+                                                <div class ="flex-1 d-flex align-items-lg-center align-content-center justify-content-center p-2">
+                                                    <a href="https://fc-united.axiomthemes.com/team/fcunited/" title="FC United" class = "text-center">    
+                                                        <img height="30" width="30" src="https://fc-united.axiomthemes.com/wp-content/uploads/2018/11/go-4-copyright-400x400.png" alt="" class = "align-self-center flex-3">                    
+                                                        <p class="text-overflow align-self-center flex-3"><b>Real Universidad</b></p>
+                                                    </a> 
+                                                </div>      
+                                                <div class ="flex-1 d-flex justify-content-center">
+                                                    <h5 class= "align-self-center text-center">
+                                                        <span class="sp-result">3</span> - <span class="sp-result">1</span>								
+                                                    </h5> 
+                                                </div>       
+                                                <div class ="flex-1 d-flex align-items-lg-center align-content-center justify-content-center p-2">
+                                                    <a  href="https://fc-united.axiomthemes.com/team/fc-manchester/" title="FC Manchester" class = " text-center" width= "100%">
+                                                        <img height="30" width="30" src="../assets/images/garibaldi.png" class = " align-self-center flex-3 mx-auto d-block">
+                                                        <p class="text-overflow align-self-center flex-3" ><b>Garibaldi</b></p>                                                                            
+                                                    </a> 
+                                                </div>                                                                                    
+                                            </div>  
+                                            <div class="card-footer align-middle d-flex border-0 justify-content-center">
+                                                <div class = "text-center">
+                                                    <p>08 de Julio de 2023,  Finalizado</p>
+                                                    <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">
+                                                        Ver Detalles
+                                                    </a>
+                                                </div>
+                                            </div>                                          
+                                        </div>                                        
                                         <!-- end card -->
                                     </div><!-- end col -->
 
@@ -855,9 +835,9 @@
     <script src="../assets/js/pages/dashboard-analytics.init.js"></script>
 
     <!-- App js -->
-    <script src="../assets/js/app.js"></script>
-    <script src="<?php echo JS.'dash.js'; ?>"></script>
-    <script src="<?php echo JS.'menu.js'; ?>"></script>    
+    <script type="text/javascript" src="../assets/js/app.js"></script>
+    <script type="text/javascript" src="<?php echo JS.'dash.js'; ?>"></script>
+    <script type="text/javascript" src="<?php echo JS.'menu.js'; ?>"></script>    
     
 </body>
 

@@ -2,21 +2,13 @@
 
 
 
-class analistaModel extends Model {
+class torneosModel extends Model {
 
 
 
   public $id;
 
   public $idUsuario;
-
-  /* para agregar accion al log de acciones */
-
-  public $idAccion;
-
-  public $fecha;
-
-
 
   /* para la seccion de permisos de usuario */
 
@@ -112,9 +104,9 @@ class analistaModel extends Model {
 
   /* metodo para consulta e ingresar al sistema */
 
-  public function concentradoanalista() {
+  public function listaTorneos() {
 
-    $sql = 'SELECT * FROM tbl_analista';
+    $sql = 'SELECT * FROM torneos';
 
     try { return ($rows = parent::query($sql)) ? $rows : false; } 
 

@@ -12,9 +12,9 @@ class dashController extends Controller {
  
     function salir(){  
  
-      /* session_destroy();
+      session_destroy();
   
-      json_output(json_build(200)); */
+      json_output(json_build(200));
 
       echo "sesion cerrada";
  
@@ -32,9 +32,9 @@ class dashController extends Controller {
       View::render('dash');     
       
       
+    }else{ 
+      header('Location: '.DEFAULT_CONTROLLER);
     }
- 
-     else{ View::render('home'); }
  
    
  

@@ -20,7 +20,10 @@ class homeController extends Controller {
 
 
 
-  function index(){  View::render('login');  }
+  function index(){ 
+    
+    
+    View::render('login');  }
 
 
 
@@ -463,11 +466,13 @@ class homeController extends Controller {
 
   function salir(){ 
 
-    $_SESSION = array();
+    //$_SESSION = array();
 
     session_destroy();
 
     json_output(json_build(200));
+
+    echo "sesion cerrada";
 
   }
   

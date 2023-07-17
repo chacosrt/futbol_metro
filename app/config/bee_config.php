@@ -22,7 +22,7 @@ define('LANG'       , 'es');
 
 // Ruta base de nuestro proyecto
 
-define('BASEPATH'   , IS_LOCAL ? 'https://app.midashrcs.com/' : 'https://app.midashrcs.com/');
+define('BASEPATH'   , IS_LOCAL ? 'http://localhost/dashboard/futbol_metro/' : 'https://app.midashrcs.com/');
 
 
 
@@ -36,9 +36,9 @@ define('AUTH_SALT'  , 'appMidas');
 
 define('PORT'       , '7882');
 
-//define('URL'        , IS_LOCAL ? 'http://127.0.0.1:'.PORT.'/cursos/udemy_03/proyecto02/' : '___URL EN PRODUCCIÓN___');
+//define('URL'        , IS_LOCAL ? 'http://127.0.0.1:'.PORT.'/dasboard/udemy_03/proyecto02/' : '___URL EN PRODUCCIÓN___');
 
-define('URL'        ,'');
+define('URL'        ,'http://localhost/dashboard/futbol_metro/');
 
 
 
@@ -78,7 +78,7 @@ define('MENU'      , CONTROLLERS.'menu'.DS);
 
 // Rutas de archivos o assets con base URL
 
-define('ASSETS'     , URL.'../assets/');
+define('ASSETS'     , URL.'assets/');
 
 define('CSS'        , ASSETS.'css/');
 

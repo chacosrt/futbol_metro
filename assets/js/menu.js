@@ -89,21 +89,25 @@ $(document).ready(function() {
   
   function salgosistema() {
 
-    console.log("salir");
-
     $.ajax({
 
-      url: 'dash/salir',
+      url: 'salir',
 
       type: 'POST',
 
       dataType: 'html',
 
+      contentType: false,
+
+      processData: false,
+
+      cache: false,
+
       success: function(data) {
 
-        console.log("salir");
-        window.location='home/';  
-        return data; 
+        console.log(data);
+        window.location= '../home';  
+         
       }
     });
 

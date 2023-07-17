@@ -6,7 +6,7 @@
         <div class="d-flex">
             <!-- LOGO -->
             <div class="navbar-brand-box horizontal-logo">
-                <a id="regresoInicio" href="<?php CONTROLLERS.'dash/index';?>" class="logo logo-dark">
+                <a id="regresoInicio" href="<?php echo URL.'dash/index';?>" class="logo logo-dark">
                     <span class="logo-sm">
                         <img src="../assets/images/logo.png" alt="" height="50">
                     </span>
@@ -108,23 +108,10 @@
                 <ul class="navbar-nav" id="navbar-nav">
                     <li class="menu-title"><span data-key="t-menu">Menu</span></li>
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
+                        <a class="nav-link menu-link" href="<?php echo URL.'torneos/index';?>"  role="button" aria-expanded="false" aria-controls="sidebarDashboards">
                             <svg width="15" height="15" viewBox="0 0 24 24" data-v-8dea8908="" style="--sx: 1; --sy: 1; --r: 0deg;"><path d="M18 2C17.1 2 16 3 16 4H8C8 3 6.9 2 6 2H2V11C2 12 3 13 4 13H6.2C6.6 15 7.9 16.7 11 17V19.08C8 19.54 8 22 8 22H16C16 22 16 19.54 13 19.08V17C16.1 16.7 17.4 15 17.8 13H20C21 13 22 12 22 11V2H18M6 11H4V4H6V11M20 11H18V4H20V11Z" data-v-8dea8908=""></path></svg> 
-                            <span data-key="t-dashboards">Torneos</span>
+                            <span >Torneos</span>
                         </a>
-                        <div class="collapse menu-dropdown" id="sidebarDashboards">
-                            <ul class="nav nav-sm flex-column">
-                                <li class="nav-item">
-                                    <a href="" class="nav-link" data-key="t-analytics"> Primera Fuerza</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="dashboard-crm.html" class="nav-link" data-key="t-crm"> Segunda Fuerza </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="index.html" class="nav-link" data-key="t-ecommerce"> Veteranos </a>
-                                </li>
-                            </ul>
-                        </div>
                     </li> <!-- end Dashboard Menu -->
                     <li class="nav-item">
                         <a class="nav-link menu-link" href="#sidebarApps" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
