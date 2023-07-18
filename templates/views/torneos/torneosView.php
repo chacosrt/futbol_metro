@@ -15,8 +15,7 @@
     <link href="../assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
 
     <!-- Layout config Js -->
-    <script src="../assets/js/layout.js"></script>
-    <script type="text/javascript" src="../assets/libs/bootstrap/js/bootstrap-multiselect.js"></script>
+    <script src="../assets/js/layout.js"></script>    
     <!-- Bootstrap Css -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
@@ -25,7 +24,7 @@
     <link href="../assets/css/app.min.css" rel="stylesheet" type="text/css" />
     <!-- custom Css-->
     <link href="../assets/css/custom.min.css" rel="stylesheet" type="text/css" />
-    <link href="../assets/libs/bootstrap/bootstrap-multiselect.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/libs/bootstrap/bootstrap-select.css" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -258,7 +257,7 @@
                                                             <div class="col-lg-6">
                                                                 <div>
                                                                     <label for="dias" class="form-label">Dias</label>
-                                                                    <select class="form-select" id="dias" multiple="multiple">
+                                                                    <select class="form-control" id="dias" multiple>
                                                                         <option value="">Seleccione los dias</option>
                                                                         <option value="Computer Industry">Computer Industry</option>
                                                                         <option value="Chemical Industries">Chemical Industries</option>
@@ -369,6 +368,8 @@
     <script src="../assets/js/pages/crm-companies.init.js"></script>
     <!-- App js -->
     <script src="../assets/js/app.js"></script>
+    <script src="<?php echo BOWER.'jquery/dist/jquery.min.js'; ?>"></script>    
+    <script type="text/javascript" src="../assets/libs/bootstrap/js/bootstrap-select.min.js"></script>
     <script type="text/javascript" src="<?php echo JS.'torneos.js'; ?>"></script> 
 </body>
 

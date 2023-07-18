@@ -1,6 +1,6 @@
-$(document).ready(function() {
+$('select').selectpicker();
 
-  $('#dias').multiselect();
+$(document).ready(function() {  
 
   $('#regresoInicio').on('click', regresar);
 
