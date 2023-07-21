@@ -9,7 +9,7 @@
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <link rel="shortcut icon" href="../assets/images/logo_metro.png">
 
     <!-- Sweet Alert css-->
     <link href="../assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
@@ -17,15 +17,15 @@
     <!-- Layout config Js -->
     <script src="../assets/js/layout.js"></script>    
     <!-- Bootstrap Css -->
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
     <!-- Icons Css -->
     <link href="../assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="../assets/css/app.min.css" rel="stylesheet" type="text/css" />
     <!-- custom Css-->
     <link href="../assets/css/custom.min.css" rel="stylesheet" type="text/css" />
-    <link href="../assets/libs/bootstrap/bootstrap-select.css" rel="stylesheet" type="text/css" />
-
+    
 </head>
 
 <body>
@@ -70,7 +70,7 @@
                                             <div class="hstack text-nowrap gap-2">
                                                 <button class="btn btn-soft-danger" id="remove-actions" onClick="deleteMultiple()"><i class="ri-delete-bin-2-line"></i></button>
                                                 <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addmembers"><i class="ri-filter-2-line me-1 align-bottom"></i> Filtros</button>
-                                                <button class="btn btn-soft-primary">Importar</button>
+                                                <button id="regresoInicio" class="btn btn-soft-primary">Importar</button>
                                                 <button type="button" id="dropdownMenuLink1" data-bs-toggle="dropdown" aria-expanded="false" class="btn btn-soft-info"><i class="ri-more-2-fill"></i></button>
                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
                                                     <li><a class="dropdown-item" href="#">All</a></li>
@@ -255,15 +255,15 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6">
-                                                                <div>
+                                                                <div >
                                                                     <label for="dias" class="form-label">Dias</label>
-                                                                    <select class="form-control" id="dias" multiple>
-                                                                        <option value="">Seleccione los dias</option>
-                                                                        <option value="Computer Industry">Computer Industry</option>
-                                                                        <option value="Chemical Industries">Chemical Industries</option>
-                                                                        <option value="Health Services">Health Services</option>
-                                                                        <option value="Telecommunications Services">Telecommunications Services</option>
-                                                                        <option value="Textiles: Clothing, Footwear">Textiles: Clothing, Footwear</option>
+                                                                    <select class="form-control select2" multiple="" id = "dias" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                                                        <option>Martes</option>
+                                                                        <option>Miercoles</option>
+                                                                        <option>Jueves</option>
+                                                                        <option>Viernes</option>
+                                                                        <option>Sabado</option>
+                                                                        <option>Domingo</option>                                                                        
                                                                     </select>
                                                                 </div>
                                                             </div>                                                            
@@ -351,7 +351,10 @@
 
 
     <!-- JAVASCRIPT -->
-    <script src="../assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script> -->
     <script src="../assets/libs/simplebar/simplebar.min.js"></script>
     <script src="../assets/libs/node-waves/waves.min.js"></script>
     <script src="../assets/libs/feather-icons/feather.min.js"></script>
@@ -368,9 +371,7 @@
     <script src="../assets/js/pages/crm-companies.init.js"></script>
     <!-- App js -->
     <script src="../assets/js/app.js"></script>
-    <script src="<?php echo BOWER.'jquery/dist/jquery.min.js'; ?>"></script>    
-    <script type="text/javascript" src="../assets/libs/bootstrap/js/bootstrap-select.min.js"></script>
-    <script type="text/javascript" src="<?php echo JS.'torneos.js'; ?>"></script> 
+    <script type="text/javascript" src="<?php echo JS.'torneos.js'; ?>"></script>                                                  
 </body>
 
 </html>

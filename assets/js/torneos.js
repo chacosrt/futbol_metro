@@ -1,12 +1,15 @@
-$('select').selectpicker();
+
 
 $(document).ready(function() {  
 
-  $('#regresoInicio').on('click', regresar);
+  console.log("jquery-on")
+
+  $( 'select' ).select2();
+  $('#dias').on('change', regresar);
 
   function regresar(event) {
 
-    window.location='dash/'; 
+    console.log($( this ).val())
 
   }  
 
