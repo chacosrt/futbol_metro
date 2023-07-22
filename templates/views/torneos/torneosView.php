@@ -17,8 +17,9 @@
     <!-- Layout config Js -->
     <script src="../assets/js/layout.js"></script>    
     <!-- Bootstrap Css -->
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />    
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> 
+    <link href="../assets/css/bootstrap-select.css" rel="stylesheet" type="text/css" />  
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" /> -->
     <!-- Icons Css -->
     <link href="../assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
@@ -257,7 +258,7 @@
                                                             <div class="col-lg-6">
                                                                 <div >
                                                                     <label for="dias" class="form-label">Dias</label>
-                                                                    <select class="form-control select2" multiple="" id = "dias" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                                                    <select class="form-select" multiple="" id = "dias" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                                                         <option>Martes</option>
                                                                         <option>Miercoles</option>
                                                                         <option>Jueves</option>

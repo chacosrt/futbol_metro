@@ -4,7 +4,9 @@ $(document).ready(function() {
 
   console.log("jquery-on")
 
-  $( 'select' ).select2();
+  $('select').select2({
+    closeOnSelect: false
+  });
   $('#dias').on('change', regresar);
 
   function regresar(event) {
