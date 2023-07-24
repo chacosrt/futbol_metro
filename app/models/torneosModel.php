@@ -12,35 +12,27 @@ class torneosModel extends Model {
 
   /* para la seccion de permisos de usuario */
 
-  public $idAnalista;
-
   public $nombre;
 
-  public $apePaterno;
+  public $lugar;
 
-  public $apeMaterno;
+  public $temporada;
 
-  public $idPerfil;
+  public $modalidad;
 
-  public $correo;
+  public $dias;
 
-  public $coordinador;
+  public $horarios;
 
-  public $cliente;
+  public $fecha_inicio;
 
-  public $telefono;
+  public $fecha_fin;
 
-  public $celular;
+  public $categoria;
 
   public $archivo;
 
-  public $comentarios;
 
-  public $usuarioCrea;
-
-  public $fechaCrea;
-
-  public $sistema;
 
 
 
@@ -70,23 +62,37 @@ class torneosModel extends Model {
 
   
 
-  /* funcion para agregar movimiento */
+  /* funcion para agregar torneo */
 
-  public function movisis(){
+  public function guardar_torneo(){
 
-    $sql = 'INSERT INTO log_acciones 
+    $sql = 'INSERT INTO torneos 
 
     (idAccion, idUsuario, fecha)
 
-    VALUES(:idAccion, :idUsuario, :fecha)';
+    VALUES(:nombre_torneo, :lugar, :temporada, :modalidad, :dias, :horarios, :fecha_inicio, :fecha_fin, :categoria, :img)';
 
     $user = [
 
-      'idAccion'         => $this->idAccion,
+      'nombre_torneo' => $this->nombre,
 
-      'idUsuario'         => IDUSUARIO,
+      'lugar' => $this->lugar,
 
-      'fecha'         => now()
+      'temporada' => $this->lugar,
+
+      'modalidad' => $this->lugar,
+
+      'dias' => $this->lugar,
+
+      'horarios' => $this->lugar,
+
+      'fecha_inicio' => $this->lugar,
+
+      'fecha_fin' => $this->lugar,
+
+      'categoria' => $this->lugar,
+
+      'img' => $this->lugar,
 
       
 

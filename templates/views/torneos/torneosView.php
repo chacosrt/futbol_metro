@@ -18,8 +18,8 @@
     <script src="../assets/js/layout.js"></script>    
     <!-- Bootstrap Css -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> 
-    <link href="../assets/css/bootstrap-select.css" rel="stylesheet" type="text/css" />  
-    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" /> -->
+    <!-- <link href="../assets/css/bootstrap-select.css" rel="stylesheet" type="text/css" />   -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
     <!-- Icons Css -->
     <link href="../assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
@@ -204,10 +204,10 @@
                                         <div class="modal-dialog modal-dialog-centered modal-lg">
                                             <div class="modal-content border-0">
                                                 <div class="modal-header bg-soft-info p-3">
-                                                    <h5 class="modal-title" id="">Agregar Torneo</h5>
+                                                    <h5 class="modal-title" id="">Torneo</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
                                                 </div>
-                                                <form action="" id = "form-torneo">
+                                                <form id = "form-torneo">
                                                     <div class="modal-body">
                                                         <input type="hidden" id="id-field" />
                                                         <div class="row g-3">
@@ -222,7 +222,7 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </label>
-                                                                            <input class="form-control d-none" value="" id="company-logo-input" type="file" accept="image/png, image/gif, image/jpeg">
+                                                                            <input class="form-control d-none" name="archivo" value="" id="company-logo-input" type="file" accept="image/png, image/gif, image/jpeg">
                                                                         </div>
                                                                         <div class="avatar-lg p-1">
                                                                             <div class="avatar-title bg-light rounded-circle">
@@ -258,47 +258,55 @@
                                                             <div class="col-lg-6">
                                                                 <div >
                                                                     <label for="dias" class="form-label">Dias</label>
-                                                                    <select class="form-select" multiple="" id = "dias" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                                                                        <option>Martes</option>
-                                                                        <option>Miercoles</option>
-                                                                        <option>Jueves</option>
-                                                                        <option>Viernes</option>
-                                                                        <option>Sabado</option>
-                                                                        <option>Domingo</option>                                                                        
+                                                                    <select class="form-select" multiple="" id = "dias" name="dias" data-placeholder="  Selecciona los dias" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                                                        <option value="Martes">Martes</option>
+                                                                        <option value="Miercoles">Miercoles</option>
+                                                                        <option value="Jueves">Jueves</option>
+                                                                        <option value="Viernes">Viernes</option>
+                                                                        <option value="Sabado">Sabado</option>
+                                                                        <option value="Domingo">Domingo</option>                                                                        
                                                                     </select>
                                                                 </div>
                                                             </div>                                                            
-                                                            <div class="col-lg-4">
+                                                            <div class="col-lg-6">
+                                                                <div >
+                                                                    <label for="horarios" class="form-label">Horarios</label>
+                                                                    <select class="form-select" multiple="" id = "horarios" name="horarios" data-placeholder="  Selecciona los horarios" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                                                        <?php for ($hora = 0; $hora <= 17; $hora++) {
+                                                                                for ($minuto = 0; $minuto <= 30; $minuto += 30) { $hora_formato = sprintf('%02d:%02d', $hora, $minuto); 
+                                                                                    if ($hora >= 8) {
+                                                                                        echo '<option value="'.$hora_formato.'">'.$hora_formato.'</option>';
+                                                                                    }                                                                                   
+                                                                                }
+                                                                            }?>                                                                       
+                                                                    </select>
+                                                                </div>
+                                                            </div>  
+                                                            <div class="col-lg-6">
                                                                 <div>
-                                                                    <label for="employee-field" class="form-label">Employee</label>
-                                                                    <input type="text" id="employee-field" class="form-control" placeholder="Enter employee" required />
+                                                                    <label for="fecha_inicio" class="form-label">Fecha Inicio</label>
+                                                                    <input class="form-control" type="date" id="fecha_inicio" name="fecha_inicio">
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6">
                                                                 <div>
-                                                                    <label for="website-field" class="form-label">Website</label>
-                                                                    <input type="text" id="website-field" class="form-control" placeholder="Enter website" required />
+                                                                    <label for="fecha_fin" class="form-label">Fecha Inicio</label>
+                                                                    <input class="form-control" type="date" id="fecha_fin" name="fecha_fin">
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6">
                                                                 <div>
-                                                                    <label for="contact_email-field" class="form-label">Contact Email</label>
-                                                                    <input type="text" id="contact_email-field" class="form-control" placeholder="Enter contact email" required />
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-12">
-                                                                <div>
-                                                                    <label for="since-field" class="form-label">Since</label>
-                                                                    <input type="text" id="since-field" class="form-control" placeholder="Enter since" required />
+                                                                    <label for="categoria" class="form-label">Categoria</label>
+                                                                    <input type="text" id="categoria" name="categoria" class="form-control" placeholder="Ingrese categoria" required />
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <div class="hstack gap-2 justify-content-end">
-                                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                                            <button type="submit" class="btn btn-success" id="add-btn">Add Company</button>
-                                                            <button type="button" class="btn btn-success" id="edit-btn">Update</button>
+                                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
+                                                            <button type="submit" class="btn btn-success" id="add-btn">Guardar</button>
+                                                            <!-- <button type="button" class="btn btn-success" id="edit-btn">Update</button> -->
                                                         </div>
                                                     </div>
                                                 </form>

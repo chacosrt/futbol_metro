@@ -47,148 +47,54 @@ class torneosController extends Controller {
   }
 
 
+  /* funcion para guardar los torneos */
 
-  /* funcion para cargar la vista del torneo  */
-
-  function cargotorneo($torneo){  
-
-    try {
-
-      echo $torneo;
-
-      /* $movements          = new analistaModel;
-
-      $movs               = $movements->concentradoanalista(); */
-
-      /* regresamos la informacion */
-
-     /*  $data = get_module('tblanalista', ['movements' => $movs]);
-
-      json_output(json_build(200, $data)); */
-
-    }
-
-    /* esto es para mostrar el error */
-
-    catch(Exception $e) { json_output(json_build(400, $e->getMessage())); }
-
-  }
-
-
-
-  /* funcion para cargar los coodinacodres */
-
-  function cargocordi(){
+  function guardaTorneo(){
 
     try {
 
-      $movements          = new analistaModel;
+      print_r($_POST);
 
-      $movs               = $movements->concecoordinba();
+      $torneos = new torneosModel;
 
-      /* regresamos la informacion */
+      $torneos->archivo = $_FILES['archivo']['name'];
 
-      $data = get_module('selectcordinadore', ['movements' => $movs]);
+      $torneos->nombre = $_POST['nombre'];
 
-      json_output(json_build(200, $data));
+      $torneos->lugar= $_POST['lugar'];
 
-    }
+      $torneos->temporada= $_POST['temporada'];
 
-    /* esto es para mostrar el error */
+      $torneos->modalidad= $_POST['modalidad'];
 
-    catch(Exception $e) { json_output(json_build(400, $e->getMessage())); }
+      $torneos->dias= $_POST['dias'];
 
+      $torneos->horarios= $_POST['horarios'];
 
+      $torneos->fecha_inicio= $_POST['fecha_inicio'];
 
-  }
+      $torneos->fecha_fin= $_POST['fecha_fin'];
 
-
-
-  /* cargamos lo clientes */
-
-  function cargoclient(){
-
-    try {
-
-      $movements          = new analistaModel;
-
-      $movs               = $movements->concelcientes();
-
-      /* regresamos la informacion */
-
-      $data = get_module('selectclie', ['movements' => $movs]);
-
-      json_output(json_build(200, $data));
-
-    }
-
-    /* esto es para mostrar el error */
-
-    catch(Exception $e) { json_output(json_build(400, $e->getMessage())); }
-
-  }
-
-
-
-  
-
-  /* funcion para agregar nuevo ticket por parte del usuario */
-
-  function nuevoanalista(){
-
-    try {
-
-      $movements          = new analistaModel;
-
-      $movements->archivo = $_FILES['archivo']['name'];
-
-      $movements->nombre = $_POST['nombre'];
-
-      $movements->apePaterno= $_POST['apePaterno'];
-
-      $movements->apeMaterno= $_POST['apeMaterno'];
-
-      $movements->idPerfil= $_POST['idPerfil'];
-
-      $movements->correo= $_POST['correo'];
-
-      $movements->coordinador= $_POST['coordinador'];
-
-      $movements->cliente= $_POST['cliente'];
-
-      $movements->telefono= $_POST['telefono'];
-
-      $movements->celular= $_POST['celular'];
-
-      $movements->archivo= $_POST['archivo'];
-
-      $movements->comentarios= $_POST['comentarios'];
+      $torneos->categoria= $_POST['categoria'];
 
       
 
-      /* para log de acciones */
-
-      $movements->idAccion = 14;
 
       /* guardamos el archivo en el repositorio */
 
-      $nombre_archivo_1 = $_FILES['archivo']['name'];
+      $nombre_archivo_1 = "principal";
 
-      $directorio_1 = $_SERVER['DOCUMENT_ROOT']."/appMidas/assets/contenedor/analista/".basename($nombre_archivo_1);
-
-      $movements->archivo = $nombre_archivo_1;
+      $directorio_1 = "../assets/images/img_torneos/".$_POST['nombre']."/".$nombre_archivo_1."png";
 
       move_uploaded_file($_FILES['archivo']['tmp_name'], $directorio_1);
 
-      
+      $torneos->archivo= $directorio_1;
 
       /* agregamos la imagen a la bd */
 
-      if(!$movements->nuevoanalista()) {  json_output(json_build(400, null, 'Hubo error al crear el analista'));  }
+      /* if(!$torneos->guarda_torneo()) {  json_output(json_build(400, null, 'Hubo error al crear el analista'));  }
 
-      $movements->movisis();
-
-      json_output(json_build(200, null, 'Se ha creado su analista'));
+      json_output(json_build(200, null, 'Se ha creado su torneo')); */
 
       
 

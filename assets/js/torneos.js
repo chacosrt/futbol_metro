@@ -45,4 +45,30 @@ $(document).ready(function() {
 
   };
 
+
+  $("#form-torneo").submit(function(event) {
+
+    // Obtener los datos del formulario
+    const datosFormulario = $(this).serialize();
+
+    $.ajax({
+
+      url: 'guardaTorneo',
+
+      type: 'POST',
+
+      data: datosFormulario,
+
+      cache: false,
+
+      success: function(data) {
+
+        console.log(data);
+         
+      }
+    });
+
+
+  });
+
 });
