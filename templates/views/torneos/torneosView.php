@@ -207,9 +207,8 @@
                                                     <h5 class="modal-title" id="">Torneo</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
                                                 </div>
-                                                <form id = "form-torneo">
-                                                    <div class="modal-body">
-                                                        <input type="hidden" id="id-field" />
+                                                <form class="form-torneo">
+                                                    <div class="modal-body">                                                        
                                                         <div class="row g-3">
                                                             <div class="col-lg-12">
                                                                 <div class="text-center">
@@ -305,7 +304,7 @@
                                                     <div class="modal-footer">
                                                         <div class="hstack gap-2 justify-content-end">
                                                             <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
-                                                            <button type="submit" class="btn btn-success" id="add-btn">Guardar</button>
+                                                            <button type="submit" class="btn btn-success">Guardar</button>
                                                             <!-- <button type="button" class="btn btn-success" id="edit-btn">Update</button> -->
                                                         </div>
                                                     </div>
@@ -360,7 +359,7 @@
 
 
     <!-- JAVASCRIPT -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script> -->
@@ -380,6 +379,7 @@
     <script src="../assets/js/pages/crm-companies.init.js"></script>
     <!-- App js -->
     <script src="../assets/js/app.js"></script>
+    <script type="text/javascript" src="<?php echo JS.'menu.js'; ?>"></script>   
     <script type="text/javascript" src="<?php echo JS.'torneos.js'; ?>"></script>                                                  
 </body>
 

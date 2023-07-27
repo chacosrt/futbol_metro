@@ -15,7 +15,7 @@ $(document).ready(function() {
 
   }  
 
-  $('.salir').on('click', salgosistema);
+/*   $('.salir').on('click', salgosistema);
 
   
   function salgosistema() {
@@ -43,13 +43,19 @@ $(document).ready(function() {
     });
 
 
-  };
+  }; */
 
 
-  $("#form-torneo").submit(function(event) {
+  $('.form-torneo').on('submit', guarda_torneo);
+
+  function guarda_torneo(event) {
+
+    event.preventDefault();
 
     // Obtener los datos del formulario
     const datosFormulario = $(this).serialize();
+    
+    console.log(datosFormulario);
 
     $.ajax({
 
@@ -66,9 +72,9 @@ $(document).ready(function() {
         console.log(data);
          
       }
-    });
+    }); 
 
 
-  });
+  }
 
 });

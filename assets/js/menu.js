@@ -112,6 +112,6 @@ $(document).ready(function() {
     });
 
 
-  };
+  }
 
 });
