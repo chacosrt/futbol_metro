@@ -55,9 +55,11 @@ class torneosController extends Controller {
 
       print_r($_POST);
 
+      print_r($_FILES);
+
       $torneos = new torneosModel;
 
-      $torneos->archivo = $_FILES['archivo']['name'];
+      $torneos->archivo = $_FILES['company-logo-input']['name'];
 
       $torneos->nombre = $_POST['nombre'];
 
@@ -83,10 +85,22 @@ class torneosController extends Controller {
       /* guardamos el archivo en el repositorio */
 
       $nombre_archivo_1 = "principal";
+      $nombreCarpeta = "../assets/images/img_torneos/".$_POST['nombre'];
 
-      $directorio_1 = "../assets/images/img_torneos/".$_POST['nombre']."/".$nombre_archivo_1."png";
+      if (!is_dir($nombreCarpeta)) {
+        // Crear la carpeta con permisos 0777 (puedes ajustar los permisos según tus necesidades)
+        if (mkdir($nombreCarpeta, 0777)) {
+            echo "Carpeta creada exitosamente.";
+        } else {
+            echo "Error al crear la carpeta.";
+        }
+      } else {
+        echo "La carpeta ya existe.";
+      }
 
-      move_uploaded_file($_FILES['archivo']['tmp_name'], $directorio_1);
+      $directorio_1 = $nombreCarpeta."/".$nombre_archivo_1.".png";
+
+      move_uploaded_file($_FILES['company-logo-input']['tmp_name'], $directorio_1);
 
       $torneos->archivo= $directorio_1;
 

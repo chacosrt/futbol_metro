@@ -207,7 +207,7 @@
                                                     <h5 class="modal-title" id="">Torneo</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
                                                 </div>
-                                                <form class="form-torneo">
+                                                <form id="miTorneo" class="miTorneo" method="POST" enctype="multipart/form-data">
                                                     <div class="modal-body">                                                        
                                                         <div class="row g-3">
                                                             <div class="col-lg-12">
@@ -221,11 +221,11 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </label>
-                                                                            <input class="form-control d-none" name="archivo" value="" id="company-logo-input" type="file" accept="image/png, image/gif, image/jpeg">
+                                                                            <input class="form-control d-none" name="company-logo-input" id="company-logo-input" type="file" accept="image/png, image/gif, image/jpeg">
                                                                         </div>
                                                                         <div class="avatar-lg p-1">
                                                                             <div class="avatar-title bg-light rounded-circle">
-                                                                                <img src="assets/images/users/multi-user.jpg" id="companylogo-img" class="avatar-md rounded-circle object-cover" />
+                                                                                <img src="../assets/images/users/multi-user.jpg" id="companylogo-img" class="avatar-md rounded-circle object-cover" />
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -257,6 +257,7 @@
                                                             <div class="col-lg-6">
                                                                 <div >
                                                                     <label for="dias" class="form-label">Dias</label>
+                                                                    <input type="text" id="dias_text" name="dias_text" hidden>
                                                                     <select class="form-select" multiple="" id = "dias" name="dias" data-placeholder="  Selecciona los dias" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                                                         <option value="Martes">Martes</option>
                                                                         <option value="Miercoles">Miercoles</option>
@@ -270,6 +271,7 @@
                                                             <div class="col-lg-6">
                                                                 <div >
                                                                     <label for="horarios" class="form-label">Horarios</label>
+                                                                    <input type="text" id="horarios_text" name="horarios_text" hidden>
                                                                     <select class="form-select" multiple="" id = "horarios" name="horarios" data-placeholder="  Selecciona los horarios" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                                                         <?php for ($hora = 0; $hora <= 17; $hora++) {
                                                                                 for ($minuto = 0; $minuto <= 30; $minuto += 30) { $hora_formato = sprintf('%02d:%02d', $hora, $minuto); 

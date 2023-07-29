@@ -5,13 +5,53 @@ $(document).ready(function() {
   console.log("jquery-on")
 
   $('select').select2({
-    closeOnSelect: false
+    closeOnSelect: false,
+    tokenSeparators: [',', ' ']
   });
-  $('#dias').on('change', regresar);
 
-  function regresar(event) {
+  $('#dias').on('change', select_dias);
+
+  function select_dias(event) {
 
     console.log($( this ).val())
+
+    // Obtener los valores seleccionados en un arreglo
+    var valoresSeleccionados =$( this ).val();
+
+    // Convertir los valores a texto y mostrarlos en el div
+    var textoConvertido = "";
+    for (var i = 0; i < valoresSeleccionados.length; i++) {
+        var valor = valoresSeleccionados[i];
+        var textoOpcion = $("#dias option[value='" + valor + "']").text();
+        textoConvertido += textoOpcion + ", ";
+    }
+
+    // Eliminar la última coma y espacio
+    textoConvertido = textoConvertido.slice(0, -2);
+    $("#dias_text").val(textoConvertido)
+
+  }  
+
+  $('#horarios').on('change', select_horarios);
+
+  function select_horarios(event) {
+
+    console.log($( this ).val())
+
+    // Obtener los valores seleccionados en un arreglo
+    var valoresSeleccionados =$( this ).val();
+
+    // Convertir los valores a texto y mostrarlos en el div
+    var textoConvertido = "";
+    for (var i = 0; i < valoresSeleccionados.length; i++) {
+        var valor = valoresSeleccionados[i];
+        var textoOpcion = $("#horarios option[value='" + valor + "']").text();
+        textoConvertido += textoOpcion + ", ";
+    }
+
+    // Eliminar la última coma y espacio
+    textoConvertido = textoConvertido.slice(0, -2);
+    $("#horarios_text").val(textoConvertido)
 
   }  
 
@@ -46,16 +86,16 @@ $(document).ready(function() {
   }; */
 
 
-  $('.form-torneo').on('submit', guarda_torneo);
+  $('.miTorneo').on('submit', guarda_torneo);
 
   function guarda_torneo(event) {
 
     event.preventDefault();
 
     // Obtener los datos del formulario
-    const datosFormulario = $(this).serialize();
+    var formData = new FormData($("#miTorneo")[0]);
     
-    console.log(datosFormulario);
+    console.log(formData);
 
     $.ajax({
 
@@ -63,13 +103,15 @@ $(document).ready(function() {
 
       type: 'POST',
 
-      data: datosFormulario,
+      data: formData,
 
-      cache: false,
+      processData: false,  // Evitar el procesamiento de datos
+      
+      contentType: false, 
 
-      success: function(data) {
+      success: function(res) {
 
-        console.log(data);
+        console.log(res);
          
       }
     }); 
