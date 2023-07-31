@@ -90,7 +90,13 @@ class torneosController extends Controller {
       if (!file_exists($nombreCarpeta)) {
         // Crear la carpeta con permisos 0777 (puedes ajustar los permisos según tus necesidades)
         if (mkdir($nombreCarpeta, 0777)) {
-            echo "Carpeta creada exitosamente.";
+
+          $directorio_1 = $nombreCarpeta."/".$nombre_archivo_1.".png";
+
+          move_uploaded_file($_FILES['company-logo-input']['tmp_name'], $directorio_1);
+
+          $torneos->archivo= $directorio_1;
+          echo "Carpeta creada exitosamente.";
         } else {
             echo "Error al crear la carpeta.";
         }
@@ -98,11 +104,6 @@ class torneosController extends Controller {
         echo "La carpeta ya existe.";
       }
 
-      $directorio_1 = $nombreCarpeta."/".$nombre_archivo_1.".png";
-
-      move_uploaded_file($_FILES['company-logo-input']['tmp_name'], $directorio_1);
-
-      $torneos->archivo= $directorio_1;
 
       /* agregamos la imagen a la bd */
 
