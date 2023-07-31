@@ -87,7 +87,7 @@ class torneosController extends Controller {
       $nombre_archivo_1 = "principal";
       $nombreCarpeta = "../assets/images/img_torneos/".$_POST['nombre'];
 
-      if (!is_dir($nombreCarpeta)) {
+      if (!file_exists($nombreCarpeta)) {
         // Crear la carpeta con permisos 0777 (puedes ajustar los permisos según tus necesidades)
         if (mkdir($nombreCarpeta, 0777)) {
             echo "Carpeta creada exitosamente.";
