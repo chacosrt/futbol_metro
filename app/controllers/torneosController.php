@@ -86,7 +86,7 @@ class torneosController extends Controller {
 
       $nombre_archivo_1 = "principal";
       $carpeta = str_replace(" ", "_", $_POST['nombre']);
-      $nombreCarpeta = "..assets/images/img_torneos/".$carpeta;
+      $nombreCarpeta = "assets/images/img_torneos/".$carpeta;
       print_r($nombreCarpeta);
       if (!is_dir($nombreCarpeta)) {
         // Crear la carpeta con permisos 0777 (puedes ajustar los permisos según tus necesidades)
