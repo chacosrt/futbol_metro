@@ -53,13 +53,11 @@ class torneosController extends Controller {
 
     try {
 
-      print_r($_POST);
+      /* print_r($_POST);
 
-      print_r($_FILES);
+      print_r($_FILES); */
 
       $torneos = new torneosModel;
-
-      $torneos->archivo = $_FILES['company-logo-input']['name'];
 
       $torneos->nombre = $_POST['nombre'];
 
@@ -69,9 +67,9 @@ class torneosController extends Controller {
 
       $torneos->modalidad= $_POST['modalidad'];
 
-      $torneos->dias= $_POST['dias'];
+      $torneos->dias= $_POST['dias_text'];
 
-      $torneos->horarios= $_POST['horarios'];
+      $torneos->horarios= $_POST['horarios_text'];
 
       $torneos->fecha_inicio= $_POST['fecha_inicio'];
 
@@ -79,7 +77,13 @@ class torneosController extends Controller {
 
       $torneos->categoria= $_POST['categoria'];
 
-      
+      $torneos->creado_por =  $_SESSION["email"];
+
+      $torneos->creado_el = date('Y-m-d H:i:s');
+
+      $torneos->modificado_por =  $_SESSION["email"];
+
+      $torneos->modificado_el = date('Y-m-d H:i:s');
 
 
       /* guardamos el archivo en el repositorio */
@@ -87,7 +91,7 @@ class torneosController extends Controller {
       $nombre_archivo_1 = "principal";
       $carpeta = str_replace(" ", "_", $_POST['nombre']);
       $nombreCarpeta = "assets/images/img_torneos/".$carpeta;
-      print_r($nombreCarpeta);
+      #print_r($nombreCarpeta);
       if (!is_dir($nombreCarpeta)) {
         // Crear la carpeta con permisos 0777 (puedes ajustar los permisos según tus necesidades)
         if (mkdir($nombreCarpeta, 0777,true)) {
@@ -97,20 +101,16 @@ class torneosController extends Controller {
           move_uploaded_file($_FILES['company-logo-input']['tmp_name'], $directorio_1);
 
           $torneos->archivo= $directorio_1;
-          echo "Carpeta creada exitosamente. ";
-        } else {
-            echo "Error al crear la carpeta.";
-        }
-      } else {
-        echo "La carpeta ya existe.";
-      }
+          
+        } 
+      } 
 
 
       /* agregamos la imagen a la bd */
 
-      /* if(!$torneos->guarda_torneo()) {  json_output(json_build(400, null, 'Hubo error al crear el analista'));  }
+      if(!$torneos->guardar_torneo()) {  json_output(json_build(400, null, 'Hubo error al crear el torneo'));  }
 
-      json_output(json_build(200, null, 'Se ha creado su torneo')); */
+      json_output(json_build(200, null, 'Se ha creado su torneo'));
 
       
 

@@ -32,6 +32,14 @@ class torneosModel extends Model {
 
   public $archivo;
 
+  public $creado_por;
+
+  public $creado_el;
+
+  public $modificado_por;
+
+  public $modificado_el;
+
 
 
 
@@ -68,9 +76,9 @@ class torneosModel extends Model {
 
     $sql = 'INSERT INTO torneos 
 
-    (idAccion, idUsuario, fecha)
+    (nombre_torneo, lugar, temporada, modalidad, dias, horarios, fecha_inicio, fecha_fin, categoria, img,creado_por,creado_el,modificado_por,modificado_el)
 
-    VALUES(:nombre_torneo, :lugar, :temporada, :modalidad, :dias, :horarios, :fecha_inicio, :fecha_fin, :categoria, :img)';
+    VALUES(:nombre_torneo, :lugar, :temporada, :modalidad, :dias, :horarios, :fecha_inicio, :fecha_fin, :categoria, :archivo, :creado_por,:creado_el,:modificado_por,:modificado_el)';
 
     $user = [
 
@@ -78,23 +86,29 @@ class torneosModel extends Model {
 
       'lugar' => $this->lugar,
 
-      'temporada' => $this->lugar,
+      'temporada' => $this->temporada,
 
-      'modalidad' => $this->lugar,
+      'modalidad' => $this->modalidad,
 
-      'dias' => $this->lugar,
+      'dias' => $this->dias,
 
-      'horarios' => $this->lugar,
+      'horarios' => $this->horarios,
 
-      'fecha_inicio' => $this->lugar,
+      'fecha_inicio' => $this->fecha_inicio,
 
-      'fecha_fin' => $this->lugar,
+      'fecha_fin' => $this->fecha_fin,
 
-      'categoria' => $this->lugar,
+      'categoria' => $this->categoria,
 
-      'img' => $this->lugar,
+      'img' => $this->archivo,
 
-      
+      'creado_por' => $this->creado_por,
+
+      'creado_el' => $this->creado_el,
+
+      'modificado_por' => $this->modificado_por,
+
+      'modificado_el' => $this->modificado_el
 
     ];
 

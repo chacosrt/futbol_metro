@@ -4,6 +4,8 @@ $(document).ready(function() {
 
   console.log("jquery-on")
 
+  var miTabla = $('#torneosTable').DataTable();
+
   $('select').select2({
     closeOnSelect: false,
     tokenSeparators: [',', ' ']
@@ -28,7 +30,7 @@ $(document).ready(function() {
 
     // Eliminar la última coma y espacio
     textoConvertido = textoConvertido.slice(0, -2);
-    $("#dias_text").val(textoConvertido)
+    $("#dias_text").val(textoConvertido.text())
 
   }  
 
@@ -51,7 +53,7 @@ $(document).ready(function() {
 
     // Eliminar la última coma y espacio
     textoConvertido = textoConvertido.slice(0, -2);
-    $("#horarios_text").val(textoConvertido)
+    $("#horarios_text").val(textoConvertido.text())
 
   }  
 
@@ -112,6 +114,13 @@ $(document).ready(function() {
       success: function(res) {
 
         console.log(res);
+        if(res.status === 200) {
+
+          miTabla.ajax.reload(null, false);
+          $('#showModal').hide();
+          $('.miTorneo')[0].reset();
+
+        }
          
       }
     }); 

@@ -101,7 +101,7 @@
                                 <div class="card-body">
                                     <div>
                                         <div class="table-responsive table-card mb-3">
-                                            <table class="table align-middle table-hover" id="customerTable">
+                                            <table class="table align-middle table-hover" id="torneosTable">
                                                 <thead class="table-light">
                                                     <tr>
                                                         <!-- <th scope="col" style="width: 50px;">
@@ -381,6 +381,7 @@
     <script src="../assets/js/pages/crm-companies.init.js"></script>
     <!-- App js -->
     <script src="../assets/js/app.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="<?php echo JS.'menu.js'; ?>"></script>   
     <script type="text/javascript" src="<?php echo JS.'torneos.js'; ?>"></script>                                                  
 </body>
