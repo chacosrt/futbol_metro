@@ -4,8 +4,6 @@ $(document).ready(function() {
 
   console.log("jquery-on")
 
-  var miTabla = $('#torneosTable').DataTable();
-
   $('select').select2({
     closeOnSelect: false,
     tokenSeparators: [',', ' ']
@@ -56,6 +54,24 @@ $(document).ready(function() {
     $("#horarios_text").val(textoConvertido.text())
 
   }  
+
+  var miTabla = $('#torneosTable').DataTable({
+
+    searching: false,
+    lengthMenu: false,
+
+    columnDefs: [
+      {
+          targets: [0], // Índice de la columna que deseas ocultar (comienza en 0)
+          visible: false, // Ocultar la columna
+          
+      }
+    ]
+  });
+
+  $('#tableSearch').on('keyup', function() {
+    $('#torneosTable').miTabla.search($(this).val()).draw();
+  });
 
 /*   $('.salir').on('click', salgosistema);
 
@@ -117,7 +133,7 @@ $(document).ready(function() {
         if(res.status === 200) {
 
           miTabla.ajax.reload(null, false);
-          $('#showModal').hide();
+          $('#showModal').modal('hide');
           $('.miTorneo')[0].reset();
 
         }

@@ -92,7 +92,7 @@
                                     <div class="row g-2">
                                         <div class="col-md-3">
                                             <div class="search-box">
-                                                <input type="text" class="form-control search" placeholder="Buscar...">
+                                                <input id = "tableSearch" type="text" class="form-control search" placeholder="Buscar...">
                                                 <i class="ri-search-line search-icon"></i>
                                             </div>
                                         </div>
@@ -109,6 +109,8 @@
                                                                 <input class="form-check-input" type="checkbox" id="checkAll" value="option">
                                                             </div>
                                                         </th> -->
+                                                        <th class="id" style="display:none;"><a href="javascript:void(0);" class="fw-medium link-primary">#VZ001</a>
+                                                        </th>
                                                         <th class="text-center" data-sort="name" scope="col">Torneo</th>
                                                         <th class="text-center" data-sort="owner" scope="col">Lugar</th>
                                                         <th class="text-center" data-sort="industry_type" scope="col">Temporada</th>
@@ -133,8 +135,7 @@
                                                                 <input class="form-check-input" type="checkbox" name="chk_child" value="option1">
                                                             </div>
                                                         </th> -->
-                                                        <td class="id" style="display:none;"><a href="javascript:void(0);" class="fw-medium link-primary">#VZ001</a>
-                                                        </td>
+                                                        <td></td>
                                                         <td>
                                                             <div class="d-flex align-items-center">
                                                                 <div class="flex-shrink-0">
