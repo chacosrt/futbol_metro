@@ -100,7 +100,7 @@ class torneosModel extends Model {
 
       'categoria' => $this->categoria,
 
-      'img' => $this->archivo,
+      'archivo' => $this->archivo,
 
       'creado_por' => $this->creado_por,
 
@@ -111,7 +111,6 @@ class torneosModel extends Model {
       'modificado_el' => $this->modificado_el
 
     ];
-
 
 
     try { return (parent::query($sql, $user)) ? true : false; } 

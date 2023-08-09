@@ -103,7 +103,15 @@ class torneosController extends Controller {
           $torneos->archivo= $directorio_1;
           
         } 
-      } 
+      } else {
+
+        $directorio_1 = $nombreCarpeta."/".$nombre_archivo_1.".png";
+
+        move_uploaded_file($_FILES['company-logo-input']['tmp_name'], $directorio_1);
+
+        $torneos->archivo='<img src="'.IMAGES.$directorio_1.'" alt="" class="avatar-xxs rounded-circle image_src object-cover">' ;
+        
+      }
 
 
       /* agregamos la imagen a la bd */
@@ -170,17 +178,11 @@ class torneosController extends Controller {
 
     try {
 
-      $movements          = new analistaModel;
+      $torneos = new torneosModel;
 
-      $movements->idAnalista = $_POST['idAnalista'];
+      $lista_torneos = $torneos->listaTorneos();
 
-      $movs               = $movements->infoedita();
-
-      /* regresamos la informacion */
-
-      $data = get_module('formedianalista', ['movements' => $movs]);
-
-      json_output(json_build(200, $data));
+      echo json_encode($lista_torneos);
 
     }
 

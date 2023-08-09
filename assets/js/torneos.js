@@ -9,6 +9,7 @@ $(document).ready(function() {
     tokenSeparators: [',', ' ']
   });
 
+  ///********************************************************************************************************** */
   $('#dias').on('change', select_dias);
 
   function select_dias(event) {
@@ -28,10 +29,11 @@ $(document).ready(function() {
 
     // Eliminar la última coma y espacio
     textoConvertido = textoConvertido.slice(0, -2);
-    $("#dias_text").val(textoConvertido.text())
-
+    $("#dias_text").val(textoConvertido)
+    console.log(textoConvertido)
   }  
 
+  //*************************************************************************************************************** */
   $('#horarios').on('change', select_horarios);
 
   function select_horarios(event) {
@@ -51,59 +53,17 @@ $(document).ready(function() {
 
     // Eliminar la última coma y espacio
     textoConvertido = textoConvertido.slice(0, -2);
-    $("#horarios_text").val(textoConvertido.text())
-
+    $("#horarios_text").val(textoConvertido)
+    console.log(textoConvertido)
   }  
 
-  var miTabla = $('#torneosTable').DataTable({
-
-    searching: false,
-    lengthMenu: false,
-
-    columnDefs: [
-      {
-          targets: [0], // Índice de la columna que deseas ocultar (comienza en 0)
-          visible: false, // Ocultar la columna
-          
-      }
-    ]
-  });
-
+ //************************************************************************************************************************ */
   $('#tableSearch').on('keyup', function() {
     $('#torneosTable').miTabla.search($(this).val()).draw();
   });
 
-/*   $('.salir').on('click', salgosistema);
 
-  
-  function salgosistema() {
-
-    $.ajax({
-
-      url: 'salir',
-
-      type: 'POST',
-
-      dataType: 'html',
-
-      contentType: false,
-
-      processData: false,
-
-      cache: false,
-
-      success: function(data) {
-
-        console.log(data);
-        window.location= '../home';  
-         
-      }
-    });
-
-
-  }; */
-
-
+//************************************************************************************************************************* */
   $('.miTorneo').on('submit', guarda_torneo);
 
   function guarda_torneo(event) {
@@ -144,4 +104,58 @@ $(document).ready(function() {
 
   }
 
+  //*********************************************************************************************************** */
+
+  // Obtener las opciones de "Show entries" del DataTable
+  var opcionesLength = miTabla.settings()[0].aLengthMenu;
+  console.log(opcionesLength)
+  // Agregar las opciones al elemento select personalizado
+  var select = $('#numeroRegistros');
+  opcionesLength.forEach(function(opcion) {
+      select.append($('<option>', {
+          value: opcion,
+          text: opcion
+      }));
+  });
+
+});
+
+//************************************************************************************************************************* */
+var miTabla = $('#torneosTable').DataTable({
+
+  searching: false,
+  lengthChange: false,
+  select:false,
+
+  ajax: {
+    url: 'obtengoinfo', // URL del script PHP para obtener los datos
+    dataSrc: '' // Dejar en blanco para que DataTables entienda la estructura de los datos
+  },
+  columns: [
+      { data: 'img' },
+      { data: 'nombre_torneo' },
+      { data: 'lugar' },
+      { data: 'temporada' },
+      { data: 'modalidad' },
+      { data: 'dias' },
+      { data: 'horarios' },
+      { data: 'fecha_inicio' },
+      { data: 'fecha_fin' },
+      { data: 'categoria' },
+  ],
+
+  lengthMenu: [5,10,15], // Opciones para "Show entries"
+  pageLength: 5, // Cantidad de registros por página por defecto
+  initComplete: function () {
+    
+    var select = $('#numeroRegistros');
+    $('td').addClass("text-center");
+    // Configurar evento para actualizar el número de registros por página al cambiar el select
+    select.on('change', function() {
+        var value = $(this).val();
+        miTabla.page.len(value).draw();
+    });
+  }
+
+ 
 });

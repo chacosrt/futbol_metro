@@ -69,16 +69,12 @@
                                         </div>
                                         <div class="flex-shrink-0">
                                             <div class="hstack text-nowrap gap-2">
-                                                <button class="btn btn-soft-danger" id="remove-actions" onClick="deleteMultiple()"><i class="ri-delete-bin-2-line"></i></button>
-                                                <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addmembers"><i class="ri-filter-2-line me-1 align-bottom"></i> Filtros</button>
+                                                <label for="numeroRegistros" class="form-label">Mostrar:</label>
+                                                <select class = "form-select col-lg-3" id="numeroRegistros">
+                                                <!-- Agrega más opciones según tus datos -->
+                                                </select>
+
                                                 <button id="regresoInicio" class="btn btn-soft-primary">Importar</button>
-                                                <button type="button" id="dropdownMenuLink1" data-bs-toggle="dropdown" aria-expanded="false" class="btn btn-soft-info"><i class="ri-more-2-fill"></i></button>
-                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
-                                                    <li><a class="dropdown-item" href="#">All</a></li>
-                                                    <li><a class="dropdown-item" href="#">Last Week</a></li>
-                                                    <li><a class="dropdown-item" href="#">Last Month</a></li>
-                                                    <li><a class="dropdown-item" href="#">Last Year</a></li>
-                                                </ul>
                                             </div>
                                         </div>
                                     </div>
@@ -111,6 +107,7 @@
                                                         </th> -->
                                                         <th class="id" style="display:none;"><a href="javascript:void(0);" class="fw-medium link-primary">#VZ001</a>
                                                         </th>
+                                                        <th class="text-center" data-sort="name" scope="col">Img</th>
                                                         <th class="text-center" data-sort="name" scope="col">Torneo</th>
                                                         <th class="text-center" data-sort="owner" scope="col">Lugar</th>
                                                         <th class="text-center" data-sort="industry_type" scope="col">Temporada</th>
@@ -135,24 +132,8 @@
                                                                 <input class="form-check-input" type="checkbox" name="chk_child" value="option1">
                                                             </div>
                                                         </th> -->
-                                                        <td></td>
-                                                        <td>
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="flex-shrink-0">
-                                                                    <img src="<?php echo IMAGES.$tor->img;?>" alt="" class="avatar-xxs rounded-circle image_src object-cover">
-                                                                </div>
-                                                                <div class="flex-grow-1 ms-2 name"><?php echo $tor->nombre_torneo;?>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td class="text-center"><?php echo $tor->lugar;?></td>
-                                                        <td class="text-center"><?php echo $tor->temporada;?></td>     
-                                                        <td class="text-center"><?php echo $tor->modalidad;?></td>
-                                                        <td class="text-center"><?php echo $tor->dias;?></td>  
-                                                        <td class="text-center"><?php echo $tor->horarios;?></td>
-                                                        <td class="text-center"><?php echo $tor->fecha_inicio;?></td>
-                                                        <td class="text-center"><?php echo $tor->fecha_fin;?></td>
-                                                        <td class="text-center"><?php echo $tor->categoria;?></td>   
+                                                        <td></td>                                    
+                                                         
                                                         <td>
                                                             <ul class="list-inline hstack gap-2 mb-0">                                                                
                                                                 <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="View">
@@ -370,7 +351,7 @@
     <script src="../assets/libs/node-waves/waves.min.js"></script>
     <script src="../assets/libs/feather-icons/feather.min.js"></script>
     <script src="../assets/js/pages/plugins/lord-icon-2.1.0.js"></script>    
-    <script src="../assets/js/plugins.js"></script>
+    <script src="../assets/js/plugins.js"></script> 
 
     <!-- list.js min js -->
     <script src="../assets/libs/list.js/list.min.js"></script>
@@ -381,10 +362,11 @@
 
     <script src="../assets/js/pages/crm-companies.init.js"></script>
     <!-- App js -->
-    <script src="../assets/js/app.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>  
+    <script type="text/javascript" src="../assets/js/app.js"></script>    
     <script type="text/javascript" src="<?php echo JS.'menu.js'; ?>"></script>   
-    <script type="text/javascript" src="<?php echo JS.'torneos.js'; ?>"></script>                                                  
+    <script type="text/javascript" src="<?php echo JS.'torneos.js'; ?>"></script>  
+                                                  
 </body>
 
 </html>
