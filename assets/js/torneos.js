@@ -89,6 +89,7 @@ $(document).ready(function() {
           miTabla.ajax.reload();
           $('#showModal').modal('hide');
           $('.miTorneo')[0].reset();
+          $('select').val(null).trigger('change');
 
         }
          
@@ -120,6 +121,7 @@ var miTabla = $('#torneosTable').DataTable({
   searching: true,
   lengthChange: false,
   select:false,
+  emptyTable: "No hay datos disponibles en la tabla",
 
   ajax: {
     url: 'obtengoinfo', // URL del script PHP para obtener los datos
