@@ -96,7 +96,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div>
-                                        <div class="table-responsive table-card mb-3">
+                                        <div class="table-responsive ">
                                             <table class="table align-middle table-hover" id="torneosTable">
                                                 <thead class="table-light">
                                                     <tr>
@@ -105,8 +105,8 @@
                                                                 <input class="form-check-input" type="checkbox" id="checkAll" value="option">
                                                             </div>
                                                         </th> -->
-                                                        <th class="id" style="display:none;"><a href="javascript:void(0);" class="fw-medium link-primary">#VZ001</a>
-                                                        </th>
+                                                       <!--  <th class="id" style="display:none;"><a href="javascript:void(0);" class="fw-medium link-primary">#VZ001</a>
+                                                        </th> -->
                                                         <th class="text-center" data-sort="name" scope="col">Img</th>
                                                         <th class="text-center" data-sort="name" scope="col">Torneo</th>
                                                         <th class="text-center" data-sort="owner" scope="col">Lugar</th>
@@ -121,42 +121,6 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody class="list form-check-all">
-                                                    <?php
-                                                        if ($d->lista):
-                                                            foreach ($d->lista as $tor): 
-                                                         
-                                                    ?>
-                                                    <tr>
-                                                        <!-- <th scope="row">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox" name="chk_child" value="option1">
-                                                            </div>
-                                                        </th> -->
-                                                        <td></td>                                    
-                                                         
-                                                        <td>
-                                                            <ul class="list-inline hstack gap-2 mb-0">                                                                
-                                                                <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="View">
-                                                                    <a href="javascript:void(0);" class="view-item-btn"><i class="ri-eye-fill align-bottom text-muted"></i></a>
-                                                                </li>
-                                                                <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Edit">
-                                                                    <a class="edit-item-btn" href="#showModal" data-bs-toggle="modal"><i class="ri-pencil-fill align-bottom text-muted"></i></a>
-                                                                </li>
-                                                                <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Delete">
-                                                                    <a class="remove-item-btn" data-bs-toggle="modal" href="#deleteRecordModal">
-                                                                        <i class="ri-delete-bin-fill align-bottom text-muted"></i>
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </td>                                             
-                                                    </tr>
-                                                    <?php endforeach; ?>
-
-                                                <?php else: ?>
-
-                                                    <tr><td colspan="9">No se encuentran registros</td></tr>
-
-                                                <?php endif; ?>
 
                                                 </tbody>
                                             </table>
@@ -164,9 +128,7 @@
                                                 <div class="text-center">
                                                     <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#121331,secondary:#08a88a" style="width:75px;height:75px">
                                                     </lord-icon>
-                                                    <h5 class="mt-2">Sorry! No Result Found</h5>
-                                                    <p class="text-muted mb-0">We've searched more than 150+ companies We did not find any
-                                                        companies for you search.</p>
+                                                    <h5 class="mt-2">Ups, No hay resultados</h5>                                                    
                                                 </div>
                                             </div>
                                         </div>

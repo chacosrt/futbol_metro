@@ -109,7 +109,7 @@ class torneosController extends Controller {
 
         move_uploaded_file($_FILES['company-logo-input']['tmp_name'], $directorio_1);
 
-        $torneos->archivo='<img src="'.IMAGES.$directorio_1.'" alt="" class="avatar-xxs rounded-circle image_src object-cover">' ;
+        $torneos->archivo='<img src="'.IMAGES.'img_torneos/'.$carpeta.'/'.$nombre_archivo_1.'.png" alt="" class="avatar-xxs rounded-circle image_src object-cover">' ;
         
       }
 

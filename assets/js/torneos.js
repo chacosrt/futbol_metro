@@ -57,13 +57,7 @@ $(document).ready(function() {
     console.log(textoConvertido)
   }  
 
- //************************************************************************************************************************ */
-  $('#tableSearch').on('keyup', function() {
-    $('#torneosTable').miTabla.search($(this).val()).draw();
-  });
-
-
-//************************************************************************************************************************* */
+  //************************************************************************************************************************* */
   $('.miTorneo').on('submit', guarda_torneo);
 
   function guarda_torneo(event) {
@@ -92,7 +86,7 @@ $(document).ready(function() {
         console.log(res);
         if(res.status === 200) {
 
-          miTabla.ajax.reload(null, false);
+          miTabla.ajax.reload();
           $('#showModal').modal('hide');
           $('.miTorneo')[0].reset();
 
@@ -123,7 +117,7 @@ $(document).ready(function() {
 //************************************************************************************************************************* */
 var miTabla = $('#torneosTable').DataTable({
 
-  searching: false,
+  searching: true,
   lengthChange: false,
   select:false,
 
@@ -142,6 +136,25 @@ var miTabla = $('#torneosTable').DataTable({
       { data: 'fecha_inicio' },
       { data: 'fecha_fin' },
       { data: 'categoria' },
+      {
+        data: null,
+        render: function(data, type, row) {
+            // Generar HTML para los botones de acción
+            return  '<ul class="list-inline gap-2 mb-0">'+                                                                
+                     ' <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="View">'+
+                          '<a href="javascript:void(0);" class="view-item-btn"><i class="ri-eye-fill align-bottom text-muted"></i></a>'+
+                     ' </li>'+
+                     ' <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Edit">'+
+                          '<a class="edit-item-btn" href="#showModal" data-bs-toggle="modal"><i class="ri-pencil-fill align-bottom text-muted"></i></a>'+
+                      '</li>'+
+                      '<li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Delete">'+
+                          '<a class="remove-item-btn" data-bs-toggle="modal" href="#deleteRecordModal">'+
+                             ' <i class="ri-delete-bin-fill align-bottom text-muted"></i>'+
+                         ' </a>'+
+                      '</li>'+
+                    '</ul>';
+        }
+    }
   ],
 
   lengthMenu: [5,10,15], // Opciones para "Show entries"
@@ -150,11 +163,18 @@ var miTabla = $('#torneosTable').DataTable({
     
     var select = $('#numeroRegistros');
     $('td').addClass("text-center");
+    $('ul').addClass("text-center");
+    $('#torneosTable_filter').hide();
     // Configurar evento para actualizar el número de registros por página al cambiar el select
     select.on('change', function() {
         var value = $(this).val();
         miTabla.page.len(value).draw();
     });
+
+    $('#tableSearch').on('keyup', function() {
+      miTabla.search($(this).val()).draw();
+    });
+
   }
 
  
