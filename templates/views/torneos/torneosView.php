@@ -14,6 +14,14 @@
     <!-- Sweet Alert css-->
     <link href="../assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
 
+     <!--datatable css-->
+     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" />
+    <!--datatable responsive css-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap.min.css" />
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
+
+
     <!-- Layout config Js -->
     <script src="../assets/js/layout.js"></script>    
     <!-- Bootstrap Css -->
@@ -96,7 +104,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div>
-                                        <div class="table-responsive ">
+                                        <div class="table-responsive table-card mb-3">
                                             <table class="table align-middle table-hover" id="torneosTable">
                                                 <thead class="table-light">
                                                     <tr>
@@ -132,23 +140,12 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="d-flex justify-content-end mt-3">
-                                            <div class="pagination-wrap hstack gap-2">
-                                                <a class="page-item pagination-prev disabled" href="#">
-                                                    Atras
-                                                </a>
-                                                <ul class="pagination listjs-pagination mb-0"></ul>
-                                                <a class="page-item pagination-next" href="#">
-                                                    Siguiente
-                                                </a>
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered modal-lg">
                                             <div class="modal-content border-0">
                                                 <div class="modal-header bg-soft-info p-3">
-                                                    <h5 class="modal-title" id="">Torneo</h5>
+                                                    <h5 class="modal-title" id="">Nuevo Torneo</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
                                                 </div>
                                                 <form id="miTorneo" class="miTorneo" method="POST" enctype="multipart/form-data">
@@ -166,6 +163,7 @@
                                                                                 </div>
                                                                             </label>
                                                                             <input class="form-control d-none" name="company-logo-input" id="company-logo-input" type="file" accept="image/png, image/gif, image/jpeg">
+                                                                            <input type="text" id="id-edit" name="id-edit" hidden>
                                                                         </div>
                                                                         <div class="avatar-lg p-1">
                                                                             <div class="avatar-title bg-light rounded-circle">
@@ -269,11 +267,12 @@
                                                 <div class="modal-body p-5 text-center">
                                                     <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop" colors="primary:#405189,secondary:#f06548" style="width:90px;height:90px"></lord-icon>
                                                     <div class="mt-4 text-center">
-                                                        <h4 class="fs-semibold">You are about to delete a company ?</h4>
-                                                        <p class="text-muted fs-14 mb-4 pt-1">Deleting your company will remove all of your information from our database.</p>
+                                                        <h4 class="fs-semibold">Deseas eliminar el torneo?</h4>
+                                                        <p class="text-muted fs-14 mb-4 pt-1">El torneo se eliminara permanentemente de la base de datos</p>
                                                         <div class="hstack gap-2 justify-content-center remove">
-                                                            <button class="btn btn-link link-success fw-medium text-decoration-none" data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i> Close</button>
-                                                            <button class="btn btn-danger" id="delete-record">Yes, Delete It!!</button>
+                                                            <button class="btn btn-link link-success fw-medium text-decoration-none" data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i> Cancelar</button>
+                                                            <button class="btn btn-danger" id="delete-record">Si, Eliminar!!</button>
+                                                            <input type="text" hidden id="idTorneo">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -308,27 +307,34 @@
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
     <script src="../assets/libs/simplebar/simplebar.min.js"></script>
     <script src="../assets/libs/node-waves/waves.min.js"></script>
     <script src="../assets/libs/feather-icons/feather.min.js"></script>
     <script src="../assets/js/pages/plugins/lord-icon-2.1.0.js"></script>    
-    <script src="../assets/js/plugins.js"></script> 
+    <script src="../assets/js/plugins.js"></script>
+    <!-- Sweet Alerts js -->
+    <script src="../assets/libs/sweetalert2/sweetalert2.min.js"></script>
+    <!-- App js -->
+    
+    <!--datatable js-->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
 
+    <script src="../assets/js/pages/datatables.init.js"></script>
+    <script type="text/javascript" src="<?php echo JS.'menu.js'; ?>"></script>   
+    <script type="text/javascript" src="<?php echo JS.'torneos.js'; ?>"></script>  
     <!-- list.js min js -->
     <script src="../assets/libs/list.js/list.min.js"></script>
     <script src="../assets/libs/list.pagination.js/list.pagination.min.js"></script>
-
-    <!-- Sweet Alerts js -->
-    <script src="../assets/libs/sweetalert2/sweetalert2.min.js"></script>
-
-    <script src="../assets/js/pages/crm-companies.init.js"></script>
-    <!-- App js -->
-    <script type="text/javascript" src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>  
-    <script type="text/javascript" src="../assets/js/app.js"></script>    
-    <script type="text/javascript" src="<?php echo JS.'menu.js'; ?>"></script>   
-    <script type="text/javascript" src="<?php echo JS.'torneos.js'; ?>"></script>  
-                                                  
+    <script type="text/javascript" src="../assets/js/app.js"></script>                                                 
 </body>
 
 </html>

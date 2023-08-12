@@ -9,6 +9,38 @@ $(document).ready(function() {
     tokenSeparators: [',', ' ']
   });
 
+  // Verificar si el modal está abierto o cerrado
+  function modalEstaAbierto() {
+    return $('#showModal').hasClass('show'); // 'show' es la clase de Bootstrap para modal abierto
+  }
+
+  // Ejemplo de uso:
+  if (!modalEstaAbierto()) {
+      console.log('El modal está abierto.');
+  } else {
+      console.log('El modal está cerrado.');
+  }
+
+  //*********************************************************************************************************** */
+
+  $('#company-logo-input').change(function() {
+    var archivo = this.files[0];
+    console.log("imagen seleccionada")
+    if (archivo) {
+        var lector = new FileReader();
+
+        lector.onload = function(e) {
+            $('#companylogo-img')
+                .attr('src', e.target.result)
+                .show();
+        }
+
+        lector.readAsDataURL(archivo);
+    } else {
+        $('#companylogo-img').hide();
+    }
+  });
+
   ///********************************************************************************************************** */
   $('#dias').on('change', select_dias);
 
@@ -89,8 +121,18 @@ $(document).ready(function() {
           miTabla.ajax.reload();
           $('#showModal').modal('hide');
           $('.miTorneo')[0].reset();
-          $('select').val(null).trigger('change');
-
+          $('select').select2();
+          $('#companylogo-img').attr('src', '../assets/images/users/multi-user.jpg').show();
+          if (!modalEstaAbierto()) {
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Tu torneo se creo con exito',
+              showConfirmButton: false,
+              timer: 1500
+            });
+          }
+          
         }
          
       }
@@ -99,6 +141,77 @@ $(document).ready(function() {
 
   }
 
+    //************************************************************************************************************************* */
+    $('#delete-record').on('click', elimina_torneo);
+
+    function elimina_torneo(event) {
+  
+      event.preventDefault();
+  
+      // Obtener los datos del formulario
+      var val = $('#idTorneo').val();
+      
+      console.log(val);
+  
+      $.ajax({
+  
+        url: 'eliminaTorneo' + '/' + val,
+  
+        type: 'POST',
+  
+        data: val,
+  
+        processData: false,  // Evitar el procesamiento de datos
+        
+        contentType: false, 
+  
+        success: function(res) {
+  
+          console.log(res);
+          if(res.status === 200) {
+  
+            miTabla.ajax.reload();
+            $('#deleteRecordModal').modal('hide');
+            $('.miTorneo')[0].reset();
+  
+          }
+           
+        }
+      }); 
+  
+  
+    }
+
+  /************************************************************************************************************ */
+    $('.edit-item-btn').on('click', obtengo_torneo);
+    function obtengo_torneo(event){
+
+      var value = $('#id-edit').val();
+      console.log(value);
+      $.ajax({
+  
+        url: 'obtengoTorneo' + '/' + value,
+  
+        type: 'POST',
+  
+        data: value,
+  
+        processData: false,  // Evitar el procesamiento de datos
+        
+        contentType: false, 
+  
+        success: function(res) {
+  
+          
+          if(res.status === 200) {  
+            
+            console.log(res);
+  
+          }
+           
+        }
+      }); 
+    }
   //*********************************************************************************************************** */
 
   // Obtener las opciones de "Show entries" del DataTable
@@ -121,14 +234,26 @@ var miTabla = $('#torneosTable').DataTable({
   searching: true,
   lengthChange: false,
   select:false,
-  emptyTable: "No hay datos disponibles en la tabla",
+  paging: true,
+  language: {
+    emptyTable: "No hay datos disponibles en la tabla",
+    // Personalizar el texto "Showing [inicio] to [fin] of [total] entries"
+    info: 'Mostrando _START_ a _END_ de _TOTAL_ registros',
+    // Personalizar el texto "Filtering [n] entries"
+    search: 'Filtrado de _TOTAL_ registros',
+    // Otros textos personalizados aquí
+    paginate: {
+      next: 'Siguiente', // Texto para el botón Next
+      previous: 'Anterior' // Texto para el botón Previous
+    }
+  },
 
   ajax: {
     url: 'obtengoinfo', // URL del script PHP para obtener los datos
     dataSrc: '' // Dejar en blanco para que DataTables entienda la estructura de los datos
   },
   columns: [
-      { data: 'img' },
+      { data: 'img', },
       { data: 'nombre_torneo' },
       { data: 'lugar' },
       { data: 'temporada' },
@@ -142,15 +267,15 @@ var miTabla = $('#torneosTable').DataTable({
         data: null,
         render: function(data, type, row) {
             // Generar HTML para los botones de acción
-            return  '<ul class="list-inline gap-2 mb-0">'+                                                                
+            return  '<ul class="list-inline gap-2 mb-0 text-center">'+                                                                
                      ' <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="View">'+
                           '<a href="javascript:void(0);" class="view-item-btn"><i class="ri-eye-fill align-bottom text-muted"></i></a>'+
                      ' </li>'+
                      ' <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Edit">'+
-                          '<a class="edit-item-btn" href="#showModal" data-bs-toggle="modal"><i class="ri-pencil-fill align-bottom text-muted"></i></a>'+
+                          '<a class="edit-item-btn" href="#showModal" data-bs-toggle="modal" data-fila="' + row[0] + '"><i class="ri-pencil-fill align-bottom text-muted" ></i></a>'+
                       '</li>'+
                       '<li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Delete">'+
-                          '<a class="remove-item-btn" data-bs-toggle="modal" href="#deleteRecordModal">'+
+                          '<a class="remove-item-btn" data-bs-toggle="modal" href="#deleteRecordModal" data-fila="' + row[0] + '">'+
                              ' <i class="ri-delete-bin-fill align-bottom text-muted"></i>'+
                          ' </a>'+
                       '</li>'+
@@ -159,23 +284,53 @@ var miTabla = $('#torneosTable').DataTable({
     }
   ],
 
+  columnDefs: [
+    {
+        targets: '_all',
+        createdCell: function(td, cellData, rowData, row, col) {
+          
+            // Agregar atributos personalizados (por ejemplo, 'data-mi-atributo') a las celdas de las columnas
+            $(td).addClass('text-center');
+        }
+    }
+  ],
+
   lengthMenu: [5,10,15], // Opciones para "Show entries"
   pageLength: 5, // Cantidad de registros por página por defecto
+  buttons: [ 'copy', 'excel', 'pdf', 'colvis' ],
   initComplete: function () {
     
     var select = $('#numeroRegistros');
-    $('td').addClass("text-center");
-    $('ul').addClass("text-center");
+    //$('td').addClass("text-center");
+    //$('ul').addClass("text-center");
     $('#torneosTable_filter').hide();
+    //$('.dataTables_paginate').hide();
     // Configurar evento para actualizar el número de registros por página al cambiar el select
     select.on('change', function() {
         var value = $(this).val();
         miTabla.page.len(value).draw();
+        $(this).hide();
     });
 
     $('#tableSearch').on('keyup', function() {
       miTabla.search($(this).val()).draw();
     });
+
+    miTabla.on('click', '.remove-item-btn', function() {
+      // Obtener los datos de la fila correspondiente
+      var datosFila = $(this).data('fila');
+      $('#idTorneo').val(datosFila);
+      console.log(datosFila);
+   
+    }); 
+
+    miTabla.on('click', '.edit-item-btn', function() {
+      // Obtener los datos de la fila correspondiente
+      var datosFila = $(this).data('fila');
+      $('#id-edit').val(datosFila);
+      //console.log(datosFila);
+   
+    }); 
 
   }
 

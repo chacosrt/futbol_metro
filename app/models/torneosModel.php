@@ -8,8 +8,6 @@ class torneosModel extends Model {
 
   public $id;
 
-  public $idUsuario;
-
   /* para la seccion de permisos de usuario */
 
   public $nombre;
@@ -137,105 +135,17 @@ class torneosModel extends Model {
 
 
 
-  /* traemos los coodrinadores */
-
-  public function concecoordinba(){
-
-    $sql = 'SELECT * FROM tbl_analista WHERE coordinador IS NULL';
-
-    try { return ($rows = parent::query($sql)) ? $rows : false; } 
-
-    
-
-    catch (Exception $e) { throw $e; }
-
-
-
-  }
-
-
-
-  /* traemos los clientes para nuevo analista */
-
-  public function concelcientes(){
-
-    $sql = 'SELECT * FROM tbl_empresas';
-
-    try { return ($rows = parent::query($sql)) ? $rows : false; } 
-
-    
-
-    catch (Exception $e) { throw $e; }
-
-
-
-  }
-
-
-
-  /* nuevo analista */
-
-  public function nuevoanalista(){
-
-    $sql = "INSERT INTO tbl_analista (nombre,apePaterno,apeMaterno,idPerfil,correo,coordinador,cliente,telefono,celular,archivo,comentarios,usuarioCrea,fechaCrea) 
-
-    VALUES(:nombre,:apePaterno,:apeMaterno,:idPerfil,:correo,:coordinador,:cliente,:telefono,:celular,:archivo,:comentarios,:usuarioCrea,:fechaCrea)";
-
-    $user = [
-
-
-
-      'nombre' => $this->nombre,
-
-      'apePaterno' => $this->apePaterno,
-
-      'apeMaterno' => $this->apeMaterno,
-
-      'idPerfil' => $this->idPerfil,
-
-      'correo' => $this->correo,
-
-      'coordinador' => $this->coordinador,
-
-      'cliente' => $this->cliente,
-
-      'telefono' => $this->telefono,
-
-      'celular' => $this->celular,
-
-      'archivo' => $this->archivo,
-
-      'comentarios' => $this->comentarios,
-
-      'usuarioCrea' => IDUSUARIO,
-
-      'fechaCrea' =>now()
-
-
-
-    ];
-
-
-
-    try { return (parent::query($sql, $user)) ? true : false; } 
-
-    catch (Exception $e) { throw $e; }
-
-  }
-
-
-
   /* eliminamos el analista */
 
-  public function elimiana(){
+  public function elimina_torneo(){
 
-    $sql = "DELETE FROM tbl_analista WHERE idAnalista=:idAnalista";
+    $sql = "DELETE FROM torneos WHERE id=:id";
 
     $user = [
 
 
 
-      'idAnalista' => $this->idAnalista
+      'id' => $this->id
 
 
 
@@ -244,32 +154,6 @@ class torneosModel extends Model {
 
 
     try { return (parent::query($sql, $user)) ? true : false; } 
-
-    catch (Exception $e) { throw $e; }
-
-  }
-
-
-
-  /* obtengo la informacion para la edicion de elemento */
-
-  public function infoedita(){
-
-    $sql = 'SELECT *  FROM tbl_analista WHERE idAnalista=:idAnalista';
-
-    $user = [
-
-
-
-      'idAnalista' => $this->idAnalista
-
-
-
-    ];
-
-    try { return ($rows = parent::query($sql,$user)) ? $rows : false; } 
-
-    
 
     catch (Exception $e) { throw $e; }
 
@@ -279,39 +163,41 @@ class torneosModel extends Model {
 
   /* function para la edicion del elmento */
 
-  public function editaelemento(){
+  public function edita_torneo(){
 
-    $sql = 'UPDATE tbl_analista 
+    $sql = 'UPDATE torneos 
 
-    SET nombre=:nombre, apePaterno=:apePaterno, apeMaterno=:apeMaterno, idPerfil=:idPerfil, correo=:correo, coordinador=:coordinador, cliente=:cliente, telefono=:telefono, celular=:celular, archivo=:archivo, comentarios =:comentarios
+    SET nombre_torneo=:nombre_torneo, lugar=:lugar, temporada=:temporada, modalidad=:modalidad, dias=:dias, horarios=:horarios, fecha_inicio=:fecha_inicio, fecha_fin=:fecha_fin, categoria=:categoria, img=:img,modificado_por=:modificado_por,modificado_el=:modificado_el
 
-    WHERE idAnalista=:idAnalista';
+    WHERE id=:id';
 
     $user = [
 
-      'nombre'         => $this->nombre,
+      'nombre_torneo' => $this->nombre,
 
-      'apePaterno'         => $this->apePaterno,
+      'lugar' => $this->lugar,
 
-      'apeMaterno'         => $this->apeMaterno,
+      'temporada' => $this->temporada,
 
-      'idPerfil'         => $this->idPerfil,
+      'modalidad' => $this->modalidad,
 
-      'correo'         => $this->correo,
+      'dias' => $this->dias,
 
-      'coordinador'         => $this->coordinador,
+      'horarios' => $this->horarios,
 
-      'cliente'         => $this->cliente,
+      'fecha_inicio' => $this->fecha_inicio,
 
-      'telefono'         => $this->telefono,
+      'fecha_fin' => $this->fecha_fin,
 
-      'celular'         => $this->celular,
+      'categoria' => $this->categoria,
 
-      'archivo'         => $this->archivo,
+      'archivo' => $this->archivo,
 
-      'comentarios'         => $this->comentarios,
+      'modificado_por' => $this->modificado_por,
 
-      'idAnalista'         => $this->idAnalista
+      'modificado_el' => $this->modificado_el,
+
+      'id' => $this->id
 
     ];
 
@@ -323,154 +209,27 @@ class torneosModel extends Model {
 
   }
 
+  /* function para obtener registro de un torneo */
 
+  public function obtengo_torneo(){
 
-  /* obtenemos informacion para creacion de usuario */
-
-  public function obtengoInfoParausuario(){
-
-    $sql = 'SELECT *  FROM tbl_analista WHERE idAnalista=:idAnalista';
+    $sql = 'SELECT * FROM torneos WHERE id=:id';
 
     $user = [
 
 
 
-      'idAnalista' => $this->idAnalista
+      'id' => $this->id
 
 
 
     ];
-
-    try { return ($rows = parent::query($sql,$user)) ? $rows : false; } 
-
-    
-
-    catch (Exception $e) { throw $e; }
-
-  }
-
-
-
-  /* creamos el nuevo usuario del sistema */
-
-  public function nuevousuariosistema(){
-
-    $sql = "INSERT INTO tbl_usuarios (usuario,clave,nombre,apePaterno,apeMaterno,fechaActivacion,estatus,idAnalista,correo,admini,supervisor) 
-
-    VALUES(:usuario,:clave,:nombre,:apePaterno,:apeMaterno,:fechaActivacion,:estatus,:idAnalista,:correo,:admini,:supervisor)";
-
-    $user = [
-
-
-
-      'usuario' => $this->usuario,
-
-      'clave' => $this->clave,
-
-      'nombre' => $this->nombre,
-
-      'apePaterno' => $this->apePaterno,
-
-      'apeMaterno' => $this->apeMaterno,
-
-      'fechaActivacion' => now(),
-
-      'estatus' => 1,
-
-      'idAnalista' => $this->idAnalista,
-
-      'correo' => $this->correo,
-
-      'admini' => $this->admin,
-
-      'supervisor' => $this->supervisor
-
-    ];
-
-
 
     try { return (parent::query($sql, $user)) ? true : false; } 
 
     catch (Exception $e) { throw $e; }
 
   }
-
-
-
-  /* cambiamos el estatus en la tabla para la creacion de usuario */
-
-  public function cambiosisttabla(){
-
-    $sql = 'UPDATE tbl_analista SET  sistema =:sistema  WHERE idAnalista=:idAnalista';
-
-    $user = [
-
-      'sistema'         => 1,
-
-      'idAnalista'         => $this->idAnalista
-
-    ];
-
-
-
-    try { return (parent::query($sql, $user)) ? true : false; } 
-
-    catch (Exception $e) { throw $e; }
-
-
-
-  }
-
-
-
-  /* eliminamos el usuario del sistema */
-
-  public function bajadesistema(){
-
-    $sql = "DELETE FROM tbl_usuarios WHERE idAnalista=:idAnalista";
-
-    $user = [
-
-
-
-      'idAnalista' => $this->idAnalista
-
-
-
-    ];
-
-
-
-    try { return (parent::query($sql, $user)) ? true : false; } 
-
-    catch (Exception $e) { throw $e; }
-
-  }
-
-  public function cambiosisttablados(){
-
-    $sql = 'UPDATE tbl_analista SET  sistema =:sistema  WHERE idAnalista=:idAnalista';
-
-    $user = [
-
-      'sistema'         => 2,
-
-      'idAnalista'         => $this->idAnalista
-
-    ];
-
-
-
-    try { return (parent::query($sql, $user)) ? true : false; } 
-
-    catch (Exception $e) { throw $e; }
-
-
-
-  }
-
-
-
-  
+   
 
 }
