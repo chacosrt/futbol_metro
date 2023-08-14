@@ -183,7 +183,7 @@ $(document).ready(function() {
     }
 
   /************************************************************************************************************ */
-    $('.edit-item-btn').on('click', obtengo_torneo);
+   /*  $('.edit-item-btn').on('click', obtengo_torneo);
     function obtengo_torneo(event){
 
       var value = $('#id-edit').val();
@@ -211,7 +211,7 @@ $(document).ready(function() {
            
         }
       }); 
-    }
+    } */
   //*********************************************************************************************************** */
 
   // Obtener las opciones de "Show entries" del DataTable
@@ -328,7 +328,33 @@ var miTabla = $('#torneosTable').DataTable({
       // Obtener los datos de la fila correspondiente
       var datosFila = $(this).data('fila');
       $('#id-edit').val(datosFila);
-      //console.log(datosFila);
+      console.log(datosFila);
+
+      $.ajax({
+  
+        url: 'obtengoTorneo' + '/' + datosFila,
+  
+        type: 'POST',
+  
+        data: datosFila,
+
+        dataType: 'json',
+  
+        processData: false,  // Evitar el procesamiento de datos
+        
+        contentType: false, 
+  
+        success: function(res) {
+  
+          console.log(res[0]);
+          datos = res[0];
+
+          $("#nombre").val(datos[1])
+          $("#lugar").val(datos[2])
+          $("#temporada").val(datos[3])
+          $("#modalidad").val(datos[4])
+        }
+      }); 
    
     }); 
 

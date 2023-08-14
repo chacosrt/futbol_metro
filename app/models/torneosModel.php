@@ -225,7 +225,9 @@ class torneosModel extends Model {
 
     ];
 
-    try { return (parent::query($sql, $user)) ? true : false; } 
+    try { return ($rows = parent::query($sql,$user)) ? $rows : false; } 
+
+    
 
     catch (Exception $e) { throw $e; }
 
