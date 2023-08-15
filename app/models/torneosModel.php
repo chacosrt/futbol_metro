@@ -167,7 +167,7 @@ class torneosModel extends Model {
 
     $sql = 'UPDATE torneos 
 
-    SET nombre_torneo=:nombre_torneo, lugar=:lugar, temporada=:temporada, modalidad=:modalidad, dias=:dias, horarios=:horarios, fecha_inicio=:fecha_inicio, fecha_fin=:fecha_fin, categoria=:categoria, img=:img,modificado_por=:modificado_por,modificado_el=:modificado_el
+    SET nombre_torneo=:nombre_torneo, lugar=:lugar, temporada=:temporada, modalidad=:modalidad, dias=:dias, horarios=:horarios, fecha_inicio=:fecha_inicio, fecha_fin=:fecha_fin, categoria=:categoria, img=:archivo,modificado_por=:modificado_por,modificado_el=:modificado_el
 
     WHERE id=:id';
 
@@ -200,7 +200,6 @@ class torneosModel extends Model {
       'id' => $this->id
 
     ];
-
 
 
     try { return (parent::query($sql, $user)) ? true : false; } 

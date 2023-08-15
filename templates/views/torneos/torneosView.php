@@ -166,7 +166,7 @@
                                                                             <input type="text" id="id-edit" name="id-edit" hidden>
                                                                         </div>
                                                                         <div class="avatar-lg p-1">
-                                                                            <div class="avatar-title bg-light rounded-circle">
+                                                                            <div id="imgForm" class="avatar-title bg-light rounded-circle">
                                                                                 <img src="../assets/images/users/multi-user.jpg" id="companylogo-img" class="avatar-md rounded-circle object-cover" />
                                                                             </div>
                                                                         </div>

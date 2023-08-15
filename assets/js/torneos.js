@@ -6,7 +6,7 @@ $(document).ready(function() {
 
   $('select').select2({
     closeOnSelect: false,
-    tokenSeparators: [',', ' ']
+    tokenSeparators: [',']
   });
 
   // Verificar si el modal está abierto o cerrado
@@ -56,7 +56,7 @@ $(document).ready(function() {
     for (var i = 0; i < valoresSeleccionados.length; i++) {
         var valor = valoresSeleccionados[i];
         var textoOpcion = $("#dias option[value='" + valor + "']").text();
-        textoConvertido += textoOpcion + ", ";
+        textoConvertido += textoOpcion + ",";
     }
 
     // Eliminar la última coma y espacio
@@ -95,6 +95,15 @@ $(document).ready(function() {
   function guarda_torneo(event) {
 
     event.preventDefault();
+    id = $('#id-edit').val();
+    console.log(id)
+    if (id != ''){
+      url = 'editaTorneo' + '/' + id;
+      title = 'Tu torneo se edito con exito';
+    }else{
+      url = 'guardaTorneo';
+      title = 'Tu torneo se creo con exito';
+    }
 
     // Obtener los datos del formulario
     var formData = new FormData($("#miTorneo")[0]);
@@ -103,7 +112,7 @@ $(document).ready(function() {
 
     $.ajax({
 
-      url: 'guardaTorneo',
+      url: url,
 
       type: 'POST',
 
@@ -127,7 +136,7 @@ $(document).ready(function() {
             Swal.fire({
               position: 'top-end',
               icon: 'success',
-              title: 'Tu torneo se creo con exito',
+              title: title,
               showConfirmButton: false,
               timer: 1500
             });
@@ -346,13 +355,32 @@ var miTabla = $('#torneosTable').DataTable({
   
         success: function(res) {
   
-          console.log(res[0]);
           datos = res[0];
+          id_img = datos[1].replace(' ','_');
+          
+          src_img = $("#"+id_img).attr('src');
+          console.log(datos);
 
+          $('#companylogo-img').attr('src',src_img);
           $("#nombre").val(datos[1])
           $("#lugar").val(datos[2])
           $("#temporada").val(datos[3])
           $("#modalidad").val(datos[4])
+          $("#fecha_inicio").val(datos[7])
+          $("#fecha_fin").val(datos[8])
+          $("#categoria").val(datos[9])
+          
+          var dias = datos[5].trim().split(',');
+          var horas = datos[6].trim().split(',');
+          console.log(horas)
+          $("#dias").val(dias).select2();
+          $("#horarios").val(horas).select2();
+          $("#dias_text").val(datos[5]);
+          $("#horarios_text").val(datos[6]);
+         /*  $.each(dias, function(index, value) {
+            $('#resultado').append('<li>' + value + '</li>');
+          }); */
+
         }
       }); 
    

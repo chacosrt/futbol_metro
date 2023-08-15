@@ -67,9 +67,9 @@ class torneosController extends Controller {
 
       $torneos->modalidad= $_POST['modalidad'];
 
-      $torneos->dias= $_POST['dias_text'];
+      $torneos->dias= trim($_POST['dias_text']);
 
-      $torneos->horarios= $_POST['horarios_text'];
+      $torneos->horarios= trim($_POST['horarios_text']);
 
       $torneos->fecha_inicio= $_POST['fecha_inicio'];
 
@@ -135,9 +135,9 @@ class torneosController extends Controller {
 
     try {
 
-      /* print_r($_POST);
+      /* print_r($_POST);*/
 
-      print_r($_FILES); */
+      /* print_r($_FILES); */ 
 
       $torneos = new torneosModel;
 
@@ -151,9 +151,9 @@ class torneosController extends Controller {
 
       $torneos->modalidad= $_POST['modalidad'];
 
-      $torneos->dias= $_POST['dias_text'];
+      $torneos->dias= trim($_POST['dias_text']);
 
-      $torneos->horarios= $_POST['horarios_text'];
+      $torneos->horarios= trim($_POST['horarios_text']);
 
       $torneos->fecha_inicio= $_POST['fecha_inicio'];
 
@@ -180,25 +180,29 @@ class torneosController extends Controller {
 
           move_uploaded_file($_FILES['company-logo-input']['tmp_name'], $directorio_1);
 
-          $torneos->archivo= $directorio_1;
+          $torneos->archivo= '<img id="'.$carpeta.'" src="'.IMAGES.'img_torneos/'.$carpeta.'/'.$nombre_archivo_1.'.png" alt="" class="avatar-xxs rounded-circle image_src object-cover">' ;
           
         } 
       } else {
 
         $directorio_1 = $nombreCarpeta."/".$nombre_archivo_1.".png";
 
-        move_uploaded_file($_FILES['company-logo-input']['tmp_name'], $directorio_1);
+        if ($_FILES['company-logo-input']['size'] > 0){
 
-        $torneos->archivo='<img src="'.IMAGES.'img_torneos/'.$carpeta.'/'.$nombre_archivo_1.'.png" alt="" class="avatar-xxs rounded-circle image_src object-cover">' ;
+          move_uploaded_file($_FILES['company-logo-input']['tmp_name'], $directorio_1);
+
+        }        
+
+        $torneos->archivo='<img id="'.$carpeta.'" src="'.IMAGES.'img_torneos/'.$carpeta.'/'.$nombre_archivo_1.'.png" alt="" class="avatar-xxs rounded-circle image_src object-cover">' ;
         
       }
 
 
       /* agregamos la imagen a la bd */
 
-      if(!$torneos->guardar_torneo()) {  json_output(json_build(400, null, 'Hubo error al crear el torneo'));  }
+      if(!$torneos->edita_torneo()) {  json_output(json_build(400, null, 'Hubo error al editar el torneo'));  }
 
-      json_output(json_build(200, null, 'Se ha creado su torneo'));
+      json_output(json_build(200, null, 'Se ha editado su torneo'));
 
       
 
