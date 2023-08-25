@@ -10,6 +10,8 @@
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
     <link rel="shortcut icon" href="../assets/images/logo_metro.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+
 
     <!-- Sweet Alert css-->
     <link href="../assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
