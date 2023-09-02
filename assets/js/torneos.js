@@ -332,6 +332,7 @@ var miTabla = $('#torneosTable').DataTable({
     //$('td').addClass("text-center");
     //$('ul').addClass("text-center");
     $('#torneosTable_filter').hide();
+    //miTabla.column(0).visible(false);
     //$('.dt-buttons').hide();
     //$('.dataTables_paginate').hide();
     // Configurar evento para actualizar el número de registros por página al cambiar el select
