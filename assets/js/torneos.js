@@ -21,7 +21,7 @@ $(document).ready(function() {
       console.log('El modal está cerrado.');
   }
 
-  $('#close-modal').on('click', reset_form);
+  $('.close-modal').on('click', reset_form);
 
   function reset_form(event) {
       $('.miTorneo')[0].reset();
@@ -296,9 +296,9 @@ var miTabla = $('#torneosTable').DataTable({
         render: function(data, type, row) {
             // Generar HTML para los botones de acción
             return  '<ul class="list-inline gap-2 mb-0 text-center">'+                                                                
-                     ' <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="View">'+
+                     /* ' <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="View">'+
                           '<a href="javascript:void(0);" class="view-item-btn"><i class="ri-eye-fill align-bottom text-muted"></i></a>'+
-                     ' </li>'+
+                     ' </li>'+ */
                      ' <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Edit">'+
                           '<a class="edit-item-btn" href="#showModal" data-bs-toggle="modal" data-fila="' + row[0] + '"><i class="ri-pencil-fill align-bottom text-muted" ></i></a>'+
                       '</li>'+
@@ -333,7 +333,7 @@ var miTabla = $('#torneosTable').DataTable({
     //$('ul').addClass("text-center");
     $('#torneosTable_filter').hide();
     //miTabla.column(0).visible(false);
-    //$('.dt-buttons').hide();
+    $('.dt-buttons').hide();
     //$('.dataTables_paginate').hide();
     // Configurar evento para actualizar el número de registros por página al cambiar el select
     select.on('change', function() {
@@ -360,6 +360,10 @@ var miTabla = $('#torneosTable').DataTable({
 
     $('#tabla_excel').click(function() {
       miTabla.button('.buttons-excel').trigger();
+    });
+
+    $('#tabla_print').click(function() {
+      miTabla.button('.buttons-print').trigger();
     });
 
     miTabla.on('click', '.edit-item-btn', function() {
