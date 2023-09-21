@@ -12,9 +12,9 @@ class equiposModel extends Model {
 
   public $nombre;
 
-  public $lugar;
+  public $liga;
 
-  public $temporada;
+  public $delegado;
 
   public $modalidad;
 
@@ -70,33 +70,21 @@ class equiposModel extends Model {
 
   /* funcion para agregar torneo */
 
-  public function guardar_torneo(){
+  public function guardar_equipo(){
 
-    $sql = 'INSERT INTO torneos 
+    $sql = 'INSERT INTO equipos 
 
-    (nombre_torneo, lugar, temporada, modalidad, dias, horarios, fecha_inicio, fecha_fin, categoria, img,creado_por,creado_el,modificado_por,modificado_el)
+    (nombre, liga, delegado, img,creado_por,creado_el,modificado_por,modificado_el)
 
-    VALUES(:nombre_torneo, :lugar, :temporada, :modalidad, :dias, :horarios, :fecha_inicio, :fecha_fin, :categoria, :archivo, :creado_por,:creado_el,:modificado_por,:modificado_el)';
+    VALUES(:nombre, :liga, :delegado, :archivo, :creado_por,:creado_el,:modificado_por,:modificado_el)';
 
     $user = [
 
-      'nombre_torneo' => $this->nombre,
+      'nombre' => $this->nombre,
 
-      'lugar' => $this->lugar,
+      'liga' => $this->liga,
 
-      'temporada' => $this->temporada,
-
-      'modalidad' => $this->modalidad,
-
-      'dias' => $this->dias,
-
-      'horarios' => $this->horarios,
-
-      'fecha_inicio' => $this->fecha_inicio,
-
-      'fecha_fin' => $this->fecha_fin,
-
-      'categoria' => $this->categoria,
+      'delegado' => $this->temporada,
 
       'archivo' => $this->archivo,
 
@@ -121,9 +109,9 @@ class equiposModel extends Model {
 
   /* metodo para consulta e ingresar al sistema */
 
-  public function listaTorneos() {
+  public function listaEquipos() {
 
-    $sql = 'SELECT * FROM torneos';
+    $sql = 'SELECT * FROM equipos';
 
     try { return ($rows = parent::query($sql)) ? $rows : false; } 
 

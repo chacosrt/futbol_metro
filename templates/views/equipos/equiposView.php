@@ -63,7 +63,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                <h2 class="mb-sm-0">Torneos</h2> 
+                                <h2 class="mb-sm-0">Equipos</h2> 
                             </div>
                         </div>
                     </div>
@@ -75,7 +75,7 @@
                                 <div class="card-header">
                                     <div class="d-flex align-items-center flex-wrap gap-2">
                                         <div class="flex-grow-1">
-                                            <button class="btn btn-info add-btn" data-bs-toggle="modal" data-bs-target="#showModal"><i class="ri-add-fill me-1 align-bottom"></i> Agregar Torneo</button>
+                                            <button class="btn btn-info add-btn" data-bs-toggle="modal" data-bs-target="#showModal"><i class="ri-add-fill me-1 align-bottom"></i> Agregar Equipo</button>
                                         </div>
                                         <div class="flex-shrink-0">
                                             <div class="hstack text-nowrap gap-2">
@@ -113,7 +113,7 @@
                                 <div class="card-body">
                                     <div>
                                         <div class="table-responsive table-card mb-3">
-                                            <table class="table align-middle table-hover" id="torneosTable">
+                                            <table class="table align-middle table-hover" id="equiposTable">
                                                 <thead class="table-light">
                                                     <tr>
                                                         <!-- <th scope="col" style="width: 50px;">
@@ -124,15 +124,9 @@
                                                        <!--  <th class="id" style="display:none;"><a href="javascript:void(0);" class="fw-medium link-primary">#VZ001</a>
                                                         </th> -->
                                                         <th class="text-center" data-sort="name" scope="col">Img</th>
-                                                        <th class="text-center" data-sort="name" scope="col">Torneo</th>
-                                                        <th class="text-center" data-sort="owner" scope="col">Lugar</th>
-                                                        <th class="text-center" data-sort="industry_type" scope="col">Temporada</th>
-                                                        <th class="text-center" data-sort="star_value" scope="col">Modalidad</th>
-                                                        <th class="text-center" data-sort="location" scope="col">Dias</th>
-                                                        <th class="text-center" data-sort="location" scope="col">Horarios</th>
-                                                        <th class="text-center" data-sort="location" scope="col">Fecha Inicio</th>
-                                                        <th class="text-center" data-sort="location" scope="col">Fecha Fin</th>
-                                                        <th class="text-center" data-sort="location" scope="col">Categoría</th>
+                                                        <th class="text-center" data-sort="name" scope="col">Equipo</th>
+                                                        <th class="text-center" data-sort="owner" scope="col">Liga</th>
+                                                        <th class="text-center" data-sort="industry_type" scope="col">Delegado</th>
                                                         <th class="text-center" scope="col">Accion</th>
                                                     </tr>
                                                 </thead>
@@ -153,7 +147,7 @@
                                         <div class="modal-dialog modal-dialog-centered modal-lg">
                                             <div class="modal-content border-0">
                                                 <div class="modal-header bg-soft-info p-3">
-                                                    <h5 class="modal-title" id="">Nuevo Torneo</h5>
+                                                    <h5 class="modal-title" id="">Nuevo Equipo</h5>
                                                     <button type="button" class="btn-close close-modal" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
                                                 </div>
                                                 <form id="miTorneo" class="miTorneo" method="POST" enctype="multipart/form-data">
@@ -179,7 +173,7 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <h5 class="fs-13 mt-3">Torneo Logo</h5>
+                                                                    <h5 class="fs-13 mt-3">Equipo Logo</h5>
                                                                 </div>                                                                
                                                             </div>
                                                             <div class="col-lg-6">
@@ -188,69 +182,21 @@
                                                             </div>
                                                             <div class="col-lg-6">
                                                                 <div>
-                                                                    <label for="lugar" class="form-label">Lugar</label>
-                                                                    <input type="text" id="lugar" name="lugar" class="form-control" placeholder="Ingrese lugar" required />
+                                                                    <label for="liga" class="form-label">Torneo</label>
+                                                                    <select class="form-select" id = "liga" name="liga" data-placeholder="  Selecciona el torneo" style="width: 100%;" aria-hidden="true">
+                                                                                                                                                
+                                                                    </select>
                                                                 </div>
-                                                            </div>
-                                                            <div class="col-lg-6">
-                                                                <div>
-                                                                    <label for="temporada" class="form-label">Temporada</label>
-                                                                    <input type="text" id="temporada" name="temporada" class="form-control" placeholder="Ingrese temporada" required />
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-6">
-                                                                <div>
-                                                                    <label for="modalidad" class="form-label">Modalidad</label>
-                                                                    <input type="text" id="modalidad" name="modalidad" class="form-control" placeholder="Ingrese modalidad" required />
-                                                                </div>
-                                                            </div>
+                                                            </div>            
                                                             <div class="col-lg-6">
                                                                 <div >
-                                                                    <label for="dias" class="form-label">Dias</label>
+                                                                    <label for="delegado" class="form-label">Delegado</label>
                                                                     <input type="text" id="dias_text" name="dias_text" hidden>
-                                                                    <select class="form-select" multiple="" id = "dias" name="dias" data-placeholder="  Selecciona los dias" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                                                                        <option value="Martes">Martes</option>
-                                                                        <option value="Miercoles">Miercoles</option>
-                                                                        <option value="Jueves">Jueves</option>
-                                                                        <option value="Viernes">Viernes</option>
-                                                                        <option value="Sabado">Sabado</option>
-                                                                        <option value="Domingo">Domingo</option>                                                                        
+                                                                    <select class="form-select" id = "delegado" name="delegado" data-placeholder="  Selecciona al delegado" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                                                       
                                                                     </select>
                                                                 </div>
-                                                            </div>                                                            
-                                                            <div class="col-lg-6">
-                                                                <div >
-                                                                    <label for="horarios" class="form-label">Horarios</label>
-                                                                    <input type="text" id="horarios_text" name="horarios_text" hidden>
-                                                                    <select class="form-select" multiple="" id = "horarios" name="horarios" data-placeholder="  Selecciona los horarios" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                                                                        <?php for ($hora = 0; $hora <= 17; $hora++) {
-                                                                                for ($minuto = 0; $minuto <= 30; $minuto += 30) { $hora_formato = sprintf('%02d:%02d', $hora, $minuto); 
-                                                                                    if ($hora >= 8) {
-                                                                                        echo '<option value="'.$hora_formato.'">'.$hora_formato.'</option>';
-                                                                                    }                                                                                   
-                                                                                }
-                                                                            }?>                                                                       
-                                                                    </select>
-                                                                </div>
-                                                            </div>  
-                                                            <div class="col-lg-6">
-                                                                <div>
-                                                                    <label for="fecha_inicio" class="form-label">Fecha Inicio</label>
-                                                                    <input class="form-control" type="date" id="fecha_inicio" name="fecha_inicio">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-6">
-                                                                <div>
-                                                                    <label for="fecha_fin" class="form-label">Fecha Fin</label>
-                                                                    <input class="form-control" type="date" id="fecha_fin" name="fecha_fin">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-6">
-                                                                <div>
-                                                                    <label for="categoria" class="form-label">Categoria</label>
-                                                                    <input type="text" id="categoria" name="categoria" class="form-control" placeholder="Ingrese categoria" required />
-                                                                </div>
-                                                            </div>
+                                                            </div>                                                                                                              
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
@@ -341,7 +287,7 @@
 
     <script src="../assets/js/pages/datatables.init.js"></script>
     <script type="text/javascript" src="<?php echo JS.'menu.js'; ?>"></script>   
-    <script type="text/javascript" src="<?php echo JS.'torneos.js?v=2'; ?>"></script>  
+    <script type="text/javascript" src="<?php echo JS.'equipos.js?v=2'; ?>"></script>  
     <!-- list.js min js -->
     <script src="../assets/libs/list.js/list.min.js"></script>
     <script src="../assets/libs/list.pagination.js/list.pagination.min.js"></script>

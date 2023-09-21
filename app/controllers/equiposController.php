@@ -49,7 +49,7 @@ class equiposController extends Controller {
 
   /* funcion para guardar los torneos */
 
-  function guardaTorneo(){
+  function guardaEquipo(){
 
     try {
 
@@ -57,40 +57,28 @@ class equiposController extends Controller {
 
       print_r($_FILES); */
 
-      $torneos = new torneosModel;
+      $equipos = new equiposModel;
 
-      $torneos->nombre = $_POST['nombre'];
+      $equipos->nombre = $_POST['nombre'];
 
-      $torneos->lugar= $_POST['lugar'];
+      $equipos->liga= $_POST['liga'];
 
-      $torneos->temporada= $_POST['temporada'];
+      $equipos->delegado= $_POST['delegado'];
 
-      $torneos->modalidad= $_POST['modalidad'];
+      $equipos->creado_por =  $_SESSION["email"];
 
-      $torneos->dias= trim($_POST['dias_text']);
+      $equipos->creado_el = date('Y-m-d H:i:s');
 
-      $torneos->horarios= trim($_POST['horarios_text']);
+      $equipos->modificado_por =  $_SESSION["email"];
 
-      $torneos->fecha_inicio= $_POST['fecha_inicio'];
-
-      $torneos->fecha_fin= $_POST['fecha_fin'];
-
-      $torneos->categoria= $_POST['categoria'];
-
-      $torneos->creado_por =  $_SESSION["email"];
-
-      $torneos->creado_el = date('Y-m-d H:i:s');
-
-      $torneos->modificado_por =  $_SESSION["email"];
-
-      $torneos->modificado_el = date('Y-m-d H:i:s');
+      $equipos->modificado_el = date('Y-m-d H:i:s');
 
 
       /* guardamos el archivo en el repositorio */
 
       $nombre_archivo_1 = "principal";
       $carpeta = str_replace(" ", "_", $_POST['nombre']);
-      $nombreCarpeta = "assets/images/img_torneos/".$carpeta;
+      $nombreCarpeta = "assets/images/img_equipos/".$carpeta;
       #print_r($nombreCarpeta);
       if (!is_dir($nombreCarpeta)) {
         // Crear la carpeta con permisos 0777 (puedes ajustar los permisos según tus necesidades)
@@ -100,7 +88,7 @@ class equiposController extends Controller {
 
           move_uploaded_file($_FILES['company-logo-input']['tmp_name'], $directorio_1);
 
-          $torneos->archivo= $directorio_1;
+          $equipos->archivo= $directorio_1;
           
         } 
       } else {
@@ -109,14 +97,14 @@ class equiposController extends Controller {
 
         move_uploaded_file($_FILES['company-logo-input']['tmp_name'], $directorio_1);
 
-        $torneos->archivo='<img src="'.IMAGES.'img_torneos/'.$carpeta.'/'.$nombre_archivo_1.'.png" alt="" class="avatar-xxs rounded-circle image_src object-cover">' ;
+        $equipos->archivo='<img src="'.IMAGES.'img_equipos/'.$carpeta.'/'.$nombre_archivo_1.'.png" alt="" class="avatar-xxs rounded-circle image_src object-cover">' ;
         
       }
 
 
       /* agregamos la imagen a la bd */
 
-      if(!$torneos->guardar_torneo()) {  json_output(json_build(400, null, 'Hubo error al crear el torneo'));  }
+      if(!$equipos->guardar_torneo()) {  json_output(json_build(400, null, 'Hubo error al crear el torneo'));  }
 
       json_output(json_build(200, null, 'Se ha creado su torneo'));
 
@@ -252,11 +240,11 @@ class equiposController extends Controller {
 
     try {
 
-      $torneos = new torneosModel;
+      $equipos = new equiposModel;
 
-      $lista_torneos = $torneos->listaTorneos();
+      $lista_equipos = $equipos->listaEquipos();
 
-      echo json_encode($lista_torneos);
+      echo json_encode($lista_equipos);
 
     }
 
