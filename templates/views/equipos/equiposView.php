@@ -127,6 +127,7 @@
                                                         <th class="text-center" data-sort="name" scope="col">Equipo</th>
                                                         <th class="text-center" data-sort="owner" scope="col">Liga</th>
                                                         <th class="text-center" data-sort="industry_type" scope="col">Delegado</th>
+                                                        <th class="text-center" data-sort="industry_type" scope="col">Estatus</th>
                                                         <th class="text-center" scope="col">Accion</th>
                                                     </tr>
                                                 </thead>
@@ -150,7 +151,7 @@
                                                     <h5 class="modal-title" id="">Nuevo Equipo</h5>
                                                     <button type="button" class="btn-close close-modal" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
                                                 </div>
-                                                <form id="miTorneo" class="miTorneo" method="POST" enctype="multipart/form-data">
+                                                <form id="miEquipo" class="miEquipo" method="POST" enctype="multipart/form-data">
                                                     <div class="modal-body">                                                        
                                                         <div class="row g-3">
                                                             <div class="col-lg-12">
@@ -190,13 +191,22 @@
                                                             </div>            
                                                             <div class="col-lg-6">
                                                                 <div >
-                                                                    <label for="delegado" class="form-label">Delegado</label>
-                                                                    <input type="text" id="dias_text" name="dias_text" hidden>
-                                                                    <select class="form-select" id = "delegado" name="delegado" data-placeholder="  Selecciona al delegado" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                                                    <label for="delegado" class="form-label">Delegado</label>    
+                                                                    <input type="text" id="delegado" name="delegado" class="form-control" placeholder="Ingrese nombre" required />        
+                                                                    <!-- <select class="form-select" id = "delegado" name="delegado" data-placeholder="  Selecciona al delegado" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                                                        
+                                                                    </select> -->
+                                                                </div>
+                                                            </div>  
+                                                            <div class="col-lg-6">
+                                                                <div>
+                                                                    <label for="liga" class="form-label">Estatus</label>
+                                                                    <select class="form-select" id = "estatus" name="estatus" data-placeholder="  Selecciona el estatus" style="width: 100%;" aria-hidden="true">
+                                                                        <option value="1">Activo</option>
+                                                                        <option value="2">Baja</option>                                                                            
                                                                     </select>
                                                                 </div>
-                                                            </div>                                                                                                              
+                                                            </div>                                                                                                            
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
@@ -226,7 +236,7 @@
                                                         <div class="hstack gap-2 justify-content-center remove">
                                                             <button class="btn btn-link link-success fw-medium text-decoration-none" data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i> Cancelar</button>
                                                             <button class="btn btn-danger" id="delete-record">Si, Eliminar!!</button>
-                                                            <input type="text" hidden id="idTorneo">
+                                                            <input type="text" hidden id="idEquipo">
                                                         </div>
                                                     </div>
                                                 </div>

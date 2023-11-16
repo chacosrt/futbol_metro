@@ -16,7 +16,7 @@ class equiposModel extends Model {
 
   public $delegado;
 
-  public $modalidad;
+  public $estatus;
 
   public $dias;
 
@@ -50,8 +50,6 @@ class equiposModel extends Model {
 
   public $fechaActivacion;
 
-  public $estatus;
-
   public $cambio;
 
   public $fechaBaja;
@@ -74,9 +72,9 @@ class equiposModel extends Model {
 
     $sql = 'INSERT INTO equipos 
 
-    (nombre, liga, delegado, img,creado_por,creado_el,modificado_por,modificado_el)
+    (nombre, liga, delegado,estatus, img_equipo,creado_por,creado_el,modificado_por,modificado_el)
 
-    VALUES(:nombre, :liga, :delegado, :archivo, :creado_por,:creado_el,:modificado_por,:modificado_el)';
+    VALUES(:nombre, :liga, :delegado, :estatus, :archivo, :creado_por,:creado_el,:modificado_por,:modificado_el)';
 
     $user = [
 
@@ -84,7 +82,9 @@ class equiposModel extends Model {
 
       'liga' => $this->liga,
 
-      'delegado' => $this->temporada,
+      'delegado' => $this->delegado,
+
+      'estatus' => $this->estatus,
 
       'archivo' => $this->archivo,
 
@@ -111,7 +111,7 @@ class equiposModel extends Model {
 
   public function listaEquipos() {
 
-    $sql = 'SELECT * FROM equipos';
+    $sql = 'SELECT * FROM equipos,torneos WHERE equipos.liga = torneos.id';
 
     try { return ($rows = parent::query($sql)) ? $rows : false; } 
 
@@ -125,9 +125,9 @@ class equiposModel extends Model {
 
   /* eliminamos el analista */
 
-  public function elimina_torneo(){
+  public function elimina_equipo(){
 
-    $sql = "DELETE FROM torneos WHERE id=:id";
+    $sql = "DELETE FROM equipos WHERE id=:id";
 
     $user = [
 
@@ -151,33 +151,23 @@ class equiposModel extends Model {
 
   /* function para la edicion del elmento */
 
-  public function edita_torneo(){
+  public function edita_equipo(){
 
-    $sql = 'UPDATE torneos 
+    $sql = 'UPDATE equipos 
 
-    SET nombre_torneo=:nombre_torneo, lugar=:lugar, temporada=:temporada, modalidad=:modalidad, dias=:dias, horarios=:horarios, fecha_inicio=:fecha_inicio, fecha_fin=:fecha_fin, categoria=:categoria, img=:archivo,modificado_por=:modificado_por,modificado_el=:modificado_el
+    SET nombre=:nombre, liga=:liga, delegado=:delegado, estatus=:estatus, img_equipo=:archivo,modificado_por=:modificado_por,modificado_el=:modificado_el
 
     WHERE id=:id';
 
     $user = [
 
-      'nombre_torneo' => $this->nombre,
+      'nombre' => $this->nombre,
 
-      'lugar' => $this->lugar,
+      'liga' => $this->liga,
 
-      'temporada' => $this->temporada,
+      'delegado' => $this->delegado,
 
-      'modalidad' => $this->modalidad,
-
-      'dias' => $this->dias,
-
-      'horarios' => $this->horarios,
-
-      'fecha_inicio' => $this->fecha_inicio,
-
-      'fecha_fin' => $this->fecha_fin,
-
-      'categoria' => $this->categoria,
+      'estatus' => $this->estatus,
 
       'archivo' => $this->archivo,
 
@@ -198,9 +188,9 @@ class equiposModel extends Model {
 
   /* function para obtener registro de un torneo */
 
-  public function obtengo_torneo(){
+  public function obtengo_equipo(){
 
-    $sql = 'SELECT * FROM torneos WHERE id=:id';
+    $sql = 'SELECT * FROM equipos,torneos WHERE equipos.liga = torneos.id AND equipos.id=:id';
 
     $user = [
 

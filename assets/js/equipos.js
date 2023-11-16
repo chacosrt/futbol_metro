@@ -26,7 +26,7 @@ $(document).ready(function() {
   $('.close-modal').on('click', reset_form);
 
   function reset_form(event) {
-      $('.miTorneo')[0].reset();
+      $('.miEquipo')[0].reset();
       $('select').select2();
       $('#companylogo-img').attr('src', '../assets/images/users/multi-user.jpg').show();
   }
@@ -100,23 +100,23 @@ $(document).ready(function() {
   }  
 
   //************************************************************************************************************************* */
-  $('.miTorneo').on('submit', guarda_torneo);
+  $('.miEquipo').on('submit', guarda_equipo);
 
-  function guarda_torneo(event) {
+  function guarda_equipo(event) {
 
     event.preventDefault();
     id = $('#id-edit').val();
     console.log(id)
     if (id != ''){
-      url = 'editaTorneo' + '/' + id;
-      title = 'Tu torneo se edito con exito';
+      url = 'editaEquipo' + '/' + id;
+      title = 'Tu equipo se edito con exito';
     }else{
-      url = 'guardaTorneo';
-      title = 'Tu torneo se creo con exito';
+      url = 'guardaEquipo';
+      title = 'Tu equipo se creo con exito';
     }
 
     // Obtener los datos del formulario
-    var formData = new FormData($("#miTorneo")[0]);
+    var formData = new FormData($("#miEquipo")[0]);
     
     console.log(formData);
 
@@ -139,7 +139,7 @@ $(document).ready(function() {
 
           miTabla.ajax.reload();
           $('#showModal').modal('hide');
-          $('.miTorneo')[0].reset();
+          $('.miEquipo')[0].reset();
           $('select').select2();
           $('#companylogo-img').attr('src', '../assets/images/users/multi-user.jpg').show();
           if (!modalEstaAbierto()) {
@@ -161,20 +161,20 @@ $(document).ready(function() {
   }
 
   //************************************************************************************************************************* */
-  $('#delete-record').on('click', elimina_torneo);
+  $('#delete-record').on('click', elimina_equipo);
 
-  function elimina_torneo(event) {
+  function elimina_equipo(event) {
 
     event.preventDefault();
 
     // Obtener los datos del formulario
-    var val = $('#idTorneo').val();
+    var val = $('#idEquipo').val();
     
     console.log(val);
 
     $.ajax({
 
-      url: 'eliminaTorneo' + '/' + val,
+      url: 'eliminaEquipo' + '/' + val,
 
       type: 'POST',
 
@@ -191,7 +191,7 @@ $(document).ready(function() {
 
           miTabla.ajax.reload();
           $('#deleteRecordModal').modal('hide');
-          $('.miTorneo')[0].reset();
+          $('.miEquipo')[0].reset();
 
         }
           
@@ -322,10 +322,28 @@ var miTabla = $('#equiposTable').DataTable({
     dataSrc: '' // Dejar en blanco para que DataTables entienda la estructura de los datos
   },
   columns: [
-      { data: 'img', },
+      { data: 'img_equipo', },
       { data: 'nombre' },
-      { data: 'liga' },
+      { data: 'nombre_torneo' },
       { data: 'delegado' },
+      { data: 'estatus',
+        render: function(data, type, row) {
+          let status, className;
+          switch (Number(data)) {
+              case 1:
+                status    = 'Activo';
+                
+              break;
+
+              case 2:
+                status    = 'Baja';
+                
+              break;
+          }
+
+          return status;
+        }
+      },
       {
         data: null,
         render: function(data, type, row) {
@@ -366,7 +384,7 @@ var miTabla = $('#equiposTable').DataTable({
     var select = $('#numeroRegistros');
     //$('td').addClass("text-center");
     //$('ul').addClass("text-center");
-    $('#torneosTable_filter').hide();
+    $('#equiposTable_filter').hide();
     //miTabla.column(0).visible(false);
     $('.dt-buttons').hide();
     //$('.dataTables_paginate').hide();
@@ -384,7 +402,7 @@ var miTabla = $('#equiposTable').DataTable({
     miTabla.on('click', '.remove-item-btn', function() {
       // Obtener los datos de la fila correspondiente
       var datosFila = $(this).data('fila');
-      $('#idTorneo').val(datosFila);
+      $('#idEquipo').val(datosFila);
       console.log(datosFila);
    
     }); 
@@ -405,11 +423,10 @@ var miTabla = $('#equiposTable').DataTable({
       // Obtener los datos de la fila correspondiente
       var datosFila = $(this).data('fila');
       $('#id-edit').val(datosFila);
-      console.log(datosFila);
 
       $.ajax({
   
-        url: 'obtengoTorneo' + '/' + datosFila,
+        url: 'obtengoEquipo' + '/' + datosFila,
   
         type: 'POST',
   
@@ -431,20 +448,8 @@ var miTabla = $('#equiposTable').DataTable({
 
           $('#companylogo-img').attr('src',src_img);
           $("#nombre").val(datos[1])
-          $("#lugar").val(datos[2])
-          $("#temporada").val(datos[3])
-          $("#modalidad").val(datos[4])
-          $("#fecha_inicio").val(datos[7])
-          $("#fecha_fin").val(datos[8])
-          $("#categoria").val(datos[9])
-          
-          var dias = datos[5].trim().split(',');
-          var horas = datos[6].trim().split(',');
-          console.log(horas)
-          $("#dias").val(dias).select2();
-          $("#horarios").val(horas).select2();
-          $("#dias_text").val(datos[5]);
-          $("#horarios_text").val(datos[6]);
+          $("#liga").val(datos[2]).select2();
+          $("#delegado").val(datos[3]);
          /*  $.each(dias, function(index, value) {
             $('#resultado').append('<li>' + value + '</li>');
           }); */
