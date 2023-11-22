@@ -130,13 +130,13 @@ define('CAMBIOCLAVE',$cambio);
 
 define('DB_ENGINE'  , 'mysql');
 
-define('DB_HOST'    , 'localhost');
+define('DB_HOST'    , 'srv1144.hstgr.io');
 
-define('DB_NAME'    , 'liga_metro');
+define('DB_NAME'    , 'u127483889_liga_metro');
 
-define('DB_USER'    , 'root');
+define('DB_USER'    , 'u127483889_dinos_root');
 
-define('DB_PASS'    , '');
+define('DB_PASS'    , 'Dinos123*');
 
 define('DB_CHARSET' , 'utf8');
 
