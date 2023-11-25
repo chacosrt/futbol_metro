@@ -2,7 +2,7 @@
 
 
 
-class equiposController extends Controller {
+class jugadoresController extends Controller {
 
   function __construct(){ }
 
@@ -30,11 +30,11 @@ class equiposController extends Controller {
 
     if($_SESSION['id'] != NULL){ 
 
-      $torneos = new torneosModel;
+      $jugadores = new jugadoresModel;
 
-      $lista_torneos = $torneos->listaTorneos();
+      $lista_jugadores = $jugadores->listaJugadores();
       
-      View::render('equipos',['lista' => $lista_torneos]);     
+      View::render('jugadores',['lista' => $lista_jugadores]);     
       
       
       
@@ -232,11 +232,11 @@ class equiposController extends Controller {
 
     try {
 
-      $equipos = new equiposModel;
+      $jugadores = new jugadoresModel;
 
-      $lista_equipos = $equipos->listaEquipos();
+      $lista_jugadores = $jugadores->listaJugadores();
 
-      echo json_encode($lista_equipos);
+      echo json_encode($lista_jugadores);
 
     }
 
