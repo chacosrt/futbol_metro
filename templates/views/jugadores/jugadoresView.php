@@ -191,6 +191,10 @@
                                                                 <input type="text" id="app" name="app" class="form-control" placeholder="Ingrese apellido paterno" required />
                                                             </div>
                                                             <div class="col-lg-6">
+                                                                <label for="app" class="form-label">Apellido Materno</label>
+                                                                <input type="text" id="apm" name="apm" class="form-control" placeholder="Ingrese apellido paterno" required />
+                                                            </div>
+                                                            <div class="col-lg-6">
                                                                 <div>
                                                                     <label for="liga" class="form-label">Torneo</label>
                                                                     <select class="form-select" id = "liga" name="liga" data-placeholder="  Selecciona el torneo" style="width: 100%;" aria-hidden="true">
