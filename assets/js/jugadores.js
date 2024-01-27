@@ -76,14 +76,15 @@ $(document).ready(function() {
     }  
   
     //*************************************************************************************************************** */
-    $('#horarios').on('change', select_horarios);
+    $('#delegado').on('change', select_horarios);
   
     function select_horarios(event) {
   
       console.log($( this ).val())
+      console.log("hola");
   
       // Obtener los valores seleccionados en un arreglo
-      var valoresSeleccionados =$( this ).val();
+      /* var valoresSeleccionados =$( this ).val();
   
       // Convertir los valores a texto y mostrarlos en el div
       var textoConvertido = "";
@@ -96,7 +97,7 @@ $(document).ready(function() {
       // Eliminar la última coma y espacio
       textoConvertido = textoConvertido.slice(0, -1);
       $("#horarios_text").val(textoConvertido)
-      console.log(textoConvertido.replace(' ',''))
+      console.log(textoConvertido.replace(' ','')) */
     }  
   
     //************************************************************************************************************************* */

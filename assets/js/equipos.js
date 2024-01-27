@@ -309,7 +309,7 @@ var miTabla = $('#equiposTable').DataTable({
     // Personalizar el texto "Showing [inicio] to [fin] of [total] entries"
     info: 'Mostrando _START_ a _END_ de _TOTAL_ registros',
     // Personalizar el texto "Filtering [n] entries"
-    search: 'Filtrado de _TOTAL_ registros',
+    search: '(Filtrado de _TOTAL_ registros)',
     // Otros textos personalizados aquí
     paginate: {
       next: 'Siguiente', // Texto para el botón Next

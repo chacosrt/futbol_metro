@@ -196,24 +196,40 @@
                                                             </div>
                                                             <div class="col-lg-6">
                                                                 <div>
-                                                                    <label for="liga" class="form-label">Torneo</label>
+                                                                    <label for="liga" class="form-label">Liga</label>
                                                                     <select class="form-select" id = "liga" name="liga" data-placeholder="  Selecciona el torneo" style="width: 100%;" aria-hidden="true">
                                                                                                                                                 
                                                                     </select>
                                                                 </div>
-                                                            </div>            
+                                                            </div>     
                                                             <div class="col-lg-6">
-                                                                <div >
-                                                                    <label for="delegado" class="form-label">Delegado</label>    
-                                                                    <input type="text" id="delegado" name="delegado" class="form-control" placeholder="Ingrese nombre" required />        
+                                                                <div>
+                                                                    <label for="liga" class="form-label">Equipo</label>
+                                                                    <select class="form-select" id = "equipo" name="equipo" data-placeholder="  Selecciona el equipo" style="width: 100%;" aria-hidden="true">
+                                                                                                                                                
+                                                                    </select>
+                                                                </div>
+                                                            </div>       
+                                                            <div class="col-lg-6">
+                                                                <div class="form-check form-switch p-0">
+                                                                    <label for="delegado" class="form-label d-block">Delegado</label> 
+                                                                    <input type="checkbox" id="delegado" name="delegado" class="form-check-input d-block" style="margin-left:0;"/>        
                                                                     <!-- <select class="form-select" id = "delegado" name="delegado" data-placeholder="  Selecciona al delegado" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                                                        
                                                                     </select> -->
                                                                 </div>
                                                             </div>  
                                                             <div class="col-lg-6">
+                                                                <label for="exp" class="form-label">Expediente</label>
+                                                                <input type="text" id="exp" name="exp" class="form-control" placeholder="Ingrese expediente" required />
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <label for="edad" class="form-label">Edad</label>
+                                                                <input type="number" id="edad" name="edad" class="form-control" min="0" max="100" step="1" placeholder="Ingresa edad"/>
+                                                            </div>
+                                                            <div class="col-lg-6">
                                                                 <div>
-                                                                    <label for="liga" class="form-label">Estatus</label>
+                                                                    <label for="estatus" class="form-label">Estatus</label>
                                                                     <select class="form-select" id = "estatus" name="estatus" data-placeholder="  Selecciona el estatus" style="width: 100%;" aria-hidden="true">
                                                                         <option value="1">Activo</option>
                                                                         <option value="2">Baja</option>                                                                            
