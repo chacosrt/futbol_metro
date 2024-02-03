@@ -53,14 +53,14 @@
                     <span class="d-flex align-items-center">
                         <img class="rounded-circle header-profile-user" src="../assets/images/users/avatar-3.jpg" alt="Header Avatar">
                         <span class="text-start ms-xl-2">
-                            <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text"><?php echo $_SESSION["nombre"]?></span>
-                            <span class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text"><?php echo $_SESSION["roles"]?></span>
+                            <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text usuario"></span>
+                            <span class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text roles"></span>
                         </span>
                     </span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
                     <!-- item-->
-                    <h6 class="dropdown-header">Bienvenido <?php echo $_SESSION["nombre"]?></h6>
+                    <h6 class="dropdown-header bienvenido">Bienvenido</h6>
                     <a class="dropdown-item" href="pages-profile.html"><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Perfil</span></a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="pages-profile-settings.html"><span class="badge bg-soft-success text-success mt-1 float-end">New</span><i class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Configuración</span></a>

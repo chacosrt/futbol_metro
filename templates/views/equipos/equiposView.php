@@ -296,6 +296,7 @@
 
 
     <script src="../assets/js/pages/datatables.init.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="<?php echo JS.'menu.js'; ?>"></script>   
     <script type="text/javascript" src="<?php echo JS.'equipos.js?v=2'; ?>"></script>  
     <!-- list.js min js -->

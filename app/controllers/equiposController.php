@@ -26,23 +26,8 @@ class equiposController extends Controller {
 
   function index(){ 
 
-  
-
-    if($_SESSION['id'] != NULL){ 
-
-      $torneos = new torneosModel;
-
-      $lista_torneos = $torneos->listaTorneos();
-      
-      View::render('equipos',['lista' => $lista_torneos]);     
-      
-      
-      
-    }else{ 
-      header('Location: '.DEFAULT_CONTROLLER);
-    }
-
-  
+     
+      View::render('equipos');    
 
   }
 

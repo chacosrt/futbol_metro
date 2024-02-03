@@ -26,18 +26,8 @@ class dashController extends Controller {
  
    function index(){ 
  
-    #print_r($_SESSION);
-     if($_SESSION['id'] != NULL){ 
-      
-      View::render('dash');     
-      
-      
-    }else{ 
-      header('Location: '.DEFAULT_CONTROLLER);
-    }
- 
-   
- 
+    #print_r($_SESSION);      
+    View::render('dash'); 
    }
  
 }

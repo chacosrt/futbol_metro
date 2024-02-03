@@ -1,9 +1,18 @@
 
 
-$(document).ready(function() {  
+$(document).ready(async function() {  
+
+  $(".usuario").text(sessionStorage.getItem('usuario'));
+  $(".roles").text(sessionStorage.getItem('roles'));
+  $(".bienvenido").text('Bienvenido '+sessionStorage.getItem('usuario'));
+
+  if (sessionStorage.getItem('usuario') == null) {        
+
+    window.location="../home";
+   
+  } 
 
   console.log("jquery-on")
-
   $('select').select2({
     closeOnSelect: false,
     tokenSeparators: [',']
@@ -19,6 +28,7 @@ $(document).ready(function() {
       console.log('El modal está abierto.');
   } else {
       console.log('El modal está cerrado.');
+      
   }
 
   $('.close-modal').on('click', reset_form);
@@ -27,6 +37,7 @@ $(document).ready(function() {
       $('.miTorneo')[0].reset();
       $('select').select2();
       $('#companylogo-img').attr('src', '../assets/images/users/multi-user.jpg').show();
+      $("#form-title").text('Nuevo Torneo');
   }
 
   //*********************************************************************************************************** */
@@ -100,42 +111,75 @@ $(document).ready(function() {
   //************************************************************************************************************************* */
   $('.miTorneo').on('submit', guarda_torneo);
 
-  function guarda_torneo(event) {
-
+  async function guarda_torneo(event) {
     event.preventDefault();
-    id = $('#id-edit').val();
-    console.log(id)
-    if (id != ''){
-      url = 'editaTorneo' + '/' + id;
-      title = 'Tu torneo se edito con exito';
-    }else{
-      url = 'guardaTorneo';
-      title = 'Tu torneo se creo con exito';
-    }
+    var token = await get_token();
+    //console.log(token)
+    var headers = {
+      'Content-Type': 'application/json', // Tipo de contenido de la solicitud
+      'Authorization': 'Bearer ' + token, // Token de autorización, ajusta según tus necesidades
+      'Access-Control-Allow-Origin': "*"
+    };
 
     // Obtener los datos del formulario
     var formData = new FormData($("#miTorneo")[0]);
+
+    // Crea un objeto vacío para almacenar los datos
+    const formDataObject = {};
+
+    // Itera sobre cada par clave/valor en FormData y agrega al objeto
+    formData.forEach((value, key) => {
+        formDataObject[key] = value;
+    });
     
-    console.log(formData);
+    var base64Image = $('#companylogo-img').attr('src');
+     
+    var data_torneo = {
+      nombre_torneo: formDataObject["nombre"],
+      temporada: formDataObject["temporada"],
+      modalidad: formDataObject["modalidad"],
+      lugar: formDataObject["lugar"],
+      dias: formDataObject["dias_text"],
+      horarios: formDataObject["horarios_text"],
+      fecha_inicio: formDataObject["fecha_inicio"],
+      fecha_fin: formDataObject["fecha_fin"],
+      categoria: formDataObject["categoria"],
+      img: '<img id="'+formDataObject["nombre"].replace(" ","_")+'" src="'+base64Image+'" alt="" class="avatar-xxs rounded-circle image_src object-cover">'
+    };
 
-    $.ajax({
+    
+    id = $('#id-edit').val();
+    console.log(id)
+    if (id != ''){
+      var alpha_id = await alpha(id);
+      url = 'http://18.119.102.18:8030/torneos' + '/' + alpha_id;
+      title = 'Tu torneo se edito con exito';
+    }else{
+      url = 'http://18.119.102.18:8030/torneos/';
+      title = 'Tu torneo se creo con exito';
+    }
+    
+    // Realiza la solicitud POST usando Axios
+    return await axios.post(url,data_torneo,{headers:headers})
+    .then(async function (response) {
+        // Maneja la respuesta exitosa
+        
+        //console.log(response.data["access_token"]);
+        if(response.status == 201) {
+          
+          console.log(response.status)
+          // Llamar a la función AJAX para obtener nuevos datos (reemplaza esto con tu lógica)
+          var nuevosDatos = await get_torneos();
 
-      url: url,
+          // Limpiar los datos existentes en la tabla
+          miTabla.clear();
 
-      type: 'POST',
+          // Agregar nuevos datos a la tabla
+          miTabla.rows.add(nuevosDatos);
 
-      data: formData,
+          // Volver a dibujar la tabla
+          miTabla.draw();
 
-      processData: false,  // Evitar el procesamiento de datos
-      
-      contentType: false, 
-
-      success: function(res) {
-
-        console.log(res);
-        if(res.status === 200) {
-
-          miTabla.ajax.reload();
           $('#showModal').modal('hide');
           $('.miTorneo')[0].reset();
           $('select').select2();
@@ -151,59 +195,76 @@ $(document).ready(function() {
           }
           
         }
-         
-      }
+    })
+    .catch(function (error) {
+        // Maneja errores
+        console.error(error);
     }); 
-
 
   }
 
     //************************************************************************************************************************* */
     $('#delete-record').on('click', elimina_torneo);
 
-    function elimina_torneo(event) {
+    async function elimina_torneo(event) {
   
       event.preventDefault();
+      
+      var token = await get_token();
+      console.log(token)
+      var header = {
+        'Content-Type': 'application/json', // Tipo de contenido de la solicitud
+        'Authorization': 'Bearer ' + token, // Token de autorización, ajusta según tus necesidades
+        'Access-Control-Allow-Origin': "*"
+      };
   
       // Obtener los datos del formulario
       var val = $('#idTorneo').val();
       
       console.log(val);
+
+      var alpha_id = await alpha(val);
   
-      $.ajax({
-  
-        url: 'eliminaTorneo' + '/' + val,
-  
-        type: 'POST',
-  
-        data: val,
-  
-        processData: false,  // Evitar el procesamiento de datos
-        
-        contentType: false, 
-  
-        success: function(res) {
-  
-          console.log(res);
-          if(res.status === 200) {
-  
-            miTabla.ajax.reload();
+      // Realiza la solicitud POST usando Axios
+      return await axios.post('http://18.119.102.18:8030/torneos/' + alpha_id +'/delete',{id:alpha_id},{headers:header})
+      .then(async function (response) {
+          // Maneja la respuesta exitosa
+          
+          //console.log(response.data["access_token"]);
+          if(response.status == 202) {
+            
+            console.log(response.status)
+            // Llamar a la función AJAX para obtener nuevos datos (reemplaza esto con tu lógica)
+            var nuevosDatos = await get_torneos();
+
+            // Limpiar los datos existentes en la tabla
+            miTabla.clear();
+
+            // Agregar nuevos datos a la tabla
+            miTabla.rows.add(nuevosDatos);
+
+            // Volver a dibujar la tabla
+            miTabla.draw();
+
             $('#deleteRecordModal').modal('hide');
             $('.miTorneo')[0].reset();
-  
+            
           }
-           
-        }
+      })
+      .catch(function (error) {
+          // Maneja errores
+          console.error(error);
       }); 
   
   
     }
 
   /************************************************************************************************************ */
-   /*  $('.edit-item-btn').on('click', obtengo_torneo);
-    function obtengo_torneo(event){
+/*    $('.edit-item-btn').on('click', obtengo_torneo);
+    async function obtengo_torneo(event){
 
       var value = $('#id-edit').val();
+      var id_alpha = await alpha(value)
       console.log(value);
       $.ajax({
   
@@ -228,7 +289,7 @@ $(document).ready(function() {
            
         }
       }); 
-    } */
+    }  */
   //*********************************************************************************************************** */
 
   // Obtener las opciones de "Show entries" del DataTable
@@ -244,6 +305,91 @@ $(document).ready(function() {
   });
 
 });
+
+/************************************************************************************************************************** */
+
+async function alpha(id){
+
+  var token = await get_token();
+
+  var headers = {
+    'Content-Type': 'application/json', // Tipo de contenido de la solicitud
+    'Authorization': 'Bearer ' + token, // Token de autorización, ajusta según tus necesidades
+    'Access-Control-Allow-Origin': "*"
+  };
+
+  // Realiza la solicitud POST usando Axios
+  return await axios.get('http://18.119.102.18:8030/admin/'+id+'/alpha_id',{headers:headers})
+  .then(function (response) {
+      // Maneja la respuesta exitosa
+      //console.log(response.data["access_token"]);
+      var token_resp = response.data["alpha_id"]
+      
+      return token_resp;
+  })
+  .catch(function (error) {
+      // Maneja errores
+      console.error(error);
+  });
+
+}
+
+/************************************************************************************************************************** */
+
+async function get_token(){
+
+  var data_token = {
+    sub: sessionStorage.getItem('email'),
+    ttl: 43200,
+    aud: "roni.dinossolutions.com",
+    roles: sessionStorage.getItem('roles'),
+    scope: "*"
+  };
+
+  //console.log(data_token.aud)
+
+  // Realiza la solicitud POST usando Axios
+  return await axios.post('http://18.220.123.92:8020/janus/badge', data_token)
+  .then(function (response) {
+      // Maneja la respuesta exitosa
+      //console.log(response.data["access_token"]);
+      var token_resp = response.data["access_token"]
+      
+      return token_resp;
+  })
+  .catch(function (error) {
+      // Maneja errores
+      console.error(error);
+  });
+
+}
+
+/************************************************************************************************************************** */
+
+async function get_torneos(){
+  //debugger
+  var token = await get_token();
+  //console.log(token)
+  var headers = {
+    'Content-Type': 'application/json', // Tipo de contenido de la solicitud
+    'Authorization': 'Bearer ' + token, // Token de autorización, ajusta según tus necesidades
+    'Access-Control-Allow-Origin': "*"
+  };
+  // Realiza la solicitud POST usando Axios
+  return await axios.get('http://18.119.102.18:8030/torneos_list/',{ headers: headers })
+  .then(function (response) {
+      // Maneja la respuesta exitosa
+      //console.log(response.data);
+      var datos =response.data;
+      console.log(datos);
+      return datos;
+  })
+  .catch(function (error) {
+      // Maneja errores
+      console.error(error);
+  });
+
+}
 
 //************************************************************************************************************************* */
 var miTabla = $('#torneosTable').DataTable({
@@ -276,10 +422,19 @@ var miTabla = $('#torneosTable').DataTable({
     }
   },
 
-  ajax: {
-    url: 'obtengoinfo', // URL del script PHP para obtener los datos
-    dataSrc: '' // Dejar en blanco para que DataTables entienda la estructura de los datos
+  ajax: async function(data, callback, settings) {
+    // Obtener los datos mediante la función
+    var datos = await get_torneos();
+    console.log(datos)
+    // Simular un pequeño retardo para simular la asincronía de una solicitud real
+    setTimeout(function() {
+        // Llamar a la función de retorno de llamada con los datos obtenidos
+        callback({
+            data: datos
+        });
+    }, 200);
   },
+
   columns: [
       { data: 'img', },
       { data: 'nombre_torneo' },
@@ -294,16 +449,17 @@ var miTabla = $('#torneosTable').DataTable({
       {
         data: null,
         render: function(data, type, row) {
+            
             // Generar HTML para los botones de acción
             return  '<ul class="list-inline gap-2 mb-0 text-center">'+                                                                
                      /* ' <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="View">'+
                           '<a href="javascript:void(0);" class="view-item-btn"><i class="ri-eye-fill align-bottom text-muted"></i></a>'+
                      ' </li>'+ */
                      ' <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Edit">'+
-                          '<a class="edit-item-btn" href="#showModal" data-bs-toggle="modal" data-fila="' + row[0] + '"><i class="ri-pencil-fill align-bottom text-muted" ></i></a>'+
+                          '<a class="edit-item-btn" href="#showModal" data-bs-toggle="modal" data-fila="' + row.id + '"><i class="ri-pencil-fill align-bottom text-muted" ></i></a>'+
                       '</li>'+
                       '<li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Delete">'+
-                          '<a class="remove-item-btn" data-bs-toggle="modal" href="#deleteRecordModal" data-fila="' + row[0] + '">'+
+                          '<a class="remove-item-btn" data-bs-toggle="modal" href="#deleteRecordModal" data-fila="' + row.id + '">'+
                              ' <i class="ri-delete-bin-fill align-bottom text-muted"></i>'+
                          ' </a>'+
                       '</li>'+
@@ -366,56 +522,52 @@ var miTabla = $('#torneosTable').DataTable({
       miTabla.button('.buttons-print').trigger();
     });
 
-    miTabla.on('click', '.edit-item-btn', function() {
+    miTabla.on('click', '.edit-item-btn', async function() {
       // Obtener los datos de la fila correspondiente
+      $('#form-title').text('Editar Torneo')
       var datosFila = $(this).data('fila');
       $('#id-edit').val(datosFila);
+      var id_alpha = await alpha(datosFila)
       console.log(datosFila);
 
-      $.ajax({
-  
-        url: 'obtengoTorneo' + '/' + datosFila,
-  
-        type: 'POST',
-  
-        data: datosFila,
-
-        dataType: 'json',
-  
-        processData: false,  // Evitar el procesamiento de datos
-        
-        contentType: false, 
-  
-        success: function(res) {
-  
-          datos = res[0];
-          id_img = datos[1].replace(' ','_');
+      var token = await get_token();
+      //console.log(token)
+      var headers = {
+        'Content-Type': 'application/json', // Tipo de contenido de la solicitud
+        'Authorization': 'Bearer ' + token, // Token de autorización, ajusta según tus necesidades
+        'Access-Control-Allow-Origin': "*"
+      };
+      // Realiza la solicitud POST usando Axios
+      return await axios.get('http://18.119.102.18:8030/torneos/'+id_alpha+'/id',{ headers: headers })
+      .then(function (response) {
+          // Maneja la respuesta exitosa
+          //console.log(response.data);
+          var datos =response.data;
+          id_img = datos.nombre_torneo.replace(' ','_');
           
           src_img = $("#"+id_img).attr('src');
-          console.log(datos);
+          console.log(datos.dias);
 
           $('#companylogo-img').attr('src',src_img);
-          $("#nombre").val(datos[1])
-          $("#lugar").val(datos[2])
-          $("#temporada").val(datos[3])
-          $("#modalidad").val(datos[4])
-          $("#fecha_inicio").val(datos[7])
-          $("#fecha_fin").val(datos[8])
-          $("#categoria").val(datos[9])
-          
-          var dias = datos[5].trim().split(',');
-          var horas = datos[6].trim().split(',');
-          console.log(horas)
-          $("#dias").val(dias).select2();
-          $("#horarios").val(horas).select2();
-          $("#dias_text").val(datos[5]);
-          $("#horarios_text").val(datos[6]);
-         /*  $.each(dias, function(index, value) {
-            $('#resultado').append('<li>' + value + '</li>');
-          }); */
-
-        }
-      }); 
+          $("#nombre").val(datos.nombre_torneo)
+          $("#lugar").val(datos.lugar)
+          $("#temporada").val(datos.temporada)
+          $("#modalidad").val(datos.modalidad)
+          $("#fecha_inicio").val(datos.fecha_inicio)
+          $("#fecha_fin").val(datos.fecha_fin)
+          $("#categoria").val(datos.categoria)
+        
+          $("#dias").val(datos.dias_select).select2();
+          $("#horarios").val(datos.horarios_select).select2();
+          $("#dias_text").val(datos.dias);
+          $("#horarios_text").val(datos.horas);
+          console.log(datos);
+          return datos;
+      })
+      .catch(function (error) {
+          // Maneja errores
+          console.error(error);
+      });
    
     }); 
 

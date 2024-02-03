@@ -153,7 +153,7 @@
                                         <div class="modal-dialog modal-dialog-centered modal-lg">
                                             <div class="modal-content border-0">
                                                 <div class="modal-header bg-soft-info p-3">
-                                                    <h5 class="modal-title" id="">Nuevo Torneo</h5>
+                                                    <h5 class="modal-title" id="form-title">Nuevo Torneo</h5>
                                                     <button type="button" class="btn-close close-modal" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
                                                 </div>
                                                 <form id="miTorneo" class="miTorneo" method="POST" enctype="multipart/form-data">
@@ -340,6 +340,7 @@
 
 
     <script src="../assets/js/pages/datatables.init.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="<?php echo JS.'menu.js'; ?>"></script>   
     <script type="text/javascript" src="<?php echo JS.'torneos.js?v=2'; ?>"></script>  
     <!-- list.js min js -->

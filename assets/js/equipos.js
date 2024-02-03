@@ -2,9 +2,19 @@
 
 $(document).ready(function() {  
 
+  $(".usuario").text(sessionStorage.getItem('usuario'));
+  $(".roles").text(sessionStorage.getItem('roles'));
+  $(".bienvenido").text('Bienvenido '+sessionStorage.getItem('usuario'));
+
+  if (sessionStorage.getItem('usuario') == null) {        
+
+    window.location="../home";
+   
+  } 
+
   console.log("jquery-on")
 
-  obtiene_torneos();
+  get_torneos();
 
   $('select').select2({
     closeOnSelect: false,
@@ -102,42 +112,73 @@ $(document).ready(function() {
   //************************************************************************************************************************* */
   $('.miEquipo').on('submit', guarda_equipo);
 
-  function guarda_equipo(event) {
+  async function guarda_equipo(event) {
 
     event.preventDefault();
-    id = $('#id-edit').val();
-    console.log(id)
-    if (id != ''){
-      url = 'editaEquipo' + '/' + id;
-      title = 'Tu equipo se edito con exito';
-    }else{
-      url = 'guardaEquipo';
-      title = 'Tu equipo se creo con exito';
-    }
+    var token = await get_token();
+    //console.log(token)
+    var headers = {
+      'Content-Type': 'application/json', // Tipo de contenido de la solicitud
+      'Authorization': 'Bearer ' + token, // Token de autorización, ajusta según tus necesidades
+      'Access-Control-Allow-Origin': "*"
+    };
 
     // Obtener los datos del formulario
     var formData = new FormData($("#miEquipo")[0]);
     
     console.log(formData);
 
-    $.ajax({
+    // Crea un objeto vacío para almacenar los datos
+    const formDataObject = {};
 
-      url: url,
+    // Itera sobre cada par clave/valor en FormData y agrega al objeto
+    formData.forEach((value, key) => {
+        formDataObject[key] = value;
+    });
+    
+    var base64Image = $('#companylogo-img').attr('src');
+     
+    var data_equipo = {
+      nombre: formDataObject["nombre"],
+      liga: formDataObject["liga"],
+      delegado: formDataObject["delegado"],
+      estatus: formDataObject["estatus"],
+      img_equipo: '<img id="'+formDataObject["nombre"].replace(" ","_")+'" src="'+base64Image+'" alt="" class="avatar-xxs rounded-circle image_src object-cover">'
+    };
 
-      type: 'POST',
+    
+    id = $('#id-edit').val();
+    console.log(id)
+    if (id != ''){
+      var alpha_id = await alpha(id);
+      url = 'http://18.119.102.18:8030/equipos' + '/' + alpha_id;
+      title = 'Tu equipo se edito con exito';
+    }else{
+      url = 'http://18.119.102.18:8030/equipos/';
+      title = 'Tu equipo se creo con exito';
+    }
+    
+    // Realiza la solicitud POST usando Axios
+    return await axios.post(url,data_equipo,{headers:headers})
+    .then(async function (response) {
+        // Maneja la respuesta exitosa
+        
+        //console.log(response.data["access_token"]);
+        if(response.status == 201) {
+          
+          console.log(response.status)
+          // Llamar a la función AJAX para obtener nuevos datos (reemplaza esto con tu lógica)
+          var nuevosDatos = await get_equipos();
 
-      data: formData,
+          // Limpiar los datos existentes en la tabla
+          miTabla.clear();
 
-      processData: false,  // Evitar el procesamiento de datos
-      
-      contentType: false, 
+          // Agregar nuevos datos a la tabla
+          miTabla.rows.add(nuevosDatos);
 
-      success: function(res) {
+          // Volver a dibujar la tabla
+          miTabla.draw();
 
-        console.log(res);
-        if(res.status === 200) {
-
-          miTabla.ajax.reload();
           $('#showModal').modal('hide');
           $('.miEquipo')[0].reset();
           $('select').select2();
@@ -153,8 +194,10 @@ $(document).ready(function() {
           }
           
         }
-         
-      }
+    })
+    .catch(function (error) {
+        // Maneja errores
+        console.error(error);
     }); 
 
 
@@ -240,36 +283,40 @@ $(document).ready(function() {
 
   }
 
-  /************************************************************************************************************ */
-   /*  $('.edit-item-btn').on('click', obtengo_torneo);
-    function obtengo_torneo(event){
+  /************************************************************************************************************************** */
 
-      var value = $('#id-edit').val();
-      console.log(value);
-      $.ajax({
-  
-        url: 'obtengoTorneo' + '/' + value,
-  
-        type: 'POST',
-  
-        data: value,
-  
-        processData: false,  // Evitar el procesamiento de datos
-        
-        contentType: false, 
-  
-        success: function(res) {
-  
-          
-          if(res.status === 200) {  
-            
-            console.log(res);
-  
-          }
-           
-        }
-      }); 
-    } */
+async function get_torneos(){
+  //debugger
+  var token = await get_token();
+  //console.log(token)
+  var headers = {
+    'Content-Type': 'application/json', // Tipo de contenido de la solicitud
+    'Authorization': 'Bearer ' + token, // Token de autorización, ajusta según tus necesidades
+    'Access-Control-Allow-Origin': "*"
+  };
+  // Realiza la solicitud POST usando Axios
+  return await axios.get('http://18.119.102.18:8030/torneos_list/',{ headers: headers })
+  .then(function (response) {
+      // Maneja la respuesta exitosa
+      //console.log(response.data);
+      var datos =response.data;
+      $.each(datos, function(index, valor) {
+        //console.log(index,valor)
+        var select = $("#liga");
+        var nuevaOpcion = $("<option></option>")
+            .text(valor.nombre_torneo)
+            .val(valor.id);
+        select.append(nuevaOpcion);
+        //console.log(valor); 
+      });
+  })
+  .catch(function (error) {
+      // Maneja errores
+      console.error(error);
+  });
+
+}
+
   //*********************************************************************************************************** */
 
   // Obtener las opciones de "Show entries" del DataTable
@@ -285,6 +332,91 @@ $(document).ready(function() {
   });
 
 });
+
+/************************************************************************************************************************** */
+
+async function alpha(id){
+
+  var token = await get_token();
+
+  var headers = {
+    'Content-Type': 'application/json', // Tipo de contenido de la solicitud
+    'Authorization': 'Bearer ' + token, // Token de autorización, ajusta según tus necesidades
+    'Access-Control-Allow-Origin': "*"
+  };
+
+  // Realiza la solicitud POST usando Axios
+  return await axios.get('http://18.119.102.18:8030/admin/'+id+'/alpha_id',{headers:headers})
+  .then(function (response) {
+      // Maneja la respuesta exitosa
+      //console.log(response.data["access_token"]);
+      var token_resp = response.data["alpha_id"]
+      
+      return token_resp;
+  })
+  .catch(function (error) {
+      // Maneja errores
+      console.error(error);
+  });
+
+}
+
+/************************************************************************************************************************** */
+
+async function get_token(){
+
+  var data_token = {
+    sub: sessionStorage.getItem('email'),
+    ttl: 43200,
+    aud: "roni.dinossolutions.com",
+    roles: sessionStorage.getItem('roles'),
+    scope: "*"
+  };
+
+  //console.log(data_token.aud)
+
+  // Realiza la solicitud POST usando Axios
+  return await axios.post('http://18.220.123.92:8020/janus/badge', data_token)
+  .then(function (response) {
+      // Maneja la respuesta exitosa
+      //console.log(response.data["access_token"]);
+      var token_resp = response.data["access_token"]
+      
+      return token_resp;
+  })
+  .catch(function (error) {
+      // Maneja errores
+      console.error(error);
+  });
+
+}
+
+/************************************************************************************************************************** */
+
+async function get_equipos(){
+  //debugger
+  var token = await get_token();
+  //console.log(token)
+  var headers = {
+    'Content-Type': 'application/json', // Tipo de contenido de la solicitud
+    'Authorization': 'Bearer ' + token, // Token de autorización, ajusta según tus necesidades
+    'Access-Control-Allow-Origin': "*"
+  };
+  // Realiza la solicitud POST usando Axios
+  return await axios.get('http://18.119.102.18:8030/equipos_list/',{ headers: headers })
+  .then(function (response) {
+      // Maneja la respuesta exitosa
+      //console.log(response.data);
+      var datos =response.data;
+  
+      return datos;
+  })
+  .catch(function (error) {
+      // Maneja errores
+      console.error(error);
+  });
+
+}
 
 //************************************************************************************************************************* */
 var miTabla = $('#equiposTable').DataTable({
@@ -317,14 +449,22 @@ var miTabla = $('#equiposTable').DataTable({
     }
   },
 
-  ajax: {
-    url: 'obtengoinfo', // URL del script PHP para obtener los datos
-    dataSrc: '' // Dejar en blanco para que DataTables entienda la estructura de los datos
+  ajax: async function(data, callback, settings) {
+    // Obtener los datos mediante la función
+    var datos = await get_equipos();
+    //console.log(datos)
+    // Simular un pequeño retardo para simular la asincronía de una solicitud real
+    setTimeout(function() {
+        // Llamar a la función de retorno de llamada con los datos obtenidos
+        callback({
+            data: datos
+        });
+    }, 200);
   },
   columns: [
       { data: 'img_equipo', },
       { data: 'nombre' },
-      { data: 'nombre_torneo' },
+      { data: 'liga_equipo.nombre_torneo' },
       { data: 'delegado' },
       { data: 'estatus',
         render: function(data, type, row) {
@@ -353,10 +493,10 @@ var miTabla = $('#equiposTable').DataTable({
                           '<a href="javascript:void(0);" class="view-item-btn"><i class="ri-eye-fill align-bottom text-muted"></i></a>'+
                      ' </li>'+ */
                      ' <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Edit">'+
-                          '<a class="edit-item-btn" href="#showModal" data-bs-toggle="modal" data-fila="' + row[0] + '"><i class="ri-pencil-fill align-bottom text-muted" ></i></a>'+
+                          '<a class="edit-item-btn" href="#showModal" data-bs-toggle="modal" data-fila="' + row.id + '"><i class="ri-pencil-fill align-bottom text-muted" ></i></a>'+
                       '</li>'+
                       '<li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Delete">'+
-                          '<a class="remove-item-btn" data-bs-toggle="modal" href="#deleteRecordModal" data-fila="' + row[0] + '">'+
+                          '<a class="remove-item-btn" data-bs-toggle="modal" href="#deleteRecordModal" data-fila="' + row.id + '">'+
                              ' <i class="ri-delete-bin-fill align-bottom text-muted"></i>'+
                          ' </a>'+
                       '</li>'+

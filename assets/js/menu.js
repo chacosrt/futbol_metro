@@ -76,6 +76,11 @@ $("#daralta").on("show.bs.modal", function(event) {
 
 $(document).ready(function() {
 
+  $(".usuario").text(sessionStorage.getItem('usuario'));
+    $(".roles").text(sessionStorage.getItem('roles'));
+    $(".bienvenido").text('Bienvenido '+sessionStorage.getItem('usuario'));
+
+
   $('#regresoInicio').on('click', regresar);
 
   function regresar(event) {
@@ -89,28 +94,13 @@ $(document).ready(function() {
   
   function salgosistema() {
 
-    $.ajax({
+    sessionStorage.clear();
 
-      url: 'salir',
+    if (sessionStorage.getItem('usuario') == null) {        
 
-      type: 'POST',
-
-      dataType: 'html',
-
-      contentType: false,
-
-      processData: false,
-
-      cache: false,
-
-      success: function(data) {
-
-        console.log(data);
-        window.location= '../home';  
-         
-      }
-    });
-
+      window.location="../home";
+     
+    } 
 
   }
 

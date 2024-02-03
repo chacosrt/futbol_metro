@@ -56,7 +56,7 @@
                         <div class="col-12">
                             <div class="d-flex align-items-lg-center flex-lg-row flex-column">
                                 <div class="flex-grow-1">
-                                    <h4 class="fs-16 mb-1">Bienvenido <?php echo $_SESSION["nombre"] ?></h4>                                    
+                                    <h4 class="fs-16 mb-1 bienvenido">Bienvenido</h4>                                    
                                 </div>
                             </div><!-- end card header -->
                         </div>

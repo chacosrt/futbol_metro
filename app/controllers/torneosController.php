@@ -24,29 +24,11 @@ class torneosController extends Controller {
 
   /* funcion que entra por default */
 
-  function index(){ 
-
-  
-
-    if($_SESSION['id'] != NULL){ 
-
-      $torneos = new torneosModel;
-
-      $lista_torneos = $torneos->listaTorneos();
+  function index(){   
       
-      View::render('torneos',['lista' => $lista_torneos]);     
-      
-      
-      
-    }else{ 
-      header('Location: '.DEFAULT_CONTROLLER);
-    }
-
-  
+      View::render('torneos');  
 
   }
-
-
   /* funcion para guardar los torneos */
 
   function guardaTorneo(){
