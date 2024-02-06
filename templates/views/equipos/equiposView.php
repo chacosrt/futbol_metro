@@ -108,6 +108,13 @@
                                                 <i class="ri-search-line search-icon"></i>
                                             </div>
                                         </div>
+                                        <div class="col-md-3">
+                                            <div>    
+                                                <select class="form-select" id = "liga-filtro" name="liga-filtro" data-placeholder="  Selecciona el torneo">
+                                                                                                                            
+                                                </select>
+                                            </div>
+                                        </div> 
                                     </div>
                                 </div>
                                 <div class="card-body">

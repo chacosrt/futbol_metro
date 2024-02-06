@@ -24,12 +24,11 @@ $(document).ready(async function() {
   }
 
   // Ejemplo de uso:
-  if (!modalEstaAbierto()) {
-      console.log('El modal está abierto.');
-  } else {
-      console.log('El modal está cerrado.');
-      
-  }
+  $('#showModal').on('hidden.bs.modal', function (e) {
+    // Aquí puedes ejecutar la acción que desees al cerrar el modal
+    reset_form();
+    console.log("modal cerrado")
+  });
 
   $('.close-modal').on('click', reset_form);
 
