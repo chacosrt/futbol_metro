@@ -108,9 +108,9 @@
                                                 <i class="ri-search-line search-icon"></i>
                                             </div>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
                                             <div>    
-                                                <select class="form-select" id = "liga-filtro" name="liga-filtro" data-placeholder="  Selecciona el torneo">
+                                                <select class="form-select" id = "liga-filtro" name="liga-filtro" data-placeholder="  Selecciona el torneo" data-bs-toggle="dropdown">
                                                                                                                             
                                                 </select>
                                             </div>
@@ -155,7 +155,7 @@
                                         <div class="modal-dialog modal-dialog-centered modal-lg">
                                             <div class="modal-content border-0">
                                                 <div class="modal-header bg-soft-info p-3">
-                                                    <h5 class="modal-title" id="">Nuevo Equipo</h5>
+                                                    <h5 class="modal-title" id="form-title">Nuevo Equipo</h5>
                                                     <button type="button" class="btn-close close-modal" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
                                                 </div>
                                                 <form id="miEquipo" class="miEquipo" method="POST" enctype="multipart/form-data">

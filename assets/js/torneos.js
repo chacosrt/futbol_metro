@@ -28,6 +28,7 @@ $(document).ready(async function() {
     // Aquí puedes ejecutar la acción que desees al cerrar el modal
     reset_form();
     console.log("modal cerrado")
+  
   });
 
   $('.close-modal').on('click', reset_form);

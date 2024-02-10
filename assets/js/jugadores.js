@@ -3,8 +3,18 @@
 $(document).ready(function() {  
 
     console.log("jquery-on")
-  
+
+    $(".usuario").text(sessionStorage.getItem('usuario'));
+    $(".roles").text(sessionStorage.getItem('roles'));
+    $(".bienvenido").text('Bienvenido '+sessionStorage.getItem('usuario'));
+
     obtiene_torneos();
+
+    if (sessionStorage.getItem('usuario') == null) {        
+
+      window.location="../home";
+     
+    } 
   
     $('select').select2({
       closeOnSelect: false,
@@ -17,11 +27,12 @@ $(document).ready(function() {
     }
   
     // Ejemplo de uso:
-    if (!modalEstaAbierto()) {
-        console.log('El modal está abierto.');
-    } else {
-        console.log('El modal está cerrado.');
-    }
+    // Ejemplo de uso:
+    $('#showModal').on('hidden.bs.modal', function (e) {
+      // Aquí puedes ejecutar la acción que desees al cerrar el modal
+      reset_form();
+      console.log("modal cerrado")
+    });
   
     $('.close-modal').on('click', reset_form);
   
@@ -29,6 +40,8 @@ $(document).ready(function() {
         $('.miEquipo')[0].reset();
         $('select').select2();
         $('#companylogo-img').attr('src', '../assets/images/users/multi-user.jpg').show();
+        $("#form-title").text('Nuevo Torneo');
+
     }
   
     //*********************************************************************************************************** */
@@ -80,8 +93,9 @@ $(document).ready(function() {
   
     function select_horarios(event) {
   
-      console.log($( this ).val())
-      console.log("hola");
+      estado = $( this )[0].checked
+      console.log('Checkbox está ' + (estado ? 'activado' : 'desactivado'));
+      console.log(estado);
   
       // Obtener los valores seleccionados en un arreglo
       /* var valoresSeleccionados =$( this ).val();

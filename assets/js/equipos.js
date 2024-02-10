@@ -6,6 +6,9 @@ $(document).ready(function() {
   $(".roles").text(sessionStorage.getItem('roles'));
   $(".bienvenido").text('Bienvenido '+sessionStorage.getItem('usuario'));
 
+  var table = $('#equiposTable').DataTable(); 
+  table.column(2).search("Primera Fuerza").draw();
+
   if (sessionStorage.getItem('usuario') == null) {        
 
     window.location="../home";
@@ -38,6 +41,7 @@ $(document).ready(function() {
       $('.miEquipo')[0].reset();
       $('select').select2();
       $('#companylogo-img').attr('src', '../assets/images/users/multi-user.jpg').show();
+      $("#form-title").text('Nuevo Torneo');
   }
 
   //*********************************************************************************************************** */
@@ -59,54 +63,6 @@ $(document).ready(function() {
         $('#companylogo-img').hide();
     }
   });
-
-  ///********************************************************************************************************** */
-  $('#dias').on('change', select_dias);
-
-  function select_dias(event) {
-
-    console.log($( this ).val())
-
-    // Obtener los valores seleccionados en un arreglo
-    var valoresSeleccionados =$( this ).val();
-
-    // Convertir los valores a texto y mostrarlos en el div
-    var textoConvertido = "";
-    for (var i = 0; i < valoresSeleccionados.length; i++) {
-        var valor = valoresSeleccionados[i];
-        var textoOpcion = $("#dias option[value='" + valor + "']").text();
-        textoConvertido += textoOpcion + ",";
-    }
-
-    // Eliminar la última coma y espacio
-    textoConvertido = textoConvertido.slice(0, -1);
-    $("#dias_text").val(textoConvertido)
-    console.log(textoConvertido)
-  }  
-
-  //*************************************************************************************************************** */
-  $('#horarios').on('change', select_horarios);
-
-  function select_horarios(event) {
-
-    console.log($( this ).val())
-
-    // Obtener los valores seleccionados en un arreglo
-    var valoresSeleccionados =$( this ).val();
-
-    // Convertir los valores a texto y mostrarlos en el div
-    var textoConvertido = "";
-    for (var i = 0; i < valoresSeleccionados.length; i++) {
-        var valor = valoresSeleccionados[i];
-        var textoOpcion = $("#horarios option[value='" + valor + "']").text();
-        textoConvertido += textoOpcion + ",";
-    }
-
-    // Eliminar la última coma y espacio
-    textoConvertido = textoConvertido.slice(0, -1);
-    $("#horarios_text").val(textoConvertido)
-    console.log(textoConvertido.replace(' ',''))
-  }  
 
   //************************************************************************************************************************* */
   $('.miEquipo').on('submit', guarda_equipo);
@@ -263,43 +219,43 @@ $(document).ready(function() {
 
   /************************************************************************************************************************** */
 
-async function get_torneos(){
-  //debugger
-  var token = await get_token();
-  //console.log(token)
-  var headers = {
-    'Content-Type': 'application/json', // Tipo de contenido de la solicitud
-    'Authorization': 'Bearer ' + token, // Token de autorización, ajusta según tus necesidades
-    'Access-Control-Allow-Origin': "*"
-  };
-  // Realiza la solicitud POST usando Axios
-  return await axios.get('http://18.119.102.18:8030/torneos_list/',{ headers: headers })
-  .then(function (response) {
-      // Maneja la respuesta exitosa
-      //console.log(response.data);
-      var datos =response.data;
-      $.each(datos, function(index, valor) {
-        //console.log(index,valor)
-        var select = $("#liga");
-        var nuevaOpcion = $("<option></option>")
-            .text(valor.nombre_torneo)
-            .val(valor.id);
-        select.append(nuevaOpcion);
+  async function get_torneos(){
+    //debugger
+    var token = await get_token();
+    //console.log(token)
+    var headers = {
+      'Content-Type': 'application/json', // Tipo de contenido de la solicitud
+      'Authorization': 'Bearer ' + token, // Token de autorización, ajusta según tus necesidades
+      'Access-Control-Allow-Origin': "*"
+    };
+    // Realiza la solicitud POST usando Axios
+    return await axios.get('http://18.119.102.18:8030/torneos_list/',{ headers: headers })
+    .then(function (response) {
+        // Maneja la respuesta exitosa
+        //console.log(response.data);
+        var datos =response.data;
+        $.each(datos, function(index, valor) {
+          //console.log(index,valor)
+          var select = $("#liga");
+          var nuevaOpcion = $("<option></option>")
+              .text(valor.nombre_torneo)
+              .val(valor.id);
+          select.append(nuevaOpcion);
 
-        var select2 = $("#liga-filtro");
-        var nuevaOpcion2 = $("<option></option>")
-            .text(valor.nombre_torneo)
-            .val(valor.nombre_torneo);
-        select2.append(nuevaOpcion2);
-        //console.log(valor); 
-      });
-  })
-  .catch(function (error) {
-      // Maneja errores
-      console.error(error);
-  });
+          var select2 = $("#liga-filtro");
+          var nuevaOpcion2 = $("<option></option>")
+              .text(valor.nombre_torneo)
+              .val(valor.nombre_torneo);
+          select2.append(nuevaOpcion2);
+          //console.log(valor); 
+        });
+    })
+    .catch(function (error) {
+        // Maneja errores
+        console.error(error);
+    });
 
-}
+  }
 
   //*********************************************************************************************************** */
 
@@ -547,7 +503,7 @@ var miTabla = $('#equiposTable').DataTable({
       // Obtener los datos de la fila correspondiente
       var datosFila = $(this).data('fila');
       $('#id-edit').val(datosFila);
-
+      $('#form-title').text('Editar Torneo');
       var id_alpha = await alpha(datosFila)
       console.log(datosFila);
 
@@ -589,16 +545,17 @@ var miTabla = $('#equiposTable').DataTable({
     // Escuchar cambios en el select
     $('#liga-filtro').on('change', function() {
       var filtro = $(this).val();
-      console.log(filtro)
+      //console.log(filtro)
       // Limpiar filtro actual
       miTabla.search('').columns().search('').draw();
-      console.log(miTabla.column(1).data())
+      $(this).select2('close');
+      //console.log(miTabla.column(1).data())
       // Aplicar nuevo filtro si no es "todos"
       if (filtro !== 'todos') {
           miTabla.column(2).search(filtro).draw();
           $(this).focus();
       }
-  });
+    });
 
   }
 

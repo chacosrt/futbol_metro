@@ -26,23 +26,8 @@ class jugadoresController extends Controller {
 
   function index(){ 
 
-  
-
-    if($_SESSION['id'] != NULL){ 
-
-      $jugadores = new jugadoresModel;
-
-      $lista_jugadores = $jugadores->listaJugadores();
       
-      View::render('jugadores',['lista' => $lista_jugadores]);     
-      
-      
-      
-    }else{ 
-      header('Location: '.DEFAULT_CONTROLLER);
-    }
-
-  
+    View::render('jugadores');   
 
   }
 

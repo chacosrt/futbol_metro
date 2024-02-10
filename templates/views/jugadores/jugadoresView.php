@@ -153,7 +153,7 @@
                                         <div class="modal-dialog modal-dialog-centered modal-lg">
                                             <div class="modal-content border-0">
                                                 <div class="modal-header bg-soft-info p-3">
-                                                    <h5 class="modal-title" id="">Nuevo Jugador</h5>
+                                                    <h5 class="modal-title" id="form-title">Nuevo Jugador</h5>
                                                     <button type="button" class="btn-close close-modal" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
                                                 </div>
                                                 <form id="miEquipo" class="miEquipo" method="POST" enctype="multipart/form-data">
@@ -211,7 +211,7 @@
                                                                 </div>
                                                             </div>       
                                                             <div class="col-lg-6">
-                                                                <div class="form-check form-switch p-0">
+                                                                <div class="form-switch p-0">
                                                                     <label for="delegado" class="form-label d-block">Delegado</label> 
                                                                     <input type="checkbox" id="delegado" name="delegado" class="form-check-input d-block" style="margin-left:0;"/>        
                                                                     <!-- <select class="form-select" id = "delegado" name="delegado" data-placeholder="  Selecciona al delegado" style="width: 100%;" tabindex="-1" aria-hidden="true">
