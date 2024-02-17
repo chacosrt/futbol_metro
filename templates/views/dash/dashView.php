@@ -30,6 +30,36 @@
     <!-- cards Css-->
     <link href="../assets/css/extra.css" rel="stylesheet" type="text/css" />
 
+    <style>
+        /* Estilo del overlay */
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1060;
+        }
+
+        /* Estilo del modal */
+        .modal-content {
+            position: relative;
+        }
+
+        /* Estilo del GIF spinner */
+        #spinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            
+        }
+    </style>
+
 </head>
 
 <body>
@@ -43,6 +73,13 @@
                 require INCLUDES.'inc_header_menu.php'; //Menu
             ?>
         </div>
+
+        <!-- Spinner -->
+        <div class="text-center" id ="overlay">                                        
+            <img src="../assets/images/spinner.gif" alt="" id ="spinner">                                        
+        </div>
+        <!-- End spinner -->
+
 
         <!-- ============================================================== -->
         <!-- Start right Content here -->

@@ -36,6 +36,36 @@
     <link href="../assets/css/app.min.css" rel="stylesheet" type="text/css" />
     <!-- custom Css-->
     <link href="../assets/css/custom.min.css" rel="stylesheet" type="text/css" />
+
+    <style>
+        /* Estilo del overlay */
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1060;
+        }
+
+        /* Estilo del modal */
+        .modal-content {
+            position: relative;
+        }
+
+        /* Estilo del GIF spinner */
+        #spinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            
+        }
+    </style>
     
 </head>
 
@@ -265,6 +295,12 @@
                                         </div>
                                     </div>
                                     <!--end add modal-->
+
+                                    <!-- Spinner -->
+                                    <div class="text-center" id ="overlay">                                        
+                                        <img src="../assets/images/spinner.gif" alt="" id ="spinner">                                        
+                                    </div>
+                                    <!-- End spinner -->
 
                                     <div class="modal fade zoomIn" id="deleteRecordModal" tabindex="-1" aria-labelledby="deleteRecordLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">

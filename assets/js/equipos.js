@@ -5,6 +5,7 @@ $(document).ready(function() {
   $(".usuario").text(sessionStorage.getItem('usuario'));
   $(".roles").text(sessionStorage.getItem('roles'));
   $(".bienvenido").text('Bienvenido '+sessionStorage.getItem('usuario'));
+  $("#overlay").show();
 
   var table = $('#equiposTable').DataTable(); 
   table.column(2).search("Primera Fuerza").draw();
@@ -70,6 +71,7 @@ $(document).ready(function() {
   async function guarda_equipo(event) {
 
     event.preventDefault();
+    $("#overlay").show();
     var token = await get_token();
     //console.log(token)
     var headers = {
@@ -107,10 +109,10 @@ $(document).ready(function() {
     if (id != ''){
       var alpha_id = await alpha(id);
       url = 'http://18.119.102.18:8030/equipos' + '/' + alpha_id;
-      title = 'Tu equipo se edito con exito';
+      text = 'Tu equipo se edito correctamente';
     }else{
       url = 'http://18.119.102.18:8030/equipos/';
-      title = 'Tu equipo se creo con exito';
+      text = 'Tu equipo se creo correctamente';
     }
     
     // Realiza la solicitud POST usando Axios
@@ -138,15 +140,23 @@ $(document).ready(function() {
           $('.miEquipo')[0].reset();
           $('select').select2();
           $('#companylogo-img').attr('src', '../assets/images/users/multi-user.jpg').show();
-          if (!modalEstaAbierto()) {
-            Swal.fire({
-              position: 'top-end',
-              icon: 'success',
-              title: title,
-              showConfirmButton: false,
-              timer: 1500
-            });
-          }
+          $("#overlay").hide();
+          // Esperar 2 segundos (2000 milisegundos) antes de ejecutar la acción
+          setTimeout(function () {
+            // Acción que se ejecutará después de esperar 2 segundos
+            if (!modalEstaAbierto()) {
+            
+              Swal.fire({
+                
+                position: 'center',
+                icon: 'success',
+                title: '!Exito¡',
+                text: text,
+                showConfirmButton: false,
+                timer: 1500
+              });
+            }
+          }, 500);
           
         }
     })
@@ -164,7 +174,7 @@ $(document).ready(function() {
   async function elimina_equipo(event) {
 
     event.preventDefault();
-
+    $("#overlay").show();
     // Obtener los datos del formulario
     var token = await get_token();
       console.log(token)
@@ -203,7 +213,24 @@ $(document).ready(function() {
             miTabla.draw();
 
             $('#deleteRecordModal').modal('hide');
-            $('.miTorneo')[0].reset();
+            $('.miEquipo')[0].reset();
+            $("#overlay").hide();
+            // Esperar 2 segundos (2000 milisegundos) antes de ejecutar la acción
+            setTimeout(function () {
+              // Acción que se ejecutará después de esperar 2 segundos
+              if (!modalEstaAbierto()) {
+              
+                Swal.fire({
+                  
+                  position: 'center',
+                  icon: 'success',
+                  title: '!Exito¡',
+                  text: 'El equipo se elimino correctamente',
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+              }
+            }, 500);
             
           }
       })
@@ -396,11 +423,20 @@ var miTabla = $('#equiposTable').DataTable({
     // Simular un pequeño retardo para simular la asincronía de una solicitud real
     setTimeout(function() {
         // Llamar a la función de retorno de llamada con los datos obtenidos
+        $("#overlay").hide();
         callback({
             data: datos
         });
     }, 200);
   },
+  columnDefs: [
+    {
+        targets: 'text-center', // Clase CSS para centrar texto
+        className: 'text-center', // Aplicar la clase CSS
+        
+    },
+    // Agrega más objetos columnDefs según sea necesario
+  ],
   columns: [
       { data: 'img_equipo', },
       { data: 'nombre' },
@@ -528,6 +564,7 @@ var miTabla = $('#equiposTable').DataTable({
           $('#companylogo-img').attr('src',src_img);
           $("#nombre").val(datos.nombre)
           $("#liga").val(datos.liga).select2();
+          $("#estatus").val(datos.estatus).select2();
           $("#delegado").val(datos.delegado)
           
           //console.log(datos);

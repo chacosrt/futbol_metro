@@ -108,21 +108,31 @@
                 <ul class="navbar-nav" id="navbar-nav">
                     <li class="menu-title"><span data-key="t-menu">Menu</span></li>
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="<?php echo URL.'torneos/index';?>"  role="button" aria-expanded="false" aria-controls="sidebarDashboards">
+                        <a id = "link-torneos" class="nav-link menu-link spinner-link" href="<?php echo URL.'torneos/index';?>"  role="button" aria-expanded="false" aria-controls="sidebarDashboards">
                             <svg width="15" height="15" viewBox="0 0 24 24" data-v-8dea8908="" style="--sx: 1; --sy: 1; --r: 0deg;"><path d="M18 2C17.1 2 16 3 16 4H8C8 3 6.9 2 6 2H2V11C2 12 3 13 4 13H6.2C6.6 15 7.9 16.7 11 17V19.08C8 19.54 8 22 8 22H16C16 22 16 19.54 13 19.08V17C16.1 16.7 17.4 15 17.8 13H20C21 13 22 12 22 11V2H18M6 11H4V4H6V11M20 11H18V4H20V11Z" data-v-8dea8908=""></path></svg> 
                             <span >Torneos</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="<?php echo URL.'equipos/index';?>" role="button" aria-expanded="false" aria-controls="sidebarApps">
+                        <a id = "link-equipos" class="nav-link menu-link spinner-link" href="<?php echo URL.'equipos/index';?>" role="button" aria-expanded="false" aria-controls="sidebarApps">
                             <svg width="15" height="15" viewBox="0 0 24 24" data-v-8dea8908="" style="--sx: 1; --sy: 1; --r: 0deg;"><path d="M4,4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4H4M4,6H11V8.13C9.24,8.59 8,10.18 8,12C8,13.82 9.24,15.41 11,15.87V18H4V16H7V8H4V6M13,6H20V8H17V16H20V18H13V15.87C14.76,15.41 16,13.82 16,12C16,10.18 14.76,8.59 13,8.13V6M4,10H5V14H4V10M19,10H20V14H19V10M13,10.27C13.62,10.63 14,11.29 14,12C14,12.71 13.62,13.37 13,13.73V10.27M11,10.27V13.73C10.38,13.37 10,12.71 10,12C10,11.29 10.38,10.63 11,10.27Z" data-v-8dea8908=""></path></svg>
                             <span>Equipos</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="<?php echo URL.'jugadores/index';?>" role="button" aria-expanded="false" aria-controls="sidebarApps">
+                        <a id = "link-jugadores" class="nav-link menu-link spinner-link" href="<?php echo URL.'jugadores/index';?>" role="button" aria-expanded="false" aria-controls="sidebarApps">
                             <svg width="15" height="15" viewBox="0 0 24 24" data-v-8dea8908="" style="--sx: 1; --sy: 1; --r: 0deg;"><path d="M12,5.5A3.5,3.5 0 0,1 15.5,9A3.5,3.5 0 0,1 12,12.5A3.5,3.5 0 0,1 8.5,9A3.5,3.5 0 0,1 12,5.5M5,8C5.56,8 6.08,8.15 6.53,8.42C6.38,9.85 6.8,11.27 7.66,12.38C7.16,13.34 6.16,14 5,14A3,3 0 0,1 2,11A3,3 0 0,1 5,8M19,8A3,3 0 0,1 22,11A3,3 0 0,1 19,14C17.84,14 16.84,13.34 16.34,12.38C17.2,11.27 17.62,9.85 17.47,8.42C17.92,8.15 18.44,8 19,8M5.5,18.25C5.5,16.18 8.41,14.5 12,14.5C15.59,14.5 18.5,16.18 18.5,18.25V20H5.5V18.25M0,20V18.5C0,17.11 1.89,15.94 4.45,15.6C3.86,16.28 3.5,17.22 3.5,18.25V20H0M24,20H20.5V18.25C20.5,17.22 20.14,16.28 19.55,15.6C22.11,15.94 24,17.11 24,18.5V20Z" data-v-8dea8908=""></path></svg>
                             <span>Jugadores</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a id = "link-partidos" class="nav-link menu-link spinner-link" href="<?php echo URL.'partidos/index';?>" role="button" aria-expanded="false" aria-controls="sidebarApps">
+                            <!-- <span width="15" height="15" class="ico-sprite" style="background-image:url(../assets/images/partidos_ico.png)"></span> -->
+                            <svg width="20" height="20" viewBox="30 0 20 15" style="--sx: 1; --sy: 1; --r: 0deg;" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Uso de la etiqueta <image> para incluir una imagen PNG como icono -->
+                                <image href="../assets/images/partidos_ico.png"  />
+                            </svg>
+                            <span>Partidos / Resultados</span>
                         </a>
                     </li> <!-- end Dashboard Menu -->
                 </ul>

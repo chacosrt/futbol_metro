@@ -93,7 +93,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                <h2 class="mb-sm-0">Equipos</h2> 
+                                <h2 class="mb-sm-0">Partidos y Resultados</h2> 
                             </div>
                         </div>
                     </div>
@@ -147,40 +147,163 @@
                                         </div> 
                                     </div>
                                 </div>
-                                <div class="card-body">
-                                    <div>
-                                        <div class="table-responsive table-card mb-3">
-                                            <table class="table align-middle table-hover" id="equiposTable">
-                                                <thead class="table-light">
-                                                    <tr>
-                                                        <!-- <th scope="col" style="width: 50px;">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox" id="checkAll" value="option">
-                                                            </div>
-                                                        </th> -->
-                                                       <!--  <th class="id" style="display:none;"><a href="javascript:void(0);" class="fw-medium link-primary">#VZ001</a>
-                                                        </th> -->
-                                                        <th class="text-center" data-sort="name" scope="col">Img</th>
-                                                        <th class="text-center" data-sort="name" scope="col">Equipo</th>
-                                                        <th class="text-center" data-sort="owner" scope="col">Liga</th>
-                                                        <th class="text-center" data-sort="industry_type" scope="col">Delegado</th>
-                                                        <th class="text-center" data-sort="industry_type" scope="col">Estatus</th>
-                                                        <th class="text-center" scope="col">Accion</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody class="list form-check-all">
+                                <div class="card-body">                                
+                                    <div class="col-xl-8">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4 class="card-title mb-0">Pagination</h4>
+                                            </div><!-- end card header -->
 
-                                                </tbody>
-                                            </table>
-                                            <div class="noresult" style="display: none">
-                                                <div class="text-center">
-                                                    <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#121331,secondary:#08a88a" style="width:75px;height:75px">
-                                                    </lord-icon>
-                                                    <h5 class="mt-2">Ups, No hay resultados</h5>                                                    
+                                            <div class="card-body">
+                                                <p class="text-muted">Example of how to use the pagination plugin</p>
+
+                                                <div id="pagination-list">
+                                                    <div class="mb-2">
+                                                        <input class="search form-control" placeholder="Search" />
+                                                    </div>
+
+                                                    <div class="mx-n3">
+                                                        <ul class="list list-group list-group-flush mb-0">
+                                                            <li class="list-group-item">
+                                                                <div class="d-flex align-items-center pagi-list">
+                                                                    <div class="flex-shrink-0 me-3">
+                                                                        <div>
+                                                                            <img class="image avatar-xs rounded-circle" alt="" src="assets/images/users/avatar-1.jpg">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="flex-grow-1 overflow-hidden">
+                                                                        <h5 class="fs-14 mb-1"><a href="#" class="link text-dark">Jonny Stromberg</a></h5>
+                                                                        <p class="born timestamp text-muted mb-0">Front end Developer</p>
+                                                                    </div>
+
+                                                                    <div class="flex-shrink-0 ms-2">
+                                                                        <div>
+                                                                            <button type="button" class="btn btn-sm btn-light"><i class="ri-mail-line align-bottom"></i> Message</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <!-- end list item -->
+                                                            <li class="list-group-item">
+                                                                <div class="d-flex align-items-center pagi-list">
+                                                                    <div class="flex-shrink-0 me-3">
+                                                                        <div>
+                                                                            <img class="image avatar-xs rounded-circle" alt="" src="assets/images/users/avatar-2.jpg">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="flex-grow-1 overflow-hidden">
+                                                                        <h5 class="fs-14 mb-1"><a href="#" class="link text-dark">Jonas Arnklint</a></h5>
+                                                                        <p class="born timestamp text-muted mb-0">Backend Developer</p>
+                                                                    </div>
+                                                                    <div class="flex-shrink-0 ms-2">
+                                                                        <div>
+                                                                            <button type="button" class="btn btn-sm btn-light"><i class="ri-mail-line align-bottom"></i> Message</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <!-- end list item -->
+                                                            <li class="list-group-item">
+                                                                <div class="d-flex align-items-center pagi-list">
+                                                                    <div class="flex-shrink-0 me-3">
+                                                                        <div>
+                                                                            <img class="image avatar-xs rounded-circle" alt="" src="assets/images/users/avatar-3.jpg">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="flex-grow-1">
+                                                                        <h5 class="fs-14 mb-1"><a href="#" class="link text-dark">Martina Elm</a></h5>
+                                                                        <p class="born timestamp text-muted mb-0">UI/UX Designer</p>
+                                                                    </div>
+                                                                    <div class="flex-shrink-0 ms-2">
+                                                                        <div>
+                                                                            <button type="button" class="btn btn-sm btn-light"><i class="ri-mail-line align-bottom"></i> Message</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <!-- end list item -->
+                                                            <li class="list-group-item">
+                                                                <div class="d-flex align-items-center pagi-list">
+                                                                    <div class="flex-shrink-0 me-3">
+                                                                        <div>
+                                                                            <img class="image avatar-xs rounded-circle" alt="" src="assets/images/users/avatar-4.jpg">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="flex-grow-1">
+                                                                        <h5 class="fs-14 mb-1"><a href="#" class="link text-dark">Gustaf Lindqvist</a></h5>
+                                                                        <p class="born timestamp text-muted mb-0">Full Stack Developer</p>
+                                                                    </div>
+                                                                    <div class="flex-shrink-0 ms-2">
+                                                                        <div>
+                                                                            <button type="button" class="btn btn-sm btn-light"><i class="ri-mail-line align-bottom"></i> Message</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <!-- end list item -->
+                                                            <li class="list-group-item">
+                                                                <div class="d-flex align-items-center pagi-list">
+                                                                    <div class="flex-shrink-0 me-3">
+                                                                        <div>
+                                                                            <img class="image avatar-xs rounded-circle" alt="" src="assets/images/users/avatar-1.jpg">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="flex-grow-1 overflow-hidden">
+                                                                        <h5 class="fs-14 mb-1"><a href="#" class="link text-dark">Jonny Stromberg</a></h5>
+                                                                        <p class="born timestamp text-muted mb-0">Front end Developer</p>
+                                                                    </div>
+
+                                                                    <div class="flex-shrink-0 ms-2">
+                                                                        <div>
+                                                                            <button type="button" class="btn btn-sm btn-light"><i class="ri-mail-line align-bottom"></i> Message</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <!-- end list item -->
+                                                            <li class="list-group-item">
+                                                                <div class="d-flex align-items-center pagi-list">
+                                                                    <div class="flex-shrink-0 me-3">
+                                                                        <div>
+                                                                            <img class="image avatar-xs rounded-circle" alt="" src="assets/images/users/avatar-2.jpg">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="flex-grow-1 overflow-hidden">
+                                                                        <h5 class="fs-14 mb-1"><a href="#" class="link text-dark">Jonas Arnklint</a></h5>
+                                                                        <p class="born timestamp text-muted mb-0">Backend Developer</p>
+                                                                    </div>
+                                                                    <div class="flex-shrink-0 ms-2">
+                                                                        <div>
+                                                                            <button type="button" class="btn btn-sm btn-light"><i class="ri-mail-line align-bottom"></i> Message</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <!-- end list item -->
+                                                        </ul>
+                                                        <!-- end ul list -->
+
+                                                        <div class="d-flex justify-content-center">
+                                                            <div class="pagination-wrap hstack gap-2">
+                                                                <a class="page-item pagination-prev disabled" href="#">
+                                                                    Previous
+                                                                </a>
+                                                                <ul class="pagination listjs-pagination mb-0"></ul>
+                                                                <a class="page-item pagination-next" href="#">
+                                                                    Next
+                                                                </a>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            </div><!-- end card -->
                                         </div>
+                                        <!-- end col -->
                                     </div>
+                                    <!-- end col -->                                
                                     <div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered modal-lg">
                                             <div class="modal-content border-0">
@@ -319,7 +442,7 @@
     <script src="../assets/libs/node-waves/waves.min.js"></script>
     <script src="../assets/libs/feather-icons/feather.min.js"></script>
     <script src="../assets/js/pages/plugins/lord-icon-2.1.0.js"></script>    
-    <script src="../assets/js/plugins.js"></script>
+    <!-- <script src="../assets/js/plugins.js"></script> -->
     <!-- Sweet Alerts js -->
     <script src="../assets/libs/sweetalert2/sweetalert2.min.js"></script>
     <!-- App js -->
@@ -341,10 +464,13 @@
     <script src="../assets/js/pages/datatables.init.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="<?php echo JS.'menu.js'; ?>"></script>   
-    <script type="text/javascript" src="<?php echo JS.'equipos.js?v=2'; ?>"></script>  
+    <script type="text/javascript" src="<?php echo JS.'partidos.js?v=2'; ?>"></script>  
     <!-- list.js min js -->
+    <script src="../assets/libs/prismjs/prism.js"></script>
     <script src="../assets/libs/list.js/list.min.js"></script>
     <script src="../assets/libs/list.pagination.js/list.pagination.min.js"></script>
+     <!-- listjs init -->
+     <script src="../assets/js/pages/listjs.init.js"></script>
     <script type="text/javascript" src="../assets/js/app.js"></script>                                                 
 </body>
 

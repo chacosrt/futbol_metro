@@ -4,11 +4,13 @@ $(document).ready(function() {
 
     console.log("jquery-on")
 
+    $("#overlay").show();
     $(".usuario").text(sessionStorage.getItem('usuario'));
     $(".roles").text(sessionStorage.getItem('roles'));
     $(".bienvenido").text('Bienvenido '+sessionStorage.getItem('usuario'));
+    
 
-    obtiene_torneos();
+    get_torneos();
 
     if (sessionStorage.getItem('usuario') == null) {        
 
@@ -37,10 +39,11 @@ $(document).ready(function() {
     $('.close-modal').on('click', reset_form);
   
     function reset_form(event) {
-        $('.miEquipo')[0].reset();
+        $('.newJugador')[0].reset();
         $('select').select2();
         $('#companylogo-img').attr('src', '../assets/images/users/multi-user.jpg').show();
-        $("#form-title").text('Nuevo Torneo');
+        $('#delegado').attr("checked", false);
+        $("#form-title").text('Nuevo Jugador');
 
     }
   
@@ -64,31 +67,8 @@ $(document).ready(function() {
         }
     });
   
-    ///********************************************************************************************************** */
-    $('#dias').on('change', select_dias);
   
-    function select_dias(event) {
-  
-      console.log($( this ).val())
-  
-      // Obtener los valores seleccionados en un arreglo
-      var valoresSeleccionados =$( this ).val();
-  
-      // Convertir los valores a texto y mostrarlos en el div
-      var textoConvertido = "";
-      for (var i = 0; i < valoresSeleccionados.length; i++) {
-          var valor = valoresSeleccionados[i];
-          var textoOpcion = $("#dias option[value='" + valor + "']").text();
-          textoConvertido += textoOpcion + ",";
-      }
-  
-      // Eliminar la última coma y espacio
-      textoConvertido = textoConvertido.slice(0, -1);
-      $("#dias_text").val(textoConvertido)
-      console.log(textoConvertido)
-    }  
-  
-    //*************************************************************************************************************** */
+ //*************************************************************************************************************** */
     $('#delegado').on('change', select_horarios);
   
     function select_horarios(event) {
@@ -97,194 +77,265 @@ $(document).ready(function() {
       console.log('Checkbox está ' + (estado ? 'activado' : 'desactivado'));
       console.log(estado);
   
-      // Obtener los valores seleccionados en un arreglo
-      /* var valoresSeleccionados =$( this ).val();
-  
-      // Convertir los valores a texto y mostrarlos en el div
-      var textoConvertido = "";
-      for (var i = 0; i < valoresSeleccionados.length; i++) {
-          var valor = valoresSeleccionados[i];
-          var textoOpcion = $("#horarios option[value='" + valor + "']").text();
-          textoConvertido += textoOpcion + ",";
-      }
-  
-      // Eliminar la última coma y espacio
-      textoConvertido = textoConvertido.slice(0, -1);
-      $("#horarios_text").val(textoConvertido)
-      console.log(textoConvertido.replace(' ','')) */
     }  
-  
-    //************************************************************************************************************************* */
-    $('.miEquipo').on('submit', guarda_equipo);
-  
-    function guarda_equipo(event) {
-  
-      event.preventDefault();
-      id = $('#id-edit').val();
-      console.log(id)
-      if (id != ''){
-        url = 'editaEquipo' + '/' + id;
-        title = 'Tu equipo se edito con exito';
-      }else{
-        url = 'guardaEquipo';
-        title = 'Tu equipo se creo con exito';
-      }
-  
-      // Obtener los datos del formulario
-      var formData = new FormData($("#miEquipo")[0]);
+
+ //*************************************************************************************************************** */
+    // Escuchar cambios en el select
+    $('#liga').on('change', function() {
       
-      console.log(formData);
+      $(this).select2('close');
+      console.log($(this).val())
+      //console.log(miTabla.column(1).data())
+      // Aplicar nuevo filtro si no es "todos"
+      get_equipos($(this).val());
+      //$(this).select2();
+    });
+
+  //*************************************************************************************************************** */
+    // Escuchar cambios en el select
+    $('#equipo').on('change', function() {
+      
+      $(this).select2('close');
+      //console.log(miTabla.column(1).data())
+      // Aplicar nuevo filtro si no es "todos"
+      //get_torneos();
+    });
   
-      $.ajax({
-  
-        url: url,
-  
-        type: 'POST',
-  
-        data: formData,
-  
-        processData: false,  // Evitar el procesamiento de datos
+  //************************************************************************************************************************* */
+  $('.newJugador').on('submit', guarda_jugador);
+
+  async function guarda_jugador(event) {
+
+    event.preventDefault();
+    $("#overlay").show();
+
+    var token = await get_token();
+    //console.log(token)
+    var headers = {
+      'Content-Type': 'application/json', // Tipo de contenido de la solicitud
+      'Authorization': 'Bearer ' + token, // Token de autorización, ajusta según tus necesidades
+      'Access-Control-Allow-Origin': "*"
+    };
+
+    // Obtener los datos del formulario
+    var formData = new FormData($("#newJugador")[0]);
+    
+    console.log(formData);
+
+    // Crea un objeto vacío para almacenar los datos
+    const formDataObject = {};
+
+    // Itera sobre cada par clave/valor en FormData y agrega al objeto
+    formData.forEach((value, key) => {
+        formDataObject[key] = value;
+    });
+    
+    var base64Image = $('#companylogo-img').attr('src');
+     
+    var data_equipo = {
+      nombre: formDataObject["nombre"],
+      ap_p: formDataObject["app"],
+      ap_m: formDataObject["apm"],
+      edad: formDataObject["edad"],
+      liga: parseInt(formDataObject["liga"]),
+      equipo: parseInt(formDataObject["equipo"]),
+      expediente: formDataObject["exp"],
+      seccional: formDataObject["sec"],
+      direccion: formDataObject["direccion"],
+      telefono: formDataObject["tel"],
+      delegado: $( "#delegado" )[0].checked,
+      estatus: formDataObject["estatus"],
+      img: '<img id="'+formDataObject["nombre"].replace(" ","_")+'" src="'+base64Image+'" alt="" class="avatar-xxs rounded-circle image_src object-cover">'
+    };
+
+    
+    id = $('#id-edit').val();
+    console.log(id)
+    if (id != ''){
+      var alpha_id = await alpha(id);
+      url = 'http://18.119.102.18:8030/jugadores' + '/' + alpha_id;
+      text = 'El jugador se edito correctamente';
+    }else{
+      url = 'http://18.119.102.18:8030/jugadores/';
+      text = 'El jugador se registro correctamente';
+    }
+    
+    // Realiza la solicitud POST usando Axios
+    return await axios.post(url,data_equipo,{headers:headers})
+    .then(async function (response) {
+        // Maneja la respuesta exitosa
         
-        contentType: false, 
-  
-        success: function(res) {
-  
-          console.log(res);
-          if(res.status === 200) {
-  
-            miTabla.ajax.reload();
-            $('#showModal').modal('hide');
-            $('.miEquipo')[0].reset();
-            $('select').select2();
-            $('#companylogo-img').attr('src', '../assets/images/users/multi-user.jpg').show();
+        //console.log(response.data["access_token"]);
+        if(response.status == 201) {
+          
+          console.log(response.status)
+          // Llamar a la función AJAX para obtener nuevos datos (reemplaza esto con tu lógica)
+          var nuevosDatos = await get_jugadores();
+
+          // Limpiar los datos existentes en la tabla
+          miTabla.clear();
+
+          // Agregar nuevos datos a la tabla
+          miTabla.rows.add(nuevosDatos);
+
+          // Volver a dibujar la tabla
+          miTabla.draw();
+
+          $('#showModal').modal('hide');
+          $('.newJugador')[0].reset();
+          $('select').select2();
+          $('#companylogo-img').attr('src', '../assets/images/users/multi-user.jpg').show();
+          $("#overlay").hide();
+
+          // Esperar 2 segundos (2000 milisegundos) antes de ejecutar la acción
+          setTimeout(function () {
+            // Acción que se ejecutará después de esperar 2 segundos
             if (!modalEstaAbierto()) {
+            
               Swal.fire({
-                position: 'top-end',
+                
+                position: 'center',
                 icon: 'success',
-                title: title,
+                title: '!Exito¡',
+                text: text,
                 showConfirmButton: false,
                 timer: 1500
               });
             }
-            
-          }
-           
+          }, 500);
+
+          
+          
         }
-      }); 
-  
-  
-    }
+    })
+    .catch(function (error) {
+        // Maneja errores
+        console.error(error);
+    }); 
+
+
+  }
   
     //************************************************************************************************************************* */
     $('#delete-record').on('click', elimina_equipo);
   
-    function elimina_equipo(event) {
+    async function elimina_equipo(event) {
   
       event.preventDefault();
-  
+      $("#overlay").show();
       // Obtener los datos del formulario
-      var val = $('#idEquipo').val();
-      
-      console.log(val);
-  
-      $.ajax({
-  
-        url: 'eliminaEquipo' + '/' + val,
-  
-        type: 'POST',
-  
-        data: val,
-  
-        processData: false,  // Evitar el procesamiento de datos
+      var token = await get_token();
+        console.log(token)
+        var header = {
+          'Content-Type': 'application/json', // Tipo de contenido de la solicitud
+          'Authorization': 'Bearer ' + token, // Token de autorización, ajusta según tus necesidades
+          'Access-Control-Allow-Origin': "*"
+        };
+    
+        // Obtener los datos del formulario
+        var val = $('#idJugador').val();
         
-        contentType: false, 
+        console.log(val);
   
-        success: function(res) {
-  
-          console.log(res);
-          if(res.status === 200) {
-  
-            miTabla.ajax.reload();
-            $('#deleteRecordModal').modal('hide');
-            $('.miEquipo')[0].reset();
-  
-          }
+        var alpha_id = await alpha(val);
+    
+        // Realiza la solicitud POST usando Axios
+        return await axios.post('http://18.119.102.18:8030/jugadores/' + alpha_id +'/delete',{id:alpha_id},{headers:header})
+        .then(async function (response) {
+            // Maneja la respuesta exitosa
             
-        }
-      }); 
-  
-  
-    }
-  
-    
-    //************************************************************************************************************************* */
-  
-    function obtiene_torneos() {
-  
-  
-      $.ajax({
-  
-        url: '../torneos/obtengoinfo',
-  
-        type: 'GET',
-  
-        processData: false,  // Evitar el procesamiento de datos
-        
-        contentType: false, 
-  
-        success: function(res) {
-  
-          var objetoJSON = $.parseJSON(res);
-  
-          console.log(objetoJSON[0]);
-  
-          $.each(objetoJSON, function(index, valor) {
-  
-            var select = $("#liga");
-            var nuevaOpcion = $("<option></option>")
-                .text(valor[1])
-                .val(valor[0]);
-            select.append(nuevaOpcion);
-            console.log(valor);
-          });
-         
-            
-        }
-      }); 
-  
-  
-    }
-  
-    /************************************************************************************************************ */
-     /*  $('.edit-item-btn').on('click', obtengo_torneo);
-      function obtengo_torneo(event){
-  
-        var value = $('#id-edit').val();
-        console.log(value);
-        $.ajax({
-    
-          url: 'obtengoTorneo' + '/' + value,
-    
-          type: 'POST',
-    
-          data: value,
-    
-          processData: false,  // Evitar el procesamiento de datos
-          
-          contentType: false, 
-    
-          success: function(res) {
-    
-            
-            if(res.status === 200) {  
+            //console.log(response.data["access_token"]);
+            if(response.status == 202) {
               
-              console.log(res);
-    
+              console.log(response.status)
+              // Llamar a la función AJAX para obtener nuevos datos (reemplaza esto con tu lógica)
+              var nuevosDatos = await get_jugadores();
+  
+              // Limpiar los datos existentes en la tabla
+              miTabla.clear();
+  
+              // Agregar nuevos datos a la tabla
+              miTabla.rows.add(nuevosDatos);
+  
+              // Volver a dibujar la tabla
+              miTabla.draw();
+  
+              $('#deleteRecordModal').modal('hide');
+              $('.newJugador')[0].reset();
+              $("#overlay").hide();
+              // Esperar 2 segundos (2000 milisegundos) antes de ejecutar la acción
+              setTimeout(function () {
+                // Acción que se ejecutará después de esperar 2 segundos
+                if (!modalEstaAbierto()) {
+                
+                  Swal.fire({
+                    
+                    position: 'center',
+                    icon: 'success',
+                    title: '!Exito¡',
+                    text: 'El jugador se elimino correctamente',
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                }
+              }, 500);
+              
             }
-             
-          }
-        }); 
-      } */
+        })
+        .catch(function (error) {
+            // Maneja errores
+            console.error(error);
+        });
+  
+  
+    }
+  
+    
+  /************************************************************************************************************************** */
+
+  async function get_torneos(){
+    //debugger
+    var token = await get_token();
+    //console.log(token)
+    var headers = {
+      'Content-Type': 'application/json', // Tipo de contenido de la solicitud
+      'Authorization': 'Bearer ' + token, // Token de autorización, ajusta según tus necesidades
+      'Access-Control-Allow-Origin': "*"
+    };
+    // Realiza la solicitud POST usando Axios
+    return await axios.get('http://18.119.102.18:8030/torneos_list/',{ headers: headers })
+    .then(function (response) {
+        // Maneja la respuesta exitosa
+        //console.log(response.data);
+        var select = $("#liga");
+        var datos =response.data;
+        select.innerHTML = "";
+        $.each(datos, function(index, valor) {
+          //console.log(index,valor)
+          
+          var nuevaOpcion = $("<option></option>")
+              .text(valor.nombre_torneo)
+              .val(valor.id);
+          select.append(nuevaOpcion);
+
+          var select2 = $("#liga-filtro");
+          var nuevaOpcion2 = $("<option></option>")
+              .text(valor.nombre_torneo)
+              .val(valor.nombre_torneo);
+          select2.append(nuevaOpcion2);
+
+        });
+        var id = $("#liga").val()
+        get_equipos(id); 
+        //select.select2();
+    })
+    .catch(function (error) {
+        // Maneja errores
+        console.error(error);
+    });
+
+  }  
+  
     //*********************************************************************************************************** */
   
     // Obtener las opciones de "Show entries" del DataTable
@@ -299,10 +350,142 @@ $(document).ready(function() {
         }));
     });
   
-  });
+});
+
+  /************************************************************************************************************************** */
+
+  async function alpha(id){
+
+    var token = await get_token();
+
+    var headers = {
+      'Content-Type': 'application/json', // Tipo de contenido de la solicitud
+      'Authorization': 'Bearer ' + token, // Token de autorización, ajusta según tus necesidades
+      'Access-Control-Allow-Origin': "*"
+    };
+
+    // Realiza la solicitud POST usando Axios
+    return await axios.get('http://18.119.102.18:8030/admin/'+id+'/alpha_id',{headers:headers})
+    .then(function (response) {
+        // Maneja la respuesta exitosa
+        //console.log(response.data["access_token"]);
+        var token_resp = response.data["alpha_id"]
+        
+        return token_resp;
+    })
+    .catch(function (error) {
+        // Maneja errores
+        console.error(error);
+    });
+
+  }
+
+  /************************************************************************************************************************** */
+
+  async function get_token(){
+
+    var data_token = {
+      sub: sessionStorage.getItem('email'),
+      ttl: 43200,
+      aud: "roni.dinossolutions.com",
+      roles: sessionStorage.getItem('roles'),
+      scope: "*"
+    };
+
+    //console.log(data_token.aud)
+
+    // Realiza la solicitud POST usando Axios
+    return await axios.post('http://18.220.123.92:8020/janus/badge', data_token)
+    .then(function (response) {
+        // Maneja la respuesta exitosa
+        //console.log(response.data["access_token"]);
+        var token_resp = response.data["access_token"]
+        
+        return token_resp;
+    })
+    .catch(function (error) {
+        // Maneja errores
+        console.error(error);
+    });
+
+  }
+
+  /************************************************************************************************************************** */
+
+  async function get_equipos(id){
+    //debugger
+    var token = await get_token();
+
+    var alpha_id = await alpha(id);
+    //console.log(token)
+    var headers = {
+      'Content-Type': 'application/json', // Tipo de contenido de la solicitud
+      'Authorization': 'Bearer ' + token, // Token de autorización, ajusta según tus necesidades
+      'Access-Control-Allow-Origin': "*"
+    };
+    // Realiza la solicitud POST usando Axios
+    return await axios.get('http://18.119.102.18:8030/equipos/'+alpha_id+'/id_torneo',{ headers: headers })
+    .then(function (response) {
+      var datos =response.data;
+      var select = $("#equipo");
+      select.empty();
+      $.each(datos, function(index, valor) {
+        //console.log(index,valor)
+        
+        var nuevaOpcion = $("<option></option>")
+            .text(valor.nombre)
+            .val(valor.id);
+        select.append(nuevaOpcion);
+
+        var select2 = $("#liga-filtro");
+        var nuevaOpcion2 = $("<option></option>")
+            .text(valor.nombre_torneo)
+            .val(valor.nombre_torneo);
+        select2.append(nuevaOpcion2);
+        //console.log(valor); 
+      });
+      //select.select2();
+    })
+    .catch(function (error) {
+        // Maneja errores
+        console.error(error);
+    });
+
+  }
+
+  /************************************************************************************************************************** */
+
+  async function get_jugadores(){
+    
+    var token = await get_token();
+    //console.log(token)
+    var headers = {
+      'Content-Type': 'application/json', // Tipo de contenido de la solicitud
+      'Authorization': 'Bearer ' + token, // Token de autorización, ajusta según tus necesidades
+      'Access-Control-Allow-Origin': "*"
+    };
+
+    // Realiza la solicitud POST usando Axios
+    return await axios.get('http://18.119.102.18:8030/jugadores_list/',{ headers: headers })
+    .then(function (response) {
+        // Maneja la respuesta exitosa
+        console.log(response.status);
+        
+        var datos =response.data;
+    
+        return datos;
+    })
+    .catch(function (error) {
+        // Maneja errores
+        console.error(error);
+        var datos =[];
+        return datos;
+    });
+
+  }
   
   //************************************************************************************************************************* */
-  var miTabla = $('#equiposTable').DataTable({
+  var miTabla = $('#jugadoresTable').DataTable({
   
     searching: true,
     lengthChange: false,
@@ -332,15 +515,59 @@ $(document).ready(function() {
       }
     },
   
-    ajax: {
-      url: 'obtengoinfo', // URL del script PHP para obtener los datos
-      dataSrc: '' // Dejar en blanco para que DataTables entienda la estructura de los datos
+    ajax: async function(data, callback, settings) {
+      // Obtener los datos mediante la función
+      var datos = await get_jugadores();
+      $("#overlay").show();
+      //console.log(datos)
+      // Simular un pequeño retardo para simular la asincronía de una solicitud real
+      setTimeout(function() {
+          // Llamar a la función de retorno de llamada con los datos obtenidos
+          $("#overlay").hide();
+          callback({
+              data: datos
+          });
+      }, 200);
     },
+
+    columnDefs: [
+      {
+          targets: 'text-center', // Clase CSS para centrar texto
+          className: 'text-center', // Aplicar la clase CSS
+          
+      },
+      // Agrega más objetos columnDefs según sea necesario
+    ],
+
     columns: [
-        { data: 'img_equipo', },
-        { data: 'nombre' },
-        { data: 'nombre_torneo' },
-        { data: 'delegado' },
+        { data: 'img'},
+        { data: 'nombre_completo' },
+        { data: 'edad' },
+        { data: 'equipo_jugador.liga_equipo.nombre_torneo' },
+        { data: 'equipo_jugador.nombre' },
+        /* { data: 'dorsal' }, */
+        { data: 'expediente' },
+        { data: 'seccional' },
+        { data: 'direccion' },
+        { data: 'telefono' },
+        { data: 'delegado',
+          render: function(data, type, row) {
+            let status, className;
+            switch (data) {
+                case true:
+                  status    = 'Si';
+                  
+                break;
+  
+                case false:
+                  status    = 'No';
+                  
+                break;
+            }
+  
+            return status;
+          }
+        },
         { data: 'estatus',
           render: function(data, type, row) {
             let status, className;
@@ -368,10 +595,10 @@ $(document).ready(function() {
                             '<a href="javascript:void(0);" class="view-item-btn"><i class="ri-eye-fill align-bottom text-muted"></i></a>'+
                        ' </li>'+ */
                        ' <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Edit">'+
-                            '<a class="edit-item-btn" href="#showModal" data-bs-toggle="modal" data-fila="' + row[0] + '"><i class="ri-pencil-fill align-bottom text-muted" ></i></a>'+
+                            '<a class="edit-item-btn" href="#showModal" data-bs-toggle="modal" data-fila="' + row.id + '"><i class="ri-pencil-fill align-bottom text-muted" ></i></a>'+
                         '</li>'+
                         '<li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Delete">'+
-                            '<a class="remove-item-btn" data-bs-toggle="modal" href="#deleteRecordModal" data-fila="' + row[0] + '">'+
+                            '<a class="remove-item-btn" data-bs-toggle="modal" href="#deleteRecordModal" data-fila="' + row.id + '">'+
                                ' <i class="ri-delete-bin-fill align-bottom text-muted"></i>'+
                            ' </a>'+
                         '</li>'+
@@ -399,7 +626,7 @@ $(document).ready(function() {
       var select = $('#numeroRegistros');
       //$('td').addClass("text-center");
       //$('ul').addClass("text-center");
-      $('#equiposTable_filter').hide();
+      $('#jugadoresTable_filter').hide();
       //miTabla.column(0).visible(false);
       $('.dt-buttons').hide();
       //$('.dataTables_paginate').hide();
@@ -417,7 +644,7 @@ $(document).ready(function() {
       miTabla.on('click', '.remove-item-btn', function() {
         // Obtener los datos de la fila correspondiente
         var datosFila = $(this).data('fila');
-        $('#idEquipo').val(datosFila);
+        $('#idJugador').val(datosFila);
         console.log(datosFila);
      
       }); 
@@ -434,43 +661,63 @@ $(document).ready(function() {
         miTabla.button('.buttons-print').trigger();
       });
   
-      miTabla.on('click', '.edit-item-btn', function() {
+      miTabla.on('click', '.edit-item-btn', async function() {
+        // Obtener los datos de la fila correspondiente
         // Obtener los datos de la fila correspondiente
         var datosFila = $(this).data('fila');
         $('#id-edit').val(datosFila);
-  
-        $.ajax({
-    
-          url: 'obtengoEquipo' + '/' + datosFila,
-    
-          type: 'POST',
-    
-          data: datosFila,
-  
-          dataType: 'json',
-    
-          processData: false,  // Evitar el procesamiento de datos
-          
-          contentType: false, 
-    
-          success: function(res) {
-    
-            datos = res[0];
-            id_img = datos[1].replace(' ','_');
+        $('#form-title').text('Editar Jugador');
+        var id_alpha = await alpha(datosFila)
+        console.log(datosFila);
+
+        var token = await get_token();
+        //console.log(token)
+        var headers = {
+          'Content-Type': 'application/json', // Tipo de contenido de la solicitud
+          'Authorization': 'Bearer ' + token, // Token de autorización, ajusta según tus necesidades
+          'Access-Control-Allow-Origin': "*"
+        };
+        // Realiza la solicitud POST usando Axios
+        return await axios.get('http://18.119.102.18:8030/jugadores/'+id_alpha+'/id',{ headers: headers })
+        .then(async function (response) {
+            // Maneja la respuesta exitosa
+            //console.log(response.data);
+            var datos =response.data;
+            id_img = datos.nombre.replace(' ','_');
             
             src_img = $("#"+id_img).attr('src');
-            console.log(datos);
-  
+            //console.log(datos);
+
             $('#companylogo-img').attr('src',src_img);
-            $("#nombre").val(datos[1])
-            $("#liga").val(datos[2]).select2();
-            $("#delegado").val(datos[3]);
-           /*  $.each(dias, function(index, value) {
-              $('#resultado').append('<li>' + value + '</li>');
-            }); */
-  
-          }
-        }); 
+            $("#nombre").val(datos.nombre)
+            $("#app").val(datos.ap_p)
+            $("#apm").val(datos.ap_m)
+            $("#edad").val(datos.edad)
+            $("#exp").val(datos.expediente)
+            $("#sec").val(datos.seccional)
+            $("#direccion").val(datos.direccion)
+            $("#tel").val(datos.telefono)
+            $("#liga").val(datos.liga).select2();
+          
+            var equipos = await get_equipos(datos.liga);
+            $("#equipo").val(datos.equipo).select2();
+            $("#estatus").val(datos.estatus).select2();
+
+            if(datos.delegado == true){
+              $("#delegado").attr("checked", true);
+            }else{
+              $("#delegado").attr("checked", false);
+            }
+            
+            
+            //console.log(datos);
+            return datos;
+        })
+        .catch(function (error) {
+            // Maneja errores
+            console.error(error);
+        });
+
      
       }); 
   
@@ -478,3 +725,4 @@ $(document).ready(function() {
   
    
   });
+

@@ -5,6 +5,7 @@ $(document).ready(async function() {
   $(".usuario").text(sessionStorage.getItem('usuario'));
   $(".roles").text(sessionStorage.getItem('roles'));
   $(".bienvenido").text('Bienvenido '+sessionStorage.getItem('usuario'));
+  $("#overlay").show();
 
   if (sessionStorage.getItem('usuario') == null) {        
 
@@ -113,6 +114,7 @@ $(document).ready(async function() {
 
   async function guarda_torneo(event) {
     event.preventDefault();
+    $("#overlay").show();
     var token = await get_token();
     //console.log(token)
     var headers = {
@@ -153,10 +155,10 @@ $(document).ready(async function() {
     if (id != ''){
       var alpha_id = await alpha(id);
       url = 'http://18.119.102.18:8030/torneos' + '/' + alpha_id;
-      title = 'Tu torneo se edito con exito';
+      text = 'Tu torneo se edito correctamente';
     }else{
       url = 'http://18.119.102.18:8030/torneos/';
-      title = 'Tu torneo se creo con exito';
+      text = 'Tu torneo se creo correctamente';
     }
     
     // Realiza la solicitud POST usando Axios
@@ -184,15 +186,23 @@ $(document).ready(async function() {
           $('.miTorneo')[0].reset();
           $('select').select2();
           $('#companylogo-img').attr('src', '../assets/images/users/multi-user.jpg').show();
-          if (!modalEstaAbierto()) {
-            Swal.fire({
-              position: 'top-end',
-              icon: 'success',
-              title: title,
-              showConfirmButton: false,
-              timer: 1500
-            });
-          }
+          $("#overlay").hide();
+          // Esperar 2 segundos (2000 milisegundos) antes de ejecutar la acción
+          setTimeout(function () {
+            // Acción que se ejecutará después de esperar 2 segundos
+            if (!modalEstaAbierto()) {
+            
+              Swal.fire({
+                
+                position: 'center',
+                icon: 'success',
+                title: '!Exito¡',
+                text: text,
+                showConfirmButton: false,
+                timer: 1500
+              });
+            }
+          }, 500);
           
         }
     })
@@ -209,7 +219,7 @@ $(document).ready(async function() {
     async function elimina_torneo(event) {
   
       event.preventDefault();
-      
+      $("#overlay").show();
       var token = await get_token();
       console.log(token)
       var header = {
@@ -248,6 +258,24 @@ $(document).ready(async function() {
 
             $('#deleteRecordModal').modal('hide');
             $('.miTorneo')[0].reset();
+            $('select').select2();
+            $("#overlay").hide();
+
+            setTimeout(function () {
+              // Acción que se ejecutará después de esperar 2 segundos
+              if (!modalEstaAbierto()) {
+              
+                Swal.fire({
+                  
+                  position: 'center',
+                  icon: 'success',
+                  title: '!Exito¡',
+                  text: 'El torneo se elmino correctamente',
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+              }
+            }, 500);
             
           }
       })
@@ -429,11 +457,21 @@ var miTabla = $('#torneosTable').DataTable({
     // Simular un pequeño retardo para simular la asincronía de una solicitud real
     setTimeout(function() {
         // Llamar a la función de retorno de llamada con los datos obtenidos
+        $("#overlay").hide();
         callback({
             data: datos
         });
     }, 200);
   },
+
+  columnDefs: [
+    {
+        targets: 'text-center', // Clase CSS para centrar texto
+        className: 'text-center', // Aplicar la clase CSS
+        
+    },
+    // Agrega más objetos columnDefs según sea necesario
+  ],
 
   columns: [
       { data: 'img', },
@@ -561,6 +599,7 @@ var miTabla = $('#torneosTable').DataTable({
           $("#horarios").val(datos.horarios_select).select2();
           $("#dias_text").val(datos.dias);
           $("#horarios_text").val(datos.horas);
+          $("#estatus").val(datos.estatus).select2();
           console.log(datos);
           return datos;
       })
