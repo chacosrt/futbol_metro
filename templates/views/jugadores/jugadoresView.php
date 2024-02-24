@@ -269,7 +269,7 @@
                                                                 <label for="tel" class="form-label">Telefono</label>
                                                                 <input type="text" id="tel" name="tel" class="form-control" placeholder="Ingrese telefono" required />
                                                             </div>
-                                                             <div class="col-lg-6">
+                                                            <div class="col-lg-6">
                                                                 <div>
                                                                     <label for="direccion" class="form-label">Domicilio</label>
                                                                     <textarea class="form-control" id = "direccion" name="direccion" style="width: 100%;" aria-hidden="true"></textarea>

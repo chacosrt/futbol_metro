@@ -4,7 +4,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Equipos</title>
+    <title>Partidos</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
@@ -105,12 +105,12 @@
                                 <div class="card-header">
                                     <div class="d-flex align-items-center flex-wrap gap-2">
                                         <div class="flex-grow-1">
-                                            <button class="btn btn-info add-btn" data-bs-toggle="modal" data-bs-target="#showModal"><i class="ri-add-fill me-1 align-bottom"></i> Agregar Equipo</button>
+                                            <button class="btn btn-info add-btn" data-bs-toggle="modal" data-bs-target="#showModal"><i class="ri-add-fill me-1 align-bottom"></i> Agregar Partido</button>
                                         </div>
                                         <div class="flex-shrink-0">
                                             <div class="hstack text-nowrap gap-2">
                                                 <label for="numeroRegistros" class="form-label">Mostrar:</label>
-                                                <select class = "form-select col-lg-3" id="numeroRegistros">
+                                                <select class = "form-select col-lg-3 select_form" id="numeroRegistros">
                                                 <!-- Agrega más opciones según tus datos -->
                                                 </select>                                                
                                                 <button class="btn btn-soft-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -129,8 +129,8 @@
                         </div>
                         <!--end col-->
                         <div class="col-xxl-12">
-                            <div class="card" id="companyList">
-                                <div class="card-header">
+                            <div class="card d-flex align-content-center flex-wrap" id="companyList">
+                                <div class="card-header p-2 w-100 bd-highligh">
                                     <div class="row g-2">
                                         <div class="col-md-3">
                                             <div class="search-box">
@@ -148,157 +148,56 @@
                                     </div>
                                 </div>
                                 <div class="card-body">                                
-                                    <div class="col-xl-8">
-                                        <div class="card">
+                                    <div class="d-flex align-content-center flex-wrap">
+                                        <div class="card card p-2 w-100 bd-highlight">
                                             <div class="card-header">
-                                                <h4 class="card-title mb-0">Pagination</h4>
+                                                <h3 class="mb-0">Segunda Fuerza</h3>
+                                                <h5 class="mb-0">Jornada 1 (2023-2024)</h5>
                                             </div><!-- end card header -->
 
-                                            <div class="card-body">
-                                                <p class="text-muted">Example of how to use the pagination plugin</p>
+                                            <div class="card-body">                                        
 
-                                                <div id="pagination-list">
-                                                    <div class="mb-2">
-                                                        <input class="search form-control" placeholder="Search" />
-                                                    </div>
+                                            <div>
+                                                <div class="table-responsive table-card mb-3">
+                                                    <table class="table align-middle table-hover" id="partidosTable">
+                                                        <thead class="table-light">
+                                                            <tr>
+                                                                <!-- <th scope="col" style="width: 50px;">
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox" id="checkAll" value="option">
+                                                                    </div>
+                                                                </th> -->
+                                                            <!--  <th class="id" style="display:none;"><a href="javascript:void(0);" class="fw-medium link-primary">#VZ001</a>
+                                                                </th> -->
+                                                                <th class="text-center" data-sort="name" scope="col">Fecha</th>
+                                                                <th class="text-center" data-sort="name" scope="col">Horario</th>
+                                                                <th class="text-center" data-sort="name" scope="col">Etapa</th>
+                                                                <th class="text-center" data-sort="owner" scope="col">Jornada</th>
+                                                                <th class="text-center" data-sort="industry_type" scope="col">Campo</th>
+                                                                <th class="text-center" data-sort="industry_type" scope="col">Liga</th>
+                                                                <!-- <th class="text-center" data-sort="industry_type" scope="col">Dorsal</th> -->
+                                                                <th class="text-center" data-sort="industry_type" scope="col">Equipo Local</th>
+                                                                <th class="text-center" data-sort="industry_type" scope="col">-</th>
+                                                                <th class="text-center" data-sort="industry_type" scope="col">Equipo Visitante</th>
+                                                                <th class="text-center" data-sort="industry_type" scope="col">Ganador</th>
+                                                                <th class="text-center" data-sort="industry_type" scope="col">Observaciones</th>
+                                                                <th class="text-center" data-sort="industry_type" scope="col">Estatus</th>
+                                                                <th class="text-center" scope="col">Accion</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="list form-check-all">
 
-                                                    <div class="mx-n3">
-                                                        <ul class="list list-group list-group-flush mb-0">
-                                                            <li class="list-group-item">
-                                                                <div class="d-flex align-items-center pagi-list">
-                                                                    <div class="flex-shrink-0 me-3">
-                                                                        <div>
-                                                                            <img class="image avatar-xs rounded-circle" alt="" src="assets/images/users/avatar-1.jpg">
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="flex-grow-1 overflow-hidden">
-                                                                        <h5 class="fs-14 mb-1"><a href="#" class="link text-dark">Jonny Stromberg</a></h5>
-                                                                        <p class="born timestamp text-muted mb-0">Front end Developer</p>
-                                                                    </div>
-
-                                                                    <div class="flex-shrink-0 ms-2">
-                                                                        <div>
-                                                                            <button type="button" class="btn btn-sm btn-light"><i class="ri-mail-line align-bottom"></i> Message</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                            <!-- end list item -->
-                                                            <li class="list-group-item">
-                                                                <div class="d-flex align-items-center pagi-list">
-                                                                    <div class="flex-shrink-0 me-3">
-                                                                        <div>
-                                                                            <img class="image avatar-xs rounded-circle" alt="" src="assets/images/users/avatar-2.jpg">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="flex-grow-1 overflow-hidden">
-                                                                        <h5 class="fs-14 mb-1"><a href="#" class="link text-dark">Jonas Arnklint</a></h5>
-                                                                        <p class="born timestamp text-muted mb-0">Backend Developer</p>
-                                                                    </div>
-                                                                    <div class="flex-shrink-0 ms-2">
-                                                                        <div>
-                                                                            <button type="button" class="btn btn-sm btn-light"><i class="ri-mail-line align-bottom"></i> Message</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                            <!-- end list item -->
-                                                            <li class="list-group-item">
-                                                                <div class="d-flex align-items-center pagi-list">
-                                                                    <div class="flex-shrink-0 me-3">
-                                                                        <div>
-                                                                            <img class="image avatar-xs rounded-circle" alt="" src="assets/images/users/avatar-3.jpg">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="flex-grow-1">
-                                                                        <h5 class="fs-14 mb-1"><a href="#" class="link text-dark">Martina Elm</a></h5>
-                                                                        <p class="born timestamp text-muted mb-0">UI/UX Designer</p>
-                                                                    </div>
-                                                                    <div class="flex-shrink-0 ms-2">
-                                                                        <div>
-                                                                            <button type="button" class="btn btn-sm btn-light"><i class="ri-mail-line align-bottom"></i> Message</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                            <!-- end list item -->
-                                                            <li class="list-group-item">
-                                                                <div class="d-flex align-items-center pagi-list">
-                                                                    <div class="flex-shrink-0 me-3">
-                                                                        <div>
-                                                                            <img class="image avatar-xs rounded-circle" alt="" src="assets/images/users/avatar-4.jpg">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="flex-grow-1">
-                                                                        <h5 class="fs-14 mb-1"><a href="#" class="link text-dark">Gustaf Lindqvist</a></h5>
-                                                                        <p class="born timestamp text-muted mb-0">Full Stack Developer</p>
-                                                                    </div>
-                                                                    <div class="flex-shrink-0 ms-2">
-                                                                        <div>
-                                                                            <button type="button" class="btn btn-sm btn-light"><i class="ri-mail-line align-bottom"></i> Message</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                            <!-- end list item -->
-                                                            <li class="list-group-item">
-                                                                <div class="d-flex align-items-center pagi-list">
-                                                                    <div class="flex-shrink-0 me-3">
-                                                                        <div>
-                                                                            <img class="image avatar-xs rounded-circle" alt="" src="assets/images/users/avatar-1.jpg">
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="flex-grow-1 overflow-hidden">
-                                                                        <h5 class="fs-14 mb-1"><a href="#" class="link text-dark">Jonny Stromberg</a></h5>
-                                                                        <p class="born timestamp text-muted mb-0">Front end Developer</p>
-                                                                    </div>
-
-                                                                    <div class="flex-shrink-0 ms-2">
-                                                                        <div>
-                                                                            <button type="button" class="btn btn-sm btn-light"><i class="ri-mail-line align-bottom"></i> Message</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                            <!-- end list item -->
-                                                            <li class="list-group-item">
-                                                                <div class="d-flex align-items-center pagi-list">
-                                                                    <div class="flex-shrink-0 me-3">
-                                                                        <div>
-                                                                            <img class="image avatar-xs rounded-circle" alt="" src="assets/images/users/avatar-2.jpg">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="flex-grow-1 overflow-hidden">
-                                                                        <h5 class="fs-14 mb-1"><a href="#" class="link text-dark">Jonas Arnklint</a></h5>
-                                                                        <p class="born timestamp text-muted mb-0">Backend Developer</p>
-                                                                    </div>
-                                                                    <div class="flex-shrink-0 ms-2">
-                                                                        <div>
-                                                                            <button type="button" class="btn btn-sm btn-light"><i class="ri-mail-line align-bottom"></i> Message</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                            <!-- end list item -->
-                                                        </ul>
-                                                        <!-- end ul list -->
-
-                                                        <div class="d-flex justify-content-center">
-                                                            <div class="pagination-wrap hstack gap-2">
-                                                                <a class="page-item pagination-prev disabled" href="#">
-                                                                    Previous
-                                                                </a>
-                                                                <ul class="pagination listjs-pagination mb-0"></ul>
-                                                                <a class="page-item pagination-next" href="#">
-                                                                    Next
-                                                                </a>
-                                                            </div>
+                                                        </tbody>
+                                                    </table>
+                                                    <div class="noresult" style="display: none">
+                                                        <div class="text-center">
+                                                            <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#121331,secondary:#08a88a" style="width:75px;height:75px">
+                                                            </lord-icon>
+                                                            <h5 class="mt-2">Ups, No hay resultados</h5>                                                    
                                                         </div>
-
                                                     </div>
                                                 </div>
+                                            </div> 
                                             </div><!-- end card -->
                                         </div>
                                         <!-- end col -->
@@ -308,13 +207,13 @@
                                         <div class="modal-dialog modal-dialog-centered modal-lg">
                                             <div class="modal-content border-0">
                                                 <div class="modal-header bg-soft-info p-3">
-                                                    <h5 class="modal-title" id="form-title">Nuevo Equipo</h5>
+                                                    <h5 class="modal-title" id="form-title">Nuevo Partido</h5>
                                                     <button type="button" class="btn-close close-modal" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
                                                 </div>
-                                                <form id="miEquipo" class="miEquipo" method="POST" enctype="multipart/form-data">
+                                                <form id="miPartido" class="miPartido" method="POST" enctype="multipart/form-data">
                                                     <div class="modal-body">                                                        
                                                         <div class="row g-3">
-                                                            <div class="col-lg-12">
+                                                            <!-- <div class="col-lg-12">
                                                                 <div class="text-center">
                                                                     <div class="position-relative d-inline-block">
                                                                         <div class="position-absolute bottom-0 end-0">
@@ -326,7 +225,7 @@
                                                                                 </div>
                                                                             </label>
                                                                             <input class="form-control d-none" name="company-logo-input" id="company-logo-input" type="file" accept="image/png, image/gif, image/jpeg">
-                                                                            <input type="text" id="id-edit" name="id-edit" hidden>
+                                                                            
                                                                         </div>
                                                                         <div class="avatar-lg p-1">
                                                                             <div id="imgForm" class="avatar-title bg-light rounded-circle">
@@ -336,37 +235,105 @@
                                                                     </div>
                                                                     <h5 class="fs-13 mt-3">Equipo Logo</h5>
                                                                 </div>                                                                
+                                                            </div> -->
+                                                            <div class="col-lg-6">
+                                                                <div>
+                                                                    <label for="fecha_inicio" class="form-label">Fecha</label>
+                                                                    <input class="form-control" type="date" id="fecha_inicio" name="fecha_inicio">
+                                                                    <input type="text" id="id-edit" name="id-edit" hidden>
+                                                                </div>
                                                             </div>
                                                             <div class="col-lg-6">
-                                                                <label for="nombre" class="form-label">Nombre</label>
-                                                                <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Ingrese nombre" required />
+                                                                <div>
+                                                                    <label for="horario" class="form-label">Horario</label>
+                                                                    <select class="form-select select_form" id = "horario" name="horario" data-placeholder="  Selecciona etapa" style="width: 100%;" aria-hidden="true">
+                                                                                                                                                                                                                 
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div>
+                                                                    <label for="etapa" class="form-label">Etapa</label>
+                                                                    <select class="form-select select_form" id = "etapa" name="etapa" data-placeholder="  Selecciona etapa" style="width: 100%;" aria-hidden="true">
+                                                                        <option value="1">Practica</option>
+                                                                        <option value="2">Regular</option>   
+                                                                        <option value="3">Liguilla</option>                                                                                                                                          
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <label for="jornada" class="form-label">Jornada</label>
+                                                                <input type="number" id="jornada" name="jornada" class="form-control" placeholder="Ingrese jornada" required />                                                                
                                                             </div>
                                                             <div class="col-lg-6">
                                                                 <div>
                                                                     <label for="liga" class="form-label">Torneo</label>
-                                                                    <select class="form-select" id = "liga" name="liga" data-placeholder="  Selecciona el torneo" style="width: 100%;" aria-hidden="true">
+                                                                    <select class="form-select select_form" id = "liga" name="liga" data-placeholder="  Selecciona el torneo" style="width: 100%;" aria-hidden="true">
                                                                                                                                                 
                                                                     </select>
-                                                                </div>
-                                                            </div>            
-                                                            <div class="col-lg-6">
-                                                                <div >
-                                                                    <label for="delegado" class="form-label">Delegado</label>    
-                                                                    <input type="text" id="delegado" name="delegado" class="form-control" placeholder="Ingrese nombre" required />        
-                                                                    <!-- <select class="form-select" id = "delegado" name="delegado" data-placeholder="  Selecciona al delegado" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                                                                       
-                                                                    </select> -->
                                                                 </div>
                                                             </div>  
                                                             <div class="col-lg-6">
                                                                 <div>
                                                                     <label for="liga" class="form-label">Estatus</label>
-                                                                    <select class="form-select" id = "estatus" name="estatus" data-placeholder="  Selecciona el estatus" style="width: 100%;" aria-hidden="true">
-                                                                        <option value="1">Activo</option>
-                                                                        <option value="2">Baja</option>                                                                            
+                                                                    <select class="form-select select_form" id = "estatus" name="estatus" data-placeholder="  Selecciona el estatus" style="width: 100%;" aria-hidden="true">
+                                                                        <option value="1">Programado</option>
+                                                                        <option value="2">Jugado</option>   
+                                                                        <option value="3">Pendiente</option>
+                                                                        <option value="4">Suspendido</option>                                                                            
                                                                     </select>
                                                                 </div>
-                                                            </div>                                                                                                            
+                                                            </div>           
+                                                            <div class="col-lg-6">
+                                                                <div>
+                                                                    <label for="local" class="form-label ">Local</label>
+                                                                    <select class="form-select select_form" id = "local" name="local" data-placeholder="  Selecciona equipo local" style="width: 100%;" aria-hidden="true">
+                                                                                                                                                
+                                                                    </select>
+                                                                </div>
+                                                            </div> 
+                                                            <div class="col-lg-6">
+                                                                <div>
+                                                                    <label for="visitante" class="form-label">Visitante</label>
+                                                                    <select class="form-select select_form" id = "visitante" name="visitante" data-placeholder="  Selecciona equipo visitante" style="width: 100%;" aria-hidden="true">
+                                                                                                                                                
+                                                                    </select>
+                                                                </div>
+                                                            </div> 
+                                                            <div class="col-lg-6">
+                                                                <div>
+                                                                    <label for="campo" class="form-label">Campo</label>
+                                                                    <select class="form-select select_form" id = "campo" name="campo" data-placeholder="  Selecciona el campo" style="width: 100%;" aria-hidden="true">
+                                                                        <option value="1">Campo 1</option>
+                                                                        <option value="2">Campo 2</option>                                                                       
+                                                                    </select>
+                                                                </div>
+                                                            </div> 
+                                                            <div class="col-lg-6">
+                                                                <div>
+                                                                    <label for="ganador" class="form-label">Ganador</label>
+                                                                    <select class="form-select select_form" id = "ganador" name="ganador" data-placeholder="  Selecciona ganador" style="width: 100%;" aria-hidden="true">
+                                                                        <option value=""></option>
+                                                                        <option value="1">Local</option>
+                                                                        <option value="2">Visitante</option> 
+                                                                        <option value="3">Empate</option>                                                                      
+                                                                    </select>
+                                                                </div>
+                                                            </div> 
+                                                            <div class="col-lg-6">
+                                                                <label for="goles_l" class="form-label">Goles Local</label>
+                                                                <input type="number" id="goles_l" name="goles_l" class="form-control" placeholder="Ingrese jornada" min = "0" />                                                                
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <label for="goles_v" class="form-label">Goles Visitante</label>
+                                                                <input type="number" id="goles_v" name="goles_v" class="form-control" placeholder="Ingrese jornada" min = "0" />                                                                
+                                                            </div>                                                                                                                          
+                                                            <div class="col-lg-6">
+                                                                <div>
+                                                                    <label for="obs" class="form-label">Observaciones</label>
+                                                                    <textarea class="form-control" id = "obs" name="obs" style="width: 100%;" aria-hidden="true"></textarea>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
@@ -465,12 +432,9 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="<?php echo JS.'menu.js'; ?>"></script>   
     <script type="text/javascript" src="<?php echo JS.'partidos.js?v=2'; ?>"></script>  
-    <!-- list.js min js -->
-    <script src="../assets/libs/prismjs/prism.js"></script>
-    <script src="../assets/libs/list.js/list.min.js"></script>
+
     <script src="../assets/libs/list.pagination.js/list.pagination.min.js"></script>
-     <!-- listjs init -->
-     <script src="../assets/js/pages/listjs.init.js"></script>
+     
     <script type="text/javascript" src="../assets/js/app.js"></script>                                                 
 </body>
 
