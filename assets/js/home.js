@@ -1,8 +1,5 @@
 $(document).ready(function() {  
-
-  if (sessionStorage.getItem('usuario') == null) {
-    console.log ("no hay sesion")
-  }
+  
 
   toastr.options = { "closeButton": true, "debug": false, "newestOnTop": true, "progressBar": true, "positionClass": "toast-top-full-width", "preventDuplicates": true, "onclick": null,  "showDuration": "200", "hideDuration": "1000", "timeOut": "5000", "extendedTimeOut": "1000", "showEasing": "swing", "hideEasing": "linear", "showMethod": "fadeIn", "hideMethod": "fadeOut"}
 
@@ -60,11 +57,12 @@ $(document).ready(function() {
     .then(function (response) {
         // Maneja la respuesta exitosa
         console.log(response);
+        
         if(response.status === 200) {      
           
           const decoded = response.data;
           
-          
+          console.log(decoded)
           sessionStorage.setItem('usuario', decoded["nombre"]);
           sessionStorage.setItem('email', decoded["email"]);
           sessionStorage.setItem('roles', decoded["roles"]);

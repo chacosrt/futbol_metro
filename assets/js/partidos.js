@@ -9,6 +9,7 @@ $(document).ready(async function() {
     
 
     get_torneos();
+    
 
     if (sessionStorage.getItem('usuario') == null) {        
 
@@ -120,19 +121,25 @@ $(document).ready(async function() {
     //var base64Image = $('#companylogo-img').attr('src');
 
     var ganador = $("#ganador").val();
+
+    if(ganador == ""){
+      ganador = 0;
+    }else{
+      ganador = parseInt(ganador)
+    }
      
     var data_equipo = {
       fecha: formDataObject["fecha"],
       horario: formDataObject["horario"],
       etapa: formDataObject["etapa"],
-      jornada: formDataObject["jornada"],
+      jornada: parseInt(formDataObject["jornada"]),
       liga: parseInt(formDataObject["liga"]),
       local: parseInt(formDataObject["local"]),
       visitante: parseInt(formDataObject["visitante"]),
       campo: parseInt(formDataObject["campo"]),
       goles_local: parseInt(formDataObject["goles_l"]),
-      goles_visitante: parseInt(formDataObject["goles_l"]),
-      ganador: formDataObject["ganador"],
+      goles_visitante: parseInt(formDataObject["goles_v"]),
+      ganador: ganador,
       estatus: formDataObject["estatus"],
       observaciones: formDataObject["obs"]
     };
@@ -297,8 +304,10 @@ $(document).ready(async function() {
         // Maneja la respuesta exitosa
         //console.log(response.data);
         var select = $("#liga");
+        var select2 = $("#liga-filtro");
         var datos =response.data;
-        select.innerHTML = "";
+        select.empty();
+        select2.empty();
         $.each(datos, function(index, valor) {
           //console.log(index,valor)
           
@@ -307,15 +316,17 @@ $(document).ready(async function() {
               .val(valor.id);
           select.append(nuevaOpcion);
 
-          var select2 = $("#liga-filtro");
+          
           var nuevaOpcion2 = $("<option></option>")
               .text(valor.nombre_torneo)
-              .val(valor.nombre_torneo);
+              .val(valor.id);
           select2.append(nuevaOpcion2);
 
         });
         var id = $("#liga").val()
+        get_jornadas(id);
         get_equipos(id); 
+        
         //select.select2();
     })
     .catch(function (error) {
@@ -422,6 +433,7 @@ async function alpha(id){
       select.empty();
       select1.empty();
       
+      
 
       $.each(datos[0].liga_equipo.horarios_select, function(index, valor) {
         var nuevaOpcionHorario = $("<option></option>")
@@ -445,7 +457,7 @@ async function alpha(id){
         var select2 = $("#liga-filtro");
         var nuevaOpcion2 = $("<option></option>")
             .text(valor.nombre_torneo)
-            .val(valor.nombre_torneo);
+            .val(valor.id);
         select2.append(nuevaOpcion2);
         //console.log(valor); 
       });
@@ -457,6 +469,45 @@ async function alpha(id){
     });
 
   }
+
+   /************************************************************************************************************************** */
+
+   async function get_jornadas(id){
+    //debugger
+    var token = await get_token();
+
+    var alpha_id = await alpha(id);
+    //console.log(token)
+    var headers = {
+      'Content-Type': 'application/json', // Tipo de contenido de la solicitud
+      'Authorization': 'Bearer ' + token, // Token de autorización, ajusta según tus necesidades
+      'Access-Control-Allow-Origin': "*"
+    };
+    // Realiza la solicitud POST usando Axios
+    return await axios.get('http://18.119.102.18:8030/partidos/'+alpha_id+'/jornadas',{ headers: headers })
+    .then(function (response) {
+      var datos =response.data;
+      var select = $("#jornada-filtro");      
+
+      select.empty();     
+      
+
+      $.each(datos, function(index, valor) {
+        var nuevaOpcionHorario = $("<option></option>")
+        .text(valor.jornada)
+        .val(valor.jornada);
+        select.append(nuevaOpcionHorario);
+      });
+      select.trigger("change");
+      //select.select2();
+    })
+    .catch(function (error) {
+        // Maneja errores
+        console.error(error);
+    });
+
+  }
+
 
   /************************************************************************************************************************** */
 
@@ -547,11 +598,41 @@ async function alpha(id){
     columns: [
         { data: 'fecha'},
         { data: 'horario' },
-        { data: 'etapa' },
+        { data: 'etapa',
+          render: function(data, type, row) {
+            let status, className;
+            switch (data) {
+                case "1":
+                  status  = "Práctica";
+                  
+                break;
+
+                case "2" :
+                  status  = "Regular";
+                  
+                break;
+
+                case "3" :
+
+                  status = "Liguilla";                  
+                  
+                break;
+            }
+
+            return status;
+          }
+        },
         { data: 'jornada' },
         { data: 'campo' },
         { data: 'liga_partido.nombre_torneo' },
-        { data: 'nombre_local' },
+        { data: 'nombre_local',
+
+          data: null,
+          render: function(data, type, row) {
+              // Generar HTML para los botones de acción
+              return  row.img_local+' '+row.nombre_local;
+          }
+        },
         { data: 'estatus',
           render: function(data, type, row) {
             let status, className;
@@ -584,7 +665,15 @@ async function alpha(id){
           }
       },
         
-        { data: 'nombre_visitante' },
+      { data: 'nombre_visitante',
+
+        data: null,
+        render: function(data, type, row) {
+            // Generar HTML para los botones de acción
+            return  row.nombre_visitante+' '+row.img_visitante;
+        }
+      },
+        { data: 'temporada' },
         { data: 'ganador',
           render: function(data, type, row) {
             let status, className;
@@ -683,8 +772,75 @@ async function alpha(id){
   
     lengthMenu: [5,10,15], // Opciones para "Show entries"
     pageLength: 5, // Cantidad de registros por página por defecto
+
+    drawCallback: function (settings) {
+      var api = this.api();
+      var $table = $(api.table().node());
+      
+      if ($table.hasClass('cards')) {
+
+         // Create an array of labels containing all table headers
+         var labels = [];
+         $('thead th', $table).each(function () {
+            labels.push($(this).text());
+         });
+
+         // Add data-label attribute to each cell
+         $('tbody tr', $table).each(function () {
+            $(this).find('td').each(function (column) {
+               $(this).attr('data-label', labels[column]);
+            });
+         });
+
+         var max = 0;
+         $('tbody tr', $table).each(function () {
+            max = Math.max($(this).height(), max);
+         }).height(max);
+
+      } else {
+         // Remove data-label attribute from each cell
+         $('tbody td', $table).each(function () {
+            $(this).removeAttr('data-label');
+         });
+
+         $('tbody tr', $table).each(function () {
+            $(this).height('auto');
+         });
+      }
+   },
     
     initComplete: function () {
+
+      /* var $table = $(api.table().node());
+      if ($("#partidosTable").hasClass("cards")) {
+        // Create an array of labels containing all table headers
+        var labels = [];
+        $('thead th', $table).each(function () {
+           labels.push($(this).text());
+        });
+
+        // Add data-label attribute to each cell
+        $('tbody tr', $table).each(function () {
+           $(this).find('td').each(function (column) {
+              $(this).attr('data-label', labels[column]);
+           });
+        });
+
+        var max = 0;
+        $('tbody tr', $table).each(function () {
+           max = Math.max($(this).height(), max);
+        }).height(max);
+      } else {
+        // Remove data-label attribute from each cell
+        $('tbody td', $table).each(function () {
+          $(this).removeAttr('data-label');
+       });
+
+       $('tbody tr', $table).each(function () {
+          $(this).height('auto');
+       });
+      }
+      $("#partidosTable").toggleClass("cards"); */      
       
       var select = $('#numeroRegistros');
       //$('td').addClass("text-center");
@@ -699,6 +855,12 @@ async function alpha(id){
           miTabla.page.len(value).draw();
           $(this).hide();
       });
+
+      miTabla.column(5).search($('#liga-filtro option:selected').text()).column(3).search($('#jornada-filtro').val()).draw();
+      $('.liga-titulo').text($('#liga-filtro option:selected').text())
+      var temporada = miTabla.cell(0, 9).data();
+      var jornada = miTabla.cell(0, 3).data();
+      $('.temp-titulo').text('Jornada '+jornada + ' ('+temporada+')')
   
       $('#tableSearch').on('keyup', function() {
         miTabla.search($(this).val()).draw();
@@ -722,6 +884,13 @@ async function alpha(id){
   
       $('#tabla_print').click(function() {
         miTabla.button('.buttons-print').trigger();
+      });
+
+      $('#cv').click(function(e, dt, node) {
+        $(miTabla.table().node()).toggleClass('cards');
+               $('.fa', node).toggleClass(['fa-table', 'fa-id-badge']);
+
+               miTabla.draw('page');
       });
   
       miTabla.on('click', '.edit-item-btn', async function() {
@@ -750,23 +919,26 @@ async function alpha(id){
             
             //src_img = $("#"+id_img).attr('src');
             //console.log(datos);
-
+           // $("#horario").empty();
             //$('#companylogo-img').attr('src',src_img);
             $("#fecha").val(datos.fecha)
             $("#horario").val(datos.horario).select2();
             $("#etapa").val(datos.etapa).select2();
             $("#jornada").val(datos.jornada)
-            $("#liga").val(datos.liga).select2();
+            $("#liga").val(datos.liga).trigger("change").select2();
+
+            var equipos = await get_equipos(datos.liga);
             $("#local").val(datos.local).select2();
             $("#visitante").val(datos.visitante).select2();
             $("#tel").val(datos.telefono)
             $("#liga").val(datos.liga).select2();
             $("#campo").val(datos.campo).select2();
+            $("#estatus").val(datos.estatus).select2();
             $("#goles_l").val(datos.goles_local)
             $("#goles_v").val(datos.goles_visitante)
             $("#obs").val(datos.observaciones)
           
-            var equipos = await get_equipos(datos.liga);
+            
             if (datos.local == datos.ganador){
               $("#ganador").val(1).select2();
             }
@@ -790,8 +962,52 @@ async function alpha(id){
 
      
       }); 
+
+      $('#liga-filtro').on('change', function() {
+        var filtro = $('#liga-filtro option:selected').text();
+        $('.liga-titulo').text($('#liga-filtro option:selected').text())
+        console.log(filtro)
+        // Limpiar filtro actual
+        miTabla.search('').columns().search('').draw();
+        $(this).select2('close');
+        //console.log(miTabla.column(1).data())
+        // Aplicar nuevo filtro si no es "todos"
+        if (filtro !== 'todos') {
+            get_jornadas($('#liga-filtro').val())
+            miTabla.column(5).search(filtro).column(3).search($('#jornada-filtro').val()).draw();
+            $(this).focus();
+            miTabla.order([3, 'desc']).draw();
+            var temporada = miTabla.cell(0, 9).data();
+            var jornada = $('#jornada-filtro').val();
+            $('.temp-titulo').text('Jornada '+jornada + ' ('+temporada+')')
+            
+        }
+      });
+
+      $('#jornada-filtro').on('change', function() {
+        var filtro = $('#liga-filtro option:selected').text();
+        $('.liga-titulo').text($('#liga-filtro option:selected').text())
+        console.log(filtro)
+        // Limpiar filtro actual
+        miTabla.search('').columns().search('').draw();
+        $(this).select2('close');
+        //console.log(miTabla.column(1).data())
+        // Aplicar nuevo filtro si no es "todos"
+        if (filtro !== 'todos') {
+            
+            miTabla.column(5).search(filtro).column(3).search($('#jornada-filtro').val()).draw();
+            $(this).focus();
+            miTabla.order([3, 'desc']).draw();
+            var temporada = miTabla.cell(0, 9).data();
+            var jornada = $('#jornada-filtro').val();
+            $('.temp-titulo').text('Jornada '+jornada + ' ('+temporada+')')
+            
+        }
+      });
   
     }
+
+    
   
    
   });

@@ -854,12 +854,13 @@
 
 
     <!-- JAVASCRIPT -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js?v=2" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script src="../assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/libs/simplebar/simplebar.min.js"></script>
     <script src="../assets/libs/node-waves/waves.min.js"></script>
     <script src="../assets/libs/feather-icons/feather.min.js"></script>
-    <script src="../assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
-    <script src="../assets/js/plugins.js"></script>
+    <!-- <script src="../assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
+    <script src="../assets/js/plugins.js"></script> -->
 
     <!-- apexcharts -->
     <script src="../assets/libs/apexcharts/apexcharts.min.js"></script>
@@ -872,9 +873,10 @@
     <script src="../assets/js/pages/dashboard-analytics.init.js"></script>
 
     <!-- App js -->
-    <script type="text/javascript" src="../assets/js/app.js"></script>
     <script type="text/javascript" src="<?php echo JS.'dash.js'; ?>"></script>
-    <script type="text/javascript" src="<?php echo JS.'menu.js'; ?>"></script>    
+    <script type="text/javascript" src="<?php echo JS.'menu.js'; ?>"></script> 
+    <script type="text/javascript" src="../assets/js/app.js"></script>
+       
     
 </body>
 

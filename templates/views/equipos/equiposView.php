@@ -229,7 +229,7 @@
                                                             <div class="col-lg-6">
                                                                 <div >
                                                                     <label for="delegado" class="form-label">Delegado</label>    
-                                                                    <input type="text" id="delegado" name="delegado" class="form-control" placeholder="Ingrese nombre" required />        
+                                                                    <input type="text" id="delegado" name="delegado" class="form-control" placeholder="Ingrese nombre"  />        
                                                                     <!-- <select class="form-select" id = "delegado" name="delegado" data-placeholder="  Selecciona al delegado" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                                                        
                                                                     </select> -->

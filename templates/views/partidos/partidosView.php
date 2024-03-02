@@ -65,6 +65,49 @@
             transform: translate(-50%, -50%);
             
         }
+
+        .cards tbody tr {
+        float: left;
+        width: 19rem;
+        margin: 0.5rem;
+        border: 0rem solid rgba(0, 0, 0, .125);
+        border-radius: none;
+        box-shadow: 0.25rem 0.25rem 0.5rem rgba(0, 0, 0, 0.25);
+        }
+
+        .cards tbody td {
+        display: block;
+        }
+
+        .cards thead {
+        display: none;
+        }
+
+        .cards td:before {
+        content: attr(data-label);
+        position: relative;
+        float: left;
+        color: #808080;
+        min-width: 4rem;
+        margin-left: 0;
+        margin-right: 1rem;
+        text-align: left;   
+        }
+
+        tr.selected td:before {
+        color: #CCC;
+        }
+
+        .table .avatar {
+        width: 50px;
+        }
+
+        .cards .avatar {
+        width: 150px;
+        height: 150px;
+        margin: 15px;
+        }
+
     </style>
     
 </head>
@@ -119,7 +162,8 @@
                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                                     <li><a id="tabla_pdf" class="dropdown-item" href="#">PDF</a></li>
                                                     <li><a id="tabla_excel" class="dropdown-item" href="#">Excel</a></li>   
-                                                    <li><a id="tabla_print" class="dropdown-item" href="#">Imprimir</a></li>                                                   
+                                                    <li><a id="tabla_print" class="dropdown-item" href="#">Imprimir</a></li>   
+                                                    <li><a id="cv" class="dropdown-item" href="#">Cards</a></li>                                                 
                                                 </ul>
                                             </div>
                                         </div>
@@ -143,6 +187,14 @@
                                                 <select class="form-select" id = "liga-filtro" name="liga-filtro" data-placeholder="  Selecciona el torneo" data-bs-toggle="dropdown">
                                                                                                                             
                                                 </select>
+                                            </div>                                            
+                                        </div> 
+                                        <div class="col-md-2 flex-shrink-0">                                            
+                                            <div class = "hstack text-nowrap gap-2">    
+                                                <label for="jornada-filtro" class="form-label">Jornada:</label>
+                                                <select class="form-select col-lg-3 select_form" id = "jornada-filtro" name="jornada-filtro"  data-bs-toggle="dropdown">
+                                                                                                                            
+                                                </select>
                                             </div>
                                         </div> 
                                     </div>
@@ -151,8 +203,8 @@
                                     <div class="d-flex align-content-center flex-wrap">
                                         <div class="card card p-2 w-100 bd-highlight">
                                             <div class="card-header">
-                                                <h3 class="mb-0">Segunda Fuerza</h3>
-                                                <h5 class="mb-0">Jornada 1 (2023-2024)</h5>
+                                                <h3 class="mb-0 liga-titulo">Segunda Fuerza</h3>
+                                                <h5 class="mb-0 temp-titulo">Jornada 1 (2023-2024)</h5>
                                             </div><!-- end card header -->
 
                                             <div class="card-body">                                        
@@ -179,6 +231,7 @@
                                                                 <th class="text-center" data-sort="industry_type" scope="col">Equipo Local</th>
                                                                 <th class="text-center" data-sort="industry_type" scope="col">-</th>
                                                                 <th class="text-center" data-sort="industry_type" scope="col">Equipo Visitante</th>
+                                                                <th class="text-center" data-sort="industry_type" scope="col">Temporada</th>
                                                                 <th class="text-center" data-sort="industry_type" scope="col">Ganador</th>
                                                                 <th class="text-center" data-sort="industry_type" scope="col">Observaciones</th>
                                                                 <th class="text-center" data-sort="industry_type" scope="col">Estatus</th>
@@ -238,8 +291,8 @@
                                                             </div> -->
                                                             <div class="col-lg-6">
                                                                 <div>
-                                                                    <label for="fecha_inicio" class="form-label">Fecha</label>
-                                                                    <input class="form-control" type="date" id="fecha_inicio" name="fecha_inicio">
+                                                                    <label for="fecha" class="form-label">Fecha</label>
+                                                                    <input class="form-control" type="date" id="fecha" name="fecha">
                                                                     <input type="text" id="id-edit" name="id-edit" hidden>
                                                                 </div>
                                                             </div>
