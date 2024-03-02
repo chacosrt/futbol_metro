@@ -22,7 +22,7 @@ $(document).ready(function() {
 
     pass = $('#pass').val();
 
-    data = new FormData(form.get(0))
+    data = new FormData(form[0])
     // Validamos el usuario 
 
     if(usuario === '' ) {
