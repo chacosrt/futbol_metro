@@ -53,7 +53,7 @@ $(document).ready(function() {
     console.log(data)
     
     // Realiza la solicitud POST usando Axios
-    return await axios.post('http://18.220.123.92:8020/janus/sentry',data,{ headers: headers})
+    return await axios.post('http://janus.dinossolutions.com/sentry',data,{ headers: headers})
     .then(function (response) {
         // Maneja la respuesta exitosa
         console.log(response);

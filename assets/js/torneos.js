@@ -154,10 +154,10 @@ $(document).ready(async function() {
     console.log(id)
     if (id != ''){
       var alpha_id = await alpha(id);
-      url = 'http://18.119.102.18:8030/torneos' + '/' + alpha_id;
+      url = 'http://62.72.27.188:8020/torneos' + '/' + alpha_id;
       text = 'Tu torneo se edito correctamente';
     }else{
-      url = 'http://18.119.102.18:8030/torneos/';
+      url = 'http://62.72.27.188:8020/torneos/';
       text = 'Tu torneo se creo correctamente';
     }
     
@@ -236,7 +236,7 @@ $(document).ready(async function() {
       var alpha_id = await alpha(val);
   
       // Realiza la solicitud POST usando Axios
-      return await axios.post('http://18.119.102.18:8030/torneos/' + alpha_id +'/delete',{id:alpha_id},{headers:header})
+      return await axios.post('http://62.72.27.188:8020/torneos/' + alpha_id +'/delete',{id:alpha_id},{headers:header})
       .then(async function (response) {
           // Maneja la respuesta exitosa
           
@@ -347,7 +347,7 @@ async function alpha(id){
   };
 
   // Realiza la solicitud POST usando Axios
-  return await axios.get('http://18.119.102.18:8030/admin/'+id+'/alpha_id',{headers:headers})
+  return await axios.get('http://62.72.27.188:8020/admin/'+id+'/alpha_id',{headers:headers})
   .then(function (response) {
       // Maneja la respuesta exitosa
       //console.log(response.data["access_token"]);
@@ -377,7 +377,7 @@ async function get_token(){
   //console.log(data_token.aud)
 
   // Realiza la solicitud POST usando Axios
-  return await axios.post('http://18.220.123.92:8020/janus/badge', data_token)
+  return await axios.post('http://janus.dinossolutions.com/badge', data_token)
   .then(function (response) {
       // Maneja la respuesta exitosa
       //console.log(response.data["access_token"]);
@@ -404,7 +404,7 @@ async function get_torneos(){
     'Access-Control-Allow-Origin': "*"
   };
   // Realiza la solicitud POST usando Axios
-  return await axios.get('http://18.119.102.18:8030/torneos_list/',{ headers: headers })
+  return await axios.get('http://62.72.27.188:8020/torneos_list/',{ headers: headers })
   .then(function (response) {
       // Maneja la respuesta exitosa
       //console.log(response.data);
@@ -576,7 +576,7 @@ var miTabla = $('#torneosTable').DataTable({
         'Access-Control-Allow-Origin': "*"
       };
       // Realiza la solicitud POST usando Axios
-      return await axios.get('http://18.119.102.18:8030/torneos/'+id_alpha+'/id',{ headers: headers })
+      return await axios.get('http://62.72.27.188:8020/torneos/'+id_alpha+'/id',{ headers: headers })
       .then(function (response) {
           // Maneja la respuesta exitosa
           //console.log(response.data);
