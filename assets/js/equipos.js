@@ -108,10 +108,10 @@ $(document).ready(function() {
     console.log(id)
     if (id != ''){
       var alpha_id = await alpha(id);
-      url = 'http://62.72.27.188:8020/equipos' + '/' + alpha_id;
+      url = 'https://apis.dinossolutions.com/roni/equipos' + '/' + alpha_id;
       text = 'Tu equipo se edito correctamente';
     }else{
-      url = 'http://62.72.27.188:8020/equipos/';
+      url = 'https://apis.dinossolutions.com/roni/equipos/';
       text = 'Tu equipo se creo correctamente';
     }
     
@@ -192,7 +192,7 @@ $(document).ready(function() {
       var alpha_id = await alpha(val);
   
       // Realiza la solicitud POST usando Axios
-      return await axios.post('http://62.72.27.188:8020/equipos/' + alpha_id +'/delete',{id:alpha_id},{headers:header})
+      return await axios.post('https://apis.dinossolutions.com/roni/equipos/' + alpha_id +'/delete',{id:alpha_id},{headers:header})
       .then(async function (response) {
           // Maneja la respuesta exitosa
           
@@ -256,7 +256,7 @@ $(document).ready(function() {
       'Access-Control-Allow-Origin': "*"
     };
     // Realiza la solicitud POST usando Axios
-    return await axios.get('http://62.72.27.188:8020/torneos_list/',{ headers: headers })
+    return await axios.get('https://apis.dinossolutions.com/roni/torneos_list/',{ headers: headers })
     .then(function (response) {
         // Maneja la respuesta exitosa
         //console.log(response.data);
@@ -313,7 +313,7 @@ async function alpha(id){
   };
 
   // Realiza la solicitud POST usando Axios
-  return await axios.get('http://62.72.27.188:8020/admin/'+id+'/alpha_id',{headers:headers})
+  return await axios.get('https://apis.dinossolutions.com/roni/admin/'+id+'/alpha_id',{headers:headers})
   .then(function (response) {
       // Maneja la respuesta exitosa
       //console.log(response.data["access_token"]);
@@ -343,7 +343,7 @@ async function get_token(){
   //console.log(data_token.aud)
 
   // Realiza la solicitud POST usando Axios
-  return await axios.post('http://janus.dinossolutions.com/badge', data_token)
+  return await axios.post('https://apis.dinossolutions.com/janus/badge', data_token)
   .then(function (response) {
       // Maneja la respuesta exitosa
       //console.log(response.data["access_token"]);
@@ -370,7 +370,7 @@ async function get_equipos(){
     'Access-Control-Allow-Origin': "*"
   };
   // Realiza la solicitud POST usando Axios
-  return await axios.get('http://62.72.27.188:8020/equipos_list/',{ headers: headers })
+  return await axios.get('https://apis.dinossolutions.com/roni/equipos_list/',{ headers: headers })
   .then(function (response) {
       // Maneja la respuesta exitosa
       //console.log(response.data);
@@ -551,7 +551,7 @@ var miTabla = $('#equiposTable').DataTable({
         'Access-Control-Allow-Origin': "*"
       };
       // Realiza la solicitud POST usando Axios
-      return await axios.get('http://62.72.27.188:8020/equipos/'+id_alpha+'/id',{ headers: headers })
+      return await axios.get('https://apis.dinossolutions.com/roni/equipos/'+id_alpha+'/id',{ headers: headers })
       .then(function (response) {
           // Maneja la respuesta exitosa
           //console.log(response.data);

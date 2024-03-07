@@ -36,7 +36,7 @@ define('AUTH_SALT'  , 'appMidas');
 
 define('PORT'       , '7882');
 
-//define('URL'        , IS_LOCAL ? 'http://127.0.0.1:'.PORT.'/dasboard/udemy_03/proyecto02/' : '___URL EN PRODUCCIÓN___');
+//define('URL'        ,  IS_LOCAL ? 'http://localhost/dashboard/futbol_metro/' : 'https://liga-metro.dinossolutions.com/');
 
 define('URL'        ,'http://localhost/dashboard/futbol_metro/');
 
