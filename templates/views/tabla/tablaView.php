@@ -4,7 +4,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Partidos</title>
+    <title>Posiciones</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
@@ -136,7 +136,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                <h2 class="mb-sm-0">Partidos y Resultados</h2> 
+                                <h2 class="mb-sm-0">Tabla de Posiciones</h2> 
                             </div>
                         </div>
                     </div>
@@ -147,9 +147,9 @@
                             <div class="card">
                                 <div class="card-header">
                                     <div class="d-flex align-items-center flex-wrap gap-2">
-                                        <div class="flex-grow-1">
+                                        <!-- <div class="flex-grow-1">
                                             <button class="btn btn-info add-btn" data-bs-toggle="modal" data-bs-target="#showModal"><i class="ri-add-fill me-1 align-bottom"></i> Agregar Partido</button>
-                                        </div>
+                                        </div> -->
                                         <div class="flex-shrink-0">
                                             <div class="hstack text-nowrap gap-2">
                                                 <label for="numeroRegistros" class="form-label">Mostrar:</label>
@@ -176,12 +176,12 @@
                             <div class="card d-flex align-content-center flex-wrap" id="companyList">
                                 <div class="card-header p-2 w-100 bd-highligh">
                                     <div class="row g-2">
-                                        <div class="col-md-3">
+                                        <!-- <div class="col-md-3">
                                             <div class="search-box">
                                                 <input id = "tableSearch" type="text" class="form-control search" placeholder="Buscar...">
                                                 <i class="ri-search-line search-icon"></i>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="col-md-2">
                                             <div>    
                                                 <select class="form-select" id = "liga-filtro" name="liga-filtro" data-placeholder="  Selecciona el torneo" data-bs-toggle="dropdown">
@@ -189,14 +189,14 @@
                                                 </select>
                                             </div>                                            
                                         </div> 
-                                        <div class="col-md-2 flex-shrink-0">                                            
+                                       <!--  <div class="col-md-2 flex-shrink-0">                                            
                                             <div class = "hstack text-nowrap gap-2">    
                                                 <label for="jornada-filtro" class="form-label">Jornada:</label>
                                                 <select class="form-select col-lg-3 select_form" id = "jornada-filtro" name="jornada-filtro"  data-bs-toggle="dropdown">
                                                                                                                             
                                                 </select>
                                             </div>
-                                        </div> 
+                                        </div>  -->
                                     </div>
                                 </div>
                                 <div class="card-body">                                
@@ -221,21 +221,18 @@
                                                                 </th> -->
                                                             <!--  <th class="id" style="display:none;"><a href="javascript:void(0);" class="fw-medium link-primary">#VZ001</a>
                                                                 </th> -->
-                                                                <th class="text-center" data-sort="name" scope="col">Fecha</th>
-                                                                <th class="text-center" data-sort="name" scope="col">Horario</th>
-                                                                <th class="text-center" data-sort="name" scope="col">Etapa</th>
-                                                                <th class="text-center" data-sort="owner" scope="col">Jornada</th>
-                                                                <th class="text-center" data-sort="industry_type" scope="col">Campo</th>
-                                                                <th class="text-center" data-sort="industry_type" scope="col">Liga</th>
+                                                                <th class="text-center" data-sort="name" scope="col">Posicion</th>
+                                                                <th class="text-center" data-sort="name" scope="col">Equipo</th>
+                                                                <th class="text-center" data-sort="name" scope="col">JJ</th>
+                                                                <th class="text-center" data-sort="owner" scope="col">JG</th>
+                                                                <th class="text-center" data-sort="industry_type" scope="col">JE</th>
+                                                                <th class="text-center" data-sort="industry_type" scope="col">JP</th>
                                                                 <!-- <th class="text-center" data-sort="industry_type" scope="col">Dorsal</th> -->
-                                                                <th class="text-center" data-sort="industry_type" scope="col">Equipo Local</th>
-                                                                <th class="text-center" data-sort="industry_type" scope="col">-</th>
-                                                                <th class="text-center" data-sort="industry_type" scope="col">Equipo Visitante</th>
-                                                                <th class="text-center" data-sort="industry_type" scope="col">Temporada</th>
-                                                                <th class="text-center" data-sort="industry_type" scope="col">Ganador</th>
-                                                                <th class="text-center" data-sort="industry_type" scope="col">Observaciones</th>
-                                                                <th class="text-center" data-sort="industry_type" scope="col">Estatus</th>
-                                                                <th class="text-center" scope="col">Accion</th>
+                                                                <th class="text-center" data-sort="industry_type" scope="col">GF</th>
+                                                                <th class="text-center" data-sort="industry_type" scope="col">GC</th>
+                                                                <th class="text-center" data-sort="industry_type" scope="col">DIF</th>
+                                                                <th class="text-center" data-sort="industry_type" scope="col">Puntos</th>
+                                                                                                                               
                                                             </tr>
                                                         </thead>
                                                         <tbody class="list form-check-all">
@@ -484,7 +481,7 @@
     <script src="../assets/js/pages/datatables.init.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="<?php echo JS.'menu.js'; ?>"></script>   
-    <script type="text/javascript" src="<?php echo JS.'partidos.js?v=2'; ?>"></script>  
+    <script type="text/javascript" src="<?php echo JS.'tabla.js?v=2'; ?>"></script>  
 
     <script src="../assets/libs/list.pagination.js/list.pagination.min.js"></script>
      

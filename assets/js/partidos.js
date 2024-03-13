@@ -213,9 +213,9 @@ $(document).ready(async function() {
   }
   
     //************************************************************************************************************************* */
-    $('#delete-record').on('click', elimina_equipo);
+    $('#delete-record').on('click', elimina_partido);
   
-    async function elimina_equipo(event) {
+    async function elimina_partido(event) {
   
       event.preventDefault();
       $("#overlay").show();
@@ -229,14 +229,14 @@ $(document).ready(async function() {
         };
     
         // Obtener los datos del formulario
-        var val = $('#idJugador').val();
+        var val = $('#idPartido').val();
         
         console.log(val);
   
         var alpha_id = await alpha(val);
     
         // Realiza la solicitud POST usando Axios
-        return await axios.post('https://apis.dinossolutions.com/roni/jugadores/' + alpha_id +'/delete',{id:alpha_id},{headers:header})
+        return await axios.post('https://apis.dinossolutions.com/roni/partidos/' + alpha_id +'/delete',{id:alpha_id},{headers:header})
         .then(async function (response) {
             // Maneja la respuesta exitosa
             
@@ -245,7 +245,7 @@ $(document).ready(async function() {
               
               console.log(response.status)
               // Llamar a la función AJAX para obtener nuevos datos (reemplaza esto con tu lógica)
-              var nuevosDatos = await get_jugadores();
+              var nuevosDatos = await get_partidos();
   
               // Limpiar los datos existentes en la tabla
               miTabla.clear();
@@ -257,7 +257,7 @@ $(document).ready(async function() {
               miTabla.draw();
   
               $('#deleteRecordModal').modal('hide');
-              $('.newJugador')[0].reset();
+              $('.miPartido')[0].reset();
               $("#overlay").hide();
               // Esperar 2 segundos (2000 milisegundos) antes de ejecutar la acción
               setTimeout(function () {
@@ -432,7 +432,7 @@ async function alpha(id){
       var select_horarios = $("#horario");
       select.empty();
       select1.empty();
-      
+      select_horarios.empty();
       
 
       $.each(datos[0].liga_equipo.horarios_select, function(index, valor) {
@@ -869,7 +869,7 @@ async function alpha(id){
       miTabla.on('click', '.remove-item-btn', function() {
         // Obtener los datos de la fila correspondiente
         var datosFila = $(this).data('fila');
-        $('#idJugador').val(datosFila);
+        $('#idPartido').val(datosFila);
         console.log(datosFila);
      
       }); 

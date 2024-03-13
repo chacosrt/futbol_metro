@@ -134,7 +134,43 @@
                             </svg>
                             <span>Partidos / Resultados</span>
                         </a>
-                    </li> <!-- end Dashboard Menu -->
+                    </li>
+                    <li class="nav-item">
+                            <a class="nav-link menu-link" href="#sidebarIcons" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarIcons">
+                                <svg class="svg-icon" viewBox="0 0 20 20">
+                                    <path d="M17.431,2.156h-3.715c-0.228,0-0.413,0.186-0.413,0.413v6.973h-2.89V6.687c0-0.229-0.186-0.413-0.413-0.413H6.285c-0.228,0-0.413,0.184-0.413,0.413v6.388H2.569c-0.227,0-0.413,0.187-0.413,0.413v3.942c0,0.228,0.186,0.413,0.413,0.413h14.862c0.228,0,0.413-0.186,0.413-0.413V2.569C17.844,2.342,17.658,2.156,17.431,2.156 M5.872,17.019h-2.89v-3.117h2.89V17.019zM9.587,17.019h-2.89V7.1h2.89V17.019z M13.303,17.019h-2.89v-6.651h2.89V17.019z M17.019,17.019h-2.891V2.982h2.891V17.019z"></path>
+                                </svg> 
+                                <span data-key="t-icons">Estadisticas</span>
+                            </a>
+                            <div class="collapse menu-dropdown" id="sidebarIcons">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a href="<?php echo URL.'tabla/index';?>" class="nav-link menu-link spinner-link" data-key="t-remix">
+                                            <svg width="20" height="20" viewBox="30 0 20 15" style="--sx: 1; --sy: 1; --r: 0deg;" xmlns="http://www.w3.org/2000/svg">
+                                                <!-- Uso de la etiqueta <image> para incluir una imagen PNG como icono -->
+                                                <image href="../assets/images/tabla_ico.png"  />
+                                            </svg>
+                                            <span>Tabla de Posiciones</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="icons-boxicons.html" class="nav-link" data-key="t-boxicons">Boxicons</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="icons-materialdesign.html" class="nav-link" data-key="t-material-design">Material Design</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="icons-lineawesome.html" class="nav-link" data-key="t-line-awesome">Line Awesome</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="icons-feather.html" class="nav-link" data-key="t-feather">Feather</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="icons-crypto.html" class="nav-link"> <span data-key="t-crypto-svg">Crypto SVG</span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li> <!-- end Dashboard Menu -->
                 </ul>
             </div>
             <!-- Sidebar -->
