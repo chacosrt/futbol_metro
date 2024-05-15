@@ -630,7 +630,7 @@ async function alpha(id){
           data: null,
           render: function(data, type, row) {
               // Generar HTML para los botones de acción
-              return  row.img_local+' '+row.nombre_local;
+              return  '<img className="w-9 h-9 rounded-full ltr:mr-2 rtl:ml-2 object-cover" width="30" height ="30" src="'+row.img_local+'" alt="" />'+' '+row.nombre_local;
           }
         },
         { data: 'estatus',
@@ -670,7 +670,7 @@ async function alpha(id){
         data: null,
         render: function(data, type, row) {
             // Generar HTML para los botones de acción
-            return  row.nombre_visitante+' '+row.img_visitante;
+            return '<img className="w-9 h-9 rounded-full ltr:mr-2 rtl:ml-2 object-cover" width="30" height ="30" src="'+row.img_visitante+'" alt="" />'+' '+ row.nombre_visitante;
         }
       },
         { data: 'temporada' },

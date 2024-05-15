@@ -36,9 +36,9 @@ define('AUTH_SALT'  , 'appMidas');
 
 define('PORT'       , '7882');
 
-define('URL'        ,  IS_LOCAL ? 'http://localhost/dashboard/futbol_metro/' : 'https://liga-metro.dinossolutions.com/');
+//define('URL'        ,  IS_LOCAL ? 'http://localhost/dashboard/futbol_metro/' : 'https://liga-metro.dinossolutions.com/');
 
-//define('URL'        ,'http://localhost/dashboard/futbol_metro/');
+define('URL'        ,'http://localhost/dashboard/futbol_metro/');
 
 
 
